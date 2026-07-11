@@ -49,10 +49,10 @@ export default function DashboardComponent() {
         welcome_line1: "HI, I'M MINGIEE!",
         welcome_line2: "WELCOME TO MY CREATIVE SPACE!",
         commission_scope_title: 'BẢNG GIÁ TRÊN ÁP DỤNG VỚI TRANH GỒM:',
-        commission_scope_items: "1 NHÂN VẬT CÓ THIẾT KẾ ĐƠN GIẢN\nBACKGROUND ĐƠN GIẢN (MÀU, GRADIENT, HIỆU ỨNG NHẸ)\nCANVAS 3000 PIXELS TRỞ LÊN, 400DPI\nCANVAS DỌC / VUÔNG (1:1, 3:4, 4:5)",
+        commission_scope_items: "1 nhân vật có thiết kế đơn giản\nBackground đơn giản (màu, gradient, hiệu ứng nhẹ)\nCanvas 3000 pixels trở lên, 400DPI\nCanvas dọc / vuông (1:1, 3:4, 4:5)",
         commission_extra_fees_title: 'PHỤ PHÍ',
-        commission_extra_fees_items: "THIẾT KẾ NHÂN VẬT NHIỀU CHI TIẾT: 100.000VND UP TUỲ MỨC ĐỘ PHỨC TẠP\nCANVAS DÀI (16:9): +50% GIÁ CƠ BẢN\nTHÊM NHÂN VẬT: +100% GIÁ GỐC/CHAR\nBACKGROUND CHI TIẾT (KIẾN TRÚC, NỘI THẤT, PHONG CẢNH, NHIỀU VẬT THỂ...): THƯƠNG LƯỢNG RIÊNG\nPRIVATE COMMISSION (KHÔNG ĐĂNG TẢI CÔNG KHAI): +40%\nCOMMERCIAL USE: 200% GIÁ CƠ BẢN",
-        commission_extra_fees_note: "PHỤ PHÍ SẼ ĐƯỢC MÌNH BÁO VÀ THỐNG NHẤT SAU KHI HOÀN THIỆN BƯỚC SKETCH"
+        commission_extra_fees_items: "Thiết kế nhân vật nhiều chi tiết: 100.000VND up tuỳ mức độ phức tạp\nCanvas dài (16:9): +50% giá cơ bản\nThêm nhân vật: +100% giá gốc/char\nBackground chi tiết (kiến trúc, nội thất, phong cảnh, nhiều vật thể...): Thương lượng riêng\nPrivate commission (không đăng tải công khai): +40%\nCommercial use: 200% giá cơ bản",
+        commission_extra_fees_note: "Phụ phí sẽ được mình báo và thống nhất sau khi hoàn thiện bước sketch"
     })
 
     // Missing table flags (to warn user if they haven't run SQL)

@@ -5,6 +5,32 @@ import { supabase } from '@/lib/supabase'
 
 export const revalidate = 0;
 
+function formatSentenceCase(str: string): string {
+  if (!str) return str;
+  return str
+    .split(/\r?\n|\\n/)
+    .map(line => {
+      const trimmed = line.trim();
+      if (!trimmed) return '';
+      let formatted = trimmed.charAt(0).toUpperCase() + trimmed.slice(1).toLowerCase();
+      const uppercaseWords = ['Vnd', 'Nsfw', 'Dpi', 'Oc', 'Nft', 'Ai', 'Gundam', 'Mecha', 'Furry', 'Gore', 'Canvas', 'Brief', 'Sketch', 'Lineart', 'Render', 'Final'];
+      uppercaseWords.forEach(word => {
+        const regex = new RegExp(`\\b${word}\\b`, 'gi');
+        formatted = formatted.replace(regex, (match) => {
+          if (match.toLowerCase() === 'vnd') return 'VND';
+          if (match.toLowerCase() === 'nsfw') return 'NSFW';
+          if (match.toLowerCase() === 'dpi') return 'DPI';
+          if (match.toLowerCase() === 'oc') return 'OC';
+          if (match.toLowerCase() === 'nft') return 'NFT';
+          if (match.toLowerCase() === 'ai') return 'AI';
+          return match.charAt(0).toUpperCase() + match.slice(1);
+        });
+      });
+      return formatted;
+    })
+    .join('\n');
+}
+
 export default async function Home() {
   // Fetch prices
   const { data: dbPrices } = await supabase
@@ -151,9 +177,9 @@ export default async function Home() {
           <div className="relative z-20 flex flex-col items-center justify-start w-full px-4 pt-11 sm:pt-28 lg:pt-36">
             {/* GALLERY Title Header (Static div, non-clickable) */}
             <div 
-              className="group relative flex items-center justify-center py-1 px-8 sm:py-1.5 sm:px-14 lg:py-2.5 lg:px-18 bg-[#FAF6EE] border-2 sm:border-[3px] lg:border-[3.5px] border-dashed border-[#4A4542] rounded-[10px] text-[#4A4542] min-w-[170px] sm:min-w-[270px] lg:min-w-[370px] shadow-[0_3px_6px_rgba(0,0,0,0.05)] cursor-default select-none mb-5 sm:mb-8 lg:mb-14"
+              className="group relative flex items-center justify-center py-1 px-8 sm:py-1.2 sm:px-10 lg:py-1.5 lg:px-12 bg-[#FAF6EE] border-[1.6px] sm:border-[2px] lg:border-[2.3px] border-dashed border-[#4A4542] rounded-[7px] text-[#4A4542] min-w-[120px] sm:min-w-[180px] lg:min-w-[220px] shadow-[0_3px_6px_rgba(0,0,0,0.05)] cursor-default select-none mb-5 sm:mb-8 lg:mb-14"
             >
-              <div className="absolute left-2.5 sm:left-4 lg:left-5 top-1/2 -translate-y-1/2 w-[16px] h-[16px] sm:w-[28px] sm:h-[28px] lg:w-[37px] lg:h-[37px] flex items-center justify-center">
+              <div className="absolute left-2 sm:left-3 lg:left-4 top-1/2 -translate-y-1/2 w-[11px] h-[11px] sm:w-[15px] sm:h-[15px] lg:w-[19px] lg:h-[19px] flex items-center justify-center">
                 <Image
                   src="/images/sao.svg"
                   alt="star icon"
@@ -161,10 +187,10 @@ export default async function Home() {
                   className="object-contain"
                 />
               </div>
-              <span className="font-extrabold text-[27px] sm:text-[38px] lg:text-[30px] tracking-widest font-mono relative translate-x-[3px]">
+              <span className="font-extrabold text-[13px] sm:text-[15px] lg:text-[16px] tracking-widest font-mono relative translate-x-[3px]">
                 (GALLERY)
               </span>
-              <div className="absolute right-2.5 sm:right-4 lg:right-5 top-1/2 -translate-y-1/2 w-[16px] h-[16px] sm:w-[28px] sm:h-[28px] lg:w-[37px] lg:h-[37px] flex items-center justify-center">
+              <div className="absolute right-2 sm:right-3 lg:right-4 top-1/2 -translate-y-1/2 w-[11px] h-[11px] sm:w-[15px] sm:h-[15px] lg:w-[19px] lg:h-[19px] flex items-center justify-center">
                 <Image
                   src="/images/sao.svg"
                   alt="star icon"
@@ -195,9 +221,9 @@ export default async function Home() {
         <section id="commission" className="relative z-10 w-full min-h-screen flex flex-col items-center justify-start overflow-hidden pt-14 lg:pt-18 pb-[214px] px-2 sm:px-4 md:px-6">
           {/* PRICE LIST Title Header */}
           <div 
-            className="group relative flex items-center justify-center py-1 px-8 sm:py-1.5 sm:px-14 lg:py-2.5 lg:px-18 bg-[#FAF6EE] border-2 sm:border-[3px] lg:border-[3.5px] border-dashed border-[#4A4542] rounded-[10px] text-[#4A4542] min-w-[170px] sm:min-w-[270px] lg:min-w-[370px] shadow-[0_3px_6px_rgba(0,0,0,0.05)] cursor-default select-none mb-5 sm:mb-8 lg:mb-14"
+            className="group relative flex items-center justify-center py-1 px-8 sm:py-1.2 sm:px-10 lg:py-1.5 lg:px-12 bg-[#FAF6EE] border-[1.6px] sm:border-[2px] lg:border-[2.3px] border-dashed border-[#4A4542] rounded-[7px] text-[#4A4542] min-w-[120px] sm:min-w-[180px] lg:min-w-[220px] shadow-[0_3px_6px_rgba(0,0,0,0.05)] cursor-default select-none mb-5 sm:mb-8 lg:mb-14"
           >
-            <div className="absolute left-2.5 sm:left-4 lg:left-5 top-1/2 -translate-y-1/2 w-[16px] h-[16px] sm:w-[28px] sm:h-[28px] lg:w-[37px] lg:h-[37px] flex items-center justify-center">
+            <div className="absolute left-2 sm:left-3 lg:left-4 top-1/2 -translate-y-1/2 w-[11px] h-[11px] sm:w-[15px] sm:h-[15px] lg:w-[19px] lg:h-[19px] flex items-center justify-center">
               <Image
                 src="/images/sao.svg"
                 alt="star icon"
@@ -205,10 +231,10 @@ export default async function Home() {
                 className="object-contain"
               />
             </div>
-            <span className="font-extrabold text-[27px] sm:text-[38px] lg:text-[30px] tracking-widest font-mono relative translate-x-[3px]">
+            <span className="font-extrabold text-[13px] sm:text-[15px] lg:text-[16px] tracking-widest font-mono relative translate-x-[3px]">
               (PRICE LIST)
             </span>
-            <div className="absolute right-2.5 sm:right-4 lg:right-5 top-1/2 -translate-y-1/2 w-[16px] h-[16px] sm:w-[28px] sm:h-[28px] lg:w-[37px] lg:h-[37px] flex items-center justify-center">
+            <div className="absolute right-2 sm:right-3 lg:right-4 top-1/2 -translate-y-1/2 w-[11px] h-[11px] sm:w-[15px] sm:h-[15px] lg:w-[19px] lg:h-[19px] flex items-center justify-center">
               <Image
                 src="/images/sao.svg"
                 alt="star icon"
@@ -283,8 +309,11 @@ export default async function Home() {
 
           {/* Bottom rules & info lists */}
           {(() => {
-            const scopeItems = getContent('commission_scope_items', "1 nhân vật có thiết kế đơn giản\nBackground đơn giản (màu, gradient, hiệu ứng nhẹ)\nCanvas 3000 pixels trở lên, 400DPI\nCanvas dọc / vuông (1:1, 3:4, 4:5)").split(/\r?\n|\\n/).filter(Boolean);
-            const extraFeesItems = getContent('commission_extra_fees_items', "Thiết kế nhân vật nhiều chi tiết: 100.000VND up tuỳ mức độ phức tạp\nCanvas dài (16:9): +50% giá cơ bản\nThêm nhân vật: +100% giá gốc/char\nBackground chi tiết (kiến trúc, nội thất, phong cảnh, nhiều vật thể...): Thương lượng riêng\nPrivate commission (không đăng tải công khai): +40%\nCommercial use: 200% giá cơ bản").split(/\r?\n|\\n/).filter(Boolean);
+            const rawScope = getContent('commission_scope_items', "1 nhân vật có thiết kế đơn giản\nBackground đơn giản (màu, gradient, hiệu ứng nhẹ)\nCanvas 3000 pixels trở lên, 400DPI\nCanvas dọc / vuông (1:1, 3:4, 4:5)");
+            const scopeItems = formatSentenceCase(rawScope).split('\n').filter(Boolean);
+
+            const rawExtraFees = getContent('commission_extra_fees_items', "Thiết kế nhân vật nhiều chi tiết: 100.000VND up tuỳ mức độ phức tạp\nCanvas dài (16:9): +50% giá cơ bản\nThêm nhân vật: +100% giá gốc/char\nBackground chi tiết (kiến trúc, nội thất, phong cảnh, nhiều vật thể...): Thương lượng riêng\nPrivate commission (không đăng tải công khai): +40%\nCommercial use: 200% giá cơ bản");
+            const extraFeesItems = formatSentenceCase(rawExtraFees).split('\n').filter(Boolean);
 
             return (
               <div className="w-full max-w-[1240px] grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-11 lg:gap-16 px-4 font-mono text-black">
@@ -320,7 +349,7 @@ export default async function Home() {
                     </ul>
                   </div>
                   <p className="mt-2.5 pl-3 sm:pl-4 lg:pl-5 text-[21.5px] sm:text-[25px] lg:text-[16px] font-normal text-black leading-[1.3] w-full">
-                    {getContent('commission_extra_fees_note', 'Phụ phí sẽ được mình báo và thống nhất sau khi hoàn thiện bước sketch')}
+                    {formatSentenceCase(getContent('commission_extra_fees_note', 'Phụ phí sẽ được mình báo và thống nhất sau khi hoàn thiện bước sketch'))}
                   </p>
                 </div>
               </div>
@@ -357,9 +386,9 @@ export default async function Home() {
         <section id="terms" className="relative z-10 w-full min-h-screen flex flex-col items-center justify-start overflow-hidden pt-6 sm:pt-16 lg:pt-22 pb-16 px-4">
           {/* TERMS OF SERVICE Title Header */}
           <div 
-            className="group relative z-20 flex items-center justify-center py-1 px-8 sm:py-1.5 sm:px-14 lg:py-2.5 lg:px-18 bg-[#FAF6EE] border-2 sm:border-[3px] lg:border-[3.5px] border-dashed border-[#4A4542] rounded-[10px] text-[#4A4542] min-w-[170px] sm:min-w-[270px] lg:min-w-[370px] shadow-[0_3px_6px_rgba(0,0,0,0.05)] cursor-default select-none mb-10 sm:mb-14 lg:mb-16"
+            className="group relative z-20 flex items-center justify-center py-1 px-8 sm:py-1.2 sm:px-10 lg:py-1.5 lg:px-12 bg-[#FAF6EE] border-[1.6px] sm:border-[2px] lg:border-[2.3px] border-dashed border-[#4A4542] rounded-[7px] text-[#4A4542] min-w-[120px] sm:min-w-[180px] lg:min-w-[220px] shadow-[0_3px_6px_rgba(0,0,0,0.05)] cursor-default select-none mb-10 sm:mb-14 lg:mb-16"
           >
-            <div className="absolute left-2.5 sm:left-4 lg:left-5 top-1/2 -translate-y-1/2 w-[16px] h-[16px] sm:w-[28px] sm:h-[28px] lg:w-[37px] lg:h-[37px] flex items-center justify-center">
+            <div className="absolute left-2 sm:left-3 lg:left-4 top-1/2 -translate-y-1/2 w-[11px] h-[11px] sm:w-[15px] sm:h-[15px] lg:w-[19px] lg:h-[19px] flex items-center justify-center">
               <Image
                 src="/images/sao.svg"
                 alt="star icon"
@@ -367,10 +396,10 @@ export default async function Home() {
                 className="object-contain"
               />
             </div>
-            <span className="font-extrabold text-[27px] sm:text-[38px] lg:text-[30px] tracking-widest font-mono relative translate-x-[3px]">
+            <span className="font-extrabold text-[13px] sm:text-[15px] lg:text-[16px] tracking-widest font-mono relative translate-x-[3px]">
               (TERMS OF SERVICE)
             </span>
-            <div className="absolute right-2.5 sm:right-4 lg:right-5 top-1/2 -translate-y-1/2 w-[16px] h-[16px] sm:w-[28px] sm:h-[28px] lg:w-[37px] lg:h-[37px] flex items-center justify-center">
+            <div className="absolute right-2 sm:right-3 lg:right-4 top-1/2 -translate-y-1/2 w-[11px] h-[11px] sm:w-[15px] sm:h-[15px] lg:w-[19px] lg:h-[19px] flex items-center justify-center">
               <Image
                 src="/images/sao.svg"
                 alt="star icon"
