@@ -520,22 +520,41 @@ Nếu mình hủy:
           <div className="w-full max-w-[1240px] flex flex-col space-y-7 sm:space-y-12 lg:space-y-16 px-4 font-mono text-black mt-4">
             {terms.map((term, index) => {
               const isEven = index % 2 === 0;
-              const buttonNum = (index % 7) + 1; // 1 to 7 buttons looping
               
               // Helper to parse content with custom bullet styling
               const lines = term.content.split(/\n/);
               
-              const buttonStyles: Record<number, { className: string, aspect: string }> = {
-                1: { className: 'right-[-20px] sm:right-[-150px] top-[10%] sm:top-[-50px] w-[180px] sm:w-[450px] lg:w-[520px]', aspect: 'aspect-[879/513]' },
-                2: { className: 'left-[-20px] sm:left-[-150px] top-[-10px] w-[130px] sm:w-[340px] lg:w-[450px]', aspect: 'aspect-[567/479]' },
-                3: { className: 'right-[-20px] sm:right-[-150px] top-[10px] sm:top-[20px] w-[180px] sm:w-[460px] lg:w-[520px]', aspect: 'aspect-[1/1]' },
-                4: { className: 'right-[-30px] sm:right-[-195px] top-[10px] w-[200px] sm:w-[580px] lg:w-[660px]', aspect: 'aspect-[1029/531]' },
-                5: { className: 'left-[-30px] sm:left-[-170px] top-[30px] sm:top-[-50px] w-[180px] sm:w-[480px] lg:w-[440px]', aspect: 'aspect-[834/671]' },
-                6: { className: 'right-[20px] sm:right-[150px] top-[5px] sm:top-[10px] w-[80px] sm:w-[120px] lg:w-[160px]', aspect: 'aspect-[307/316]' },
-                7: { className: 'left-[-20px] sm:left-[80px] bottom-[-50px] sm:bottom-[-470px] w-[80px] sm:w-[180px] lg:w-[290px]', aspect: 'aspect-[1/1]' }
+              const buttonStyles: Record<string, { className: string, aspect: string, src: string }> = {
+                button1: { className: 'right-[-20px] sm:right-[-150px] top-[10%] sm:top-[-50px] w-[180px] sm:w-[450px] lg:w-[520px]', aspect: 'aspect-[879/513]', src: '/images/button1.png' },
+                button2: { className: 'left-[-20px] sm:left-[-150px] top-[-10px] w-[130px] sm:w-[340px] lg:w-[450px]', aspect: 'aspect-[567/479]', src: '/images/button2.png' },
+                button3: { className: 'right-[-20px] sm:right-[-150px] top-[10px] sm:top-[20px] w-[180px] sm:w-[460px] lg:w-[520px]', aspect: 'aspect-[1/1]', src: '/images/button3.png' },
+                button4: { className: 'right-[-30px] sm:right-[-195px] top-[10px] w-[200px] sm:w-[580px] lg:w-[660px]', aspect: 'aspect-[1029/531]', src: '/images/button4.png' },
+                button5: { className: 'left-[-30px] sm:left-[-170px] top-[30px] sm:top-[-50px] w-[180px] sm:w-[480px] lg:w-[440px]', aspect: 'aspect-[834/671]', src: '/images/button5.png' },
+                button6: { className: 'right-[20px] sm:right-[150px] top-[5px] sm:top-[10px] w-[80px] sm:w-[120px] lg:w-[160px]', aspect: 'aspect-[307/316]', src: '/images/button6.png' },
+                button7: { className: 'left-[-20px] sm:left-[80px] bottom-[-50px] sm:bottom-[-470px] w-[80px] sm:w-[180px] lg:w-[290px]', aspect: 'aspect-[1/1]', src: '/images/button7.png' }
               };
               
-              const btnStyle = buttonStyles[buttonNum];
+              let decorationImage = 'none';
+              if ((term as any).image_name !== undefined && (term as any).image_name !== null) {
+                decorationImage = (term as any).image_name;
+              } else {
+                // Fallback to original positions
+                const originalMap: Record<number, string> = {
+                  0: 'button1',
+                  1: 'button2',
+                  2: 'button3',
+                  3: 'none',
+                  4: 'button4',
+                  5: 'button5',
+                  6: 'button6',
+                  7: 'none',
+                  8: 'button7',
+                  9: 'none'
+                };
+                decorationImage = originalMap[index] || 'none';
+              }
+              
+              const btnStyle = buttonStyles[decorationImage];
 
               return (
                 <div key={term.id || index} className="w-full grid grid-cols-1 sm:grid-cols-2 gap-8 relative">
@@ -586,15 +605,17 @@ Nếu mình hủy:
                   </div>
 
                   {/* Decorative Button Images */}
-                  <div className={`absolute pointer-events-none select-none z-0 ${btnStyle.className} ${btnStyle.aspect}`}>
-                    <Image
-                      src={`/images/button${buttonNum}.png`}
-                      alt={`Decorative Button Group ${buttonNum}`}
-                      fill
-                      className="object-contain"
-                      priority
-                    />
-                  </div>
+                  {btnStyle && (
+                    <div className={`absolute pointer-events-none select-none z-0 ${btnStyle.className} ${btnStyle.aspect}`}>
+                      <Image
+                        src={btnStyle.src}
+                        alt={`Decorative Button Group ${decorationImage}`}
+                        fill
+                        className="object-contain"
+                        priority
+                      />
+                    </div>
+                  )}
                 </div>
               );
             })}

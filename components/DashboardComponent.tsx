@@ -41,6 +41,7 @@ interface TermOfService {
     title: string
     content: string
     display_order: number
+    image_name?: string
 }
 
 export default function DashboardComponent() {
@@ -76,7 +77,7 @@ export default function DashboardComponent() {
     const [linkForm, setLinkForm] = useState<PlatformLink>({ label: '', url: '', display_order: 1 })
     const [editingLinkId, setEditingLinkId] = useState<number | null>(null)
 
-    const [termForm, setTermForm] = useState<TermOfService>({ title: '', content: '', display_order: 1 })
+    const [termForm, setTermForm] = useState<TermOfService>({ title: '', content: '', display_order: 1, image_name: 'none' })
     const [editingTermId, setEditingTermId] = useState<number | null>(null)
 
     const [savingContent, setSavingContent] = useState(false)
@@ -356,7 +357,7 @@ export default function DashboardComponent() {
                 if (error) throw error
                 showMessage('Terms of service row created successfully!')
             }
-            setTermForm({ title: '', content: '', display_order: terms.length + 2 })
+            setTermForm({ title: '', content: '', display_order: terms.length + 2, image_name: 'none' })
             setEditingTermId(null)
             fetchData()
         } catch (err: any) {
@@ -368,7 +369,8 @@ export default function DashboardComponent() {
         setTermForm({
             title: term.title,
             content: term.content,
-            display_order: term.display_order
+            display_order: term.display_order,
+            image_name: term.image_name || 'none'
         })
         setEditingTermId(term.id || null)
     }
@@ -492,6 +494,7 @@ CREATE TABLE IF NOT EXISTS public.terms_of_service (
   title TEXT NOT NULL,
   content TEXT NOT NULL,
   display_order INTEGER NOT NULL DEFAULT 0,
+  image_name TEXT DEFAULT 'none',
   created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
 );
 ALTER TABLE public.terms_of_service ENABLE ROW LEVEL SECURITY;
@@ -935,6 +938,23 @@ CREATE POLICY "Allow auth all access" ON terms_of_service FOR ALL USING (auth.ro
                                         required
                                     />
                                 </div>
+                                <div>
+                                    <label className="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Decoration Button</label>
+                                    <select
+                                        value={termForm.image_name || 'none'}
+                                        onChange={(e) => setTermForm({ ...termForm, image_name: e.target.value })}
+                                        className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500"
+                                    >
+                                        <option value="none">None (No Button)</option>
+                                        <option value="button1">Button 1 (Upper Right)</option>
+                                        <option value="button2">Button 2 (Upper Left)</option>
+                                        <option value="button3">Button 3 (Mid Right Square)</option>
+                                        <option value="button4">Button 4 (Mid Right Wide)</option>
+                                        <option value="button5">Button 5 (Mid Left Wide)</option>
+                                        <option value="button6">Button 6 (Lower Right Small)</option>
+                                        <option value="button7">Button 7 (Lower Left Bottom)</option>
+                                    </select>
+                                </div>
                                 <div className="flex gap-2 pt-2">
                                     <Button type="submit" className="flex-1 bg-amber-500 text-slate-950 hover:bg-amber-600 font-bold">
                                         {editingTermId !== null ? 'Update Row' : 'Create Row'}
@@ -945,7 +965,7 @@ CREATE POLICY "Allow auth all access" ON terms_of_service FOR ALL USING (auth.ro
                                             variant="outline" 
                                             onClick={() => {
                                                 setEditingTermId(null)
-                                                setTermForm({ title: '', content: '', display_order: terms.length + 2 })
+                                                setTermForm({ title: '', content: '', display_order: terms.length + 2, image_name: 'none' })
                                             }}
                                             className="border-slate-700 text-slate-300 hover:bg-slate-800"
                                         >
@@ -977,6 +997,7 @@ CREATE POLICY "Allow auth all access" ON terms_of_service FOR ALL USING (auth.ro
                                                         {term.title}
                                                     </span>
                                                     <span className="text-slate-500 text-xs font-mono">Order: {term.display_order}</span>
+                                                    <span className="text-slate-500 text-xs font-mono">| Button: {term.image_name || 'default'}</span>
                                                 </div>
                                                 <pre className="text-slate-300 font-mono text-xs bg-slate-900/50 p-3 rounded-lg border border-slate-900 overflow-x-auto whitespace-pre-wrap max-h-48 leading-relaxed">
                                                     {term.content}
