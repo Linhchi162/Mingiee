@@ -232,14 +232,14 @@ export default async function Home() {
               }}
             >
               {/* Inner content wrapper, padded to fit inside the plain center box of the lace card */}
-              <div className="w-[74%] h-[68%] flex flex-col justify-center text-black font-mono px-2 sm:px-4 lg:translate-x-[0px]">
+              <div className="w-[59%] h-[68%] flex flex-col justify-center text-black font-mono px-2 sm:px-4 lg:translate-x-[0px]">
                 <table className="w-full text-left border-collapse">
                   <thead>
                     <tr className="border-b-2 border-black">
-                      <th className="pt-[4px] pb-[1px] sm:pt-[6px] sm:pb-[1px] lg:pt-[8px] lg:pb-[8px] font-normal text-[14px] sm:text-[15.5px] lg:text-[16.8px] tracking-wider w-[50%]">
+                      <th className="pt-[4px] pb-[1px] sm:pt-[6px] sm:pb-[1px] lg:pt-[8px] lg:pb-[8px] font-normal text-[14px] sm:text-[15.5px] lg:text-[16.8px] tracking-wider w-[65%]">
                         <span className="relative inline-block translate-y-[2px] sm:translate-y-[3.5px] lg:translate-y-[4.5px]">(TYPE)</span>
                       </th>
-                      <th className="pt-[4px] pb-[1px] sm:pt-[6px] sm:pb-[1px] lg:pt-[8px] lg:pb-[8px] text-right font-normal text-[14px] sm:text-[15.5px] lg:text-[16.8px] tracking-wider">
+                      <th className="pt-[4px] pb-[1px] sm:pt-[6px] sm:pb-[1px] lg:pt-[8px] lg:pb-[8px] text-left font-normal text-[14px] sm:text-[15.5px] lg:text-[16.8px] tracking-wider">
                         <span className="relative inline-block translate-y-[2px] sm:translate-y-[3.5px] lg:translate-y-[4.5px]">(PRICE)</span>
                       </th>
                     </tr>
@@ -250,7 +250,7 @@ export default async function Home() {
                         <td className="pt-[2px] pb-[1px] sm:pt-[4px] sm:pb-[1px] lg:pt-[6px] lg:pb-[2px] font-normal text-[14px] sm:text-[15.5px] lg:text-[16.8px] tracking-wide">
                           <span className="relative inline-block translate-y-[-1px] sm:translate-y-[0.5px] lg:translate-y-[1.5px]">{priceItem.type}</span>
                         </td>
-                        <td className="pt-[2px] pb-[1px] sm:pt-[4px] sm:pb-[1px] lg:pt-[6px] lg:pb-[2px] text-right font-normal text-[14px] sm:text-[15.5px] lg:text-[16.8px]">
+                        <td className="pt-[2px] pb-[1px] sm:pt-[4px] sm:pb-[1px] lg:pt-[6px] lg:pb-[2px] text-left font-normal text-[14px] sm:text-[15.5px] lg:text-[16.8px]">
                           <span className="relative inline-block translate-y-[-1px] sm:translate-y-[0.5px] lg:translate-y-[1.5px]">{priceItem.price_vnd}</span>
                         </td>
                       </tr>
