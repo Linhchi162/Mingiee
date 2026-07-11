@@ -402,7 +402,14 @@ export default async function Home() {
             <div className="absolute right-2 sm:right-3 lg:right-4 top-1/2 -translate-y-1/2 w-[11px] h-[11px] sm:w-[15px] sm:h-[15px] lg:w-[19px] lg:h-[19px] flex items-center justify-center">
               <Image
                 src="/images/sao.svg"
-                        {/* Terms Container Grid (Cascading Staggered Rows) */}
+                alt="star icon"
+                fill
+                className="object-contain"
+              />
+            </div>
+          </div>
+
+          {/* Terms Container Grid (Cascading Staggered Rows) */}
           {(() => {
             const paymentItems = formatSentenceCase(getContent('terms_payment_items', "Thanh toán qua chuyển khoản ngân hàng.\nThanh toán trước 50% khi 2 bên đã thống nhất giá.\nSau khi duyệt bản nháp thô (Rough sketch), khách vui lòng thanh toán 100% để mình bắt đầu line và render.\nSau 24 giờ kể từ khi gửi thông tin thanh toán mà chưa nhận được phản hồi, mình có quyền hủy slot.")).split('\n').filter(Boolean);
             const processFlow = formatSentenceCase(getContent('terms_process_flow', "Brief ➔ Sketch ➔ Thanh toán ➔ Lineart ➔ Render ➔ Final"));
