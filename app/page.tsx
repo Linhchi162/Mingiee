@@ -331,6 +331,18 @@ export default async function Home() {
           backgroundSize: '100% auto',
         }}
       >
+        {/* Scallop Edge Divider (ria_transparent.png) */}
+        <div 
+          className="absolute top-[-12px] lg:top-[-11px] left-0 right-0 z-30 w-full h-[150px] pointer-events-none"
+          style={{
+            backgroundImage: "url('/images/ria_transparent.png')",
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'top center',
+            backgroundSize: '100% auto',
+            filter: 'brightness(1.03)',
+            clipPath: 'inset(3px 0px 0px 0px)',
+          }}
+        />
 
 
         {/* SECTION 8: White Background Section 2 (Terms of Service) */}
