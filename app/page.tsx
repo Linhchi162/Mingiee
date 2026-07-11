@@ -236,22 +236,30 @@ export default async function Home() {
                 <table className="w-full text-left border-collapse">
                   <thead>
                     <tr className="border-b-2 border-black">
-                      <th className="pt-[4px] pb-[1px] sm:pt-[6px] sm:pb-[1px] lg:pt-[8px] lg:pb-[8px] font-normal text-[14px] sm:text-[15.5px] lg:text-[16.8px] tracking-wider w-[48%] whitespace-nowrap">
+                      <th className="pt-[4px] pb-[1px] sm:pt-[6px] sm:pb-[1px] lg:pt-[8px] lg:pb-[8px] font-extrabold text-[14px] sm:text-[15.5px] lg:text-[16.8px] tracking-wider w-[50%] whitespace-nowrap">
                         <span className="relative inline-block translate-y-[2px] sm:translate-y-[3.5px] lg:translate-y-[4.5px]">(TYPE)</span>
                       </th>
-                      <th className="pt-[4px] pb-[1px] sm:pt-[6px] sm:pb-[1px] lg:pt-[8px] lg:pb-[8px] text-left font-normal text-[14px] sm:text-[15.5px] lg:text-[16.8px] tracking-wider whitespace-nowrap">
-                        <span className="relative inline-block translate-y-[2px] sm:translate-y-[3.5px] lg:translate-y-[4.5px]">(PRICE)</span>
+                      <th className="pt-[4px] pb-[1px] sm:pt-[6px] sm:pb-[1px] lg:pt-[8px] lg:pb-[8px] font-extrabold text-[14px] sm:text-[15.5px] lg:text-[16.8px] tracking-wider whitespace-nowrap">
+                        <div className="w-full flex justify-end">
+                          <div className="w-[150px] lg:w-[165px] text-left whitespace-nowrap">
+                            <span className="relative inline-block translate-y-[2px] sm:translate-y-[3.5px] lg:translate-y-[4.5px]">(PRICE)</span>
+                          </div>
+                        </div>
                       </th>
                     </tr>
                   </thead>
                   <tbody>
                     {prices.map((priceItem, index) => (
                       <tr key={priceItem.id || index} className="border-b border-black/40">
-                        <td className="pt-[2px] pb-[1px] sm:pt-[4px] sm:pb-[1px] lg:pt-[6px] lg:pb-[2px] font-normal text-[14px] sm:text-[15.5px] lg:text-[16.8px] tracking-wide whitespace-nowrap">
+                        <td className={`pt-[2px] pb-[1px] sm:pt-[4px] sm:pb-[1px] lg:pb-[2px] font-normal text-[14px] sm:text-[15.5px] lg:text-[16.8px] tracking-wide whitespace-nowrap ${index === 0 ? 'lg:pt-[36px]' : 'lg:pt-[6px]'}`}>
                           <span className="relative inline-block translate-y-[-1px] sm:translate-y-[0.5px] lg:translate-y-[1.5px]">{priceItem.type}</span>
                         </td>
-                        <td className="pt-[2px] pb-[1px] sm:pt-[4px] sm:pb-[1px] lg:pt-[6px] lg:pb-[2px] text-left font-normal text-[14px] sm:text-[15.5px] lg:text-[16.8px] whitespace-nowrap">
-                          <span className="relative inline-block translate-y-[-1px] sm:translate-y-[0.5px] lg:translate-y-[1.5px]">{priceItem.price_vnd}</span>
+                        <td className={`pt-[2px] pb-[1px] sm:pt-[4px] sm:pb-[1px] lg:pb-[2px] font-normal text-[14px] sm:text-[15.5px] lg:text-[16.8px] whitespace-nowrap ${index === 0 ? 'lg:pt-[36px]' : 'lg:pt-[6px]'}`}>
+                          <div className="w-full flex justify-end">
+                            <div className="w-[150px] lg:w-[165px] text-left whitespace-nowrap">
+                              <span className="relative inline-block translate-y-[-1px] sm:translate-y-[0.5px] lg:translate-y-[1.5px]">{priceItem.price_vnd}</span>
+                            </div>
+                          </div>
                         </td>
                       </tr>
                     ))}
@@ -669,7 +677,7 @@ export default async function Home() {
         </div>
 
         {/* Right: Copyright text */}
-        <div className="font-mono text-[clamp(10px,2.5vw,33px)] text-[#FFFFFF] opacity-100 select-none translate-y-0 lg:translate-y-[100px]">
+        <div className="font-mono text-[clamp(10px,2.5vw,33px)] lg:text-[16px] text-[#FFFFFF] opacity-100 select-none translate-y-0 lg:translate-y-[100px]">
           © Copyright 2026: Mingiee
         </div>
       </footer>
