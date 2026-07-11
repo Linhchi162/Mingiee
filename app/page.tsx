@@ -258,10 +258,10 @@ export default async function Home() {
               }}
             >
               {/* Inner content wrapper, padded to fit inside the plain center box of the lace card */}
-              <div className="w-[74%] h-[68%] flex flex-col justify-center text-black font-mono px-2 sm:px-4 lg:translate-x-[0px]">
+              <div className="w-[74%] h-[68%] flex flex-col justify-center text-[#4A4542] font-mono px-2 sm:px-4 lg:translate-x-[0px]">
                 <table className="w-full text-left border-collapse">
                   <thead>
-                    <tr className="border-b-2 border-black">
+                    <tr className="border-b-2 border-[#4A4542]">
                       <th className="pt-[4px] pb-[1px] sm:pt-[6px] sm:pb-[1px] lg:pt-[8px] lg:pb-[8px] font-extrabold text-[14px] sm:text-[15.5px] lg:text-[16.8px] tracking-wider w-[50%] whitespace-nowrap">
                         <span className="relative inline-block translate-y-[2px] sm:translate-y-[3.5px] lg:translate-y-[4.5px]">(TYPE)</span>
                       </th>
@@ -276,7 +276,7 @@ export default async function Home() {
                   </thead>
                   <tbody>
                     {prices.map((priceItem, index) => (
-                      <tr key={priceItem.id || index} className="border-b border-black/40">
+                      <tr key={priceItem.id || index} className="border-b border-[#4A4542]/40">
                         <td className={`pt-[2px] pb-[1px] sm:pt-[4px] sm:pb-[1px] lg:pb-[2px] font-normal text-[14px] sm:text-[15.5px] lg:text-[16.8px] tracking-wide whitespace-nowrap ${index === 0 ? 'lg:pt-[36px]' : 'lg:pt-[6px]'}`}>
                           <span className="relative inline-block translate-y-[-1px] sm:translate-y-[0.5px] lg:translate-y-[1.5px]">{priceItem.type}</span>
                         </td>
@@ -313,10 +313,8 @@ export default async function Home() {
             const scopeItems = formatSentenceCase(rawScope).split('\n').filter(Boolean);
 
             const rawExtraFees = getContent('commission_extra_fees_items', "Thiết kế nhân vật nhiều chi tiết: 100.000VND up tuỳ mức độ phức tạp\nCanvas dài (16:9): +50% giá cơ bản\nThêm nhân vật: +100% giá gốc/char\nBackground chi tiết (kiến trúc, nội thất, phong cảnh, nhiều vật thể...): Thương lượng riêng\nPrivate commission (không đăng tải công khai): +40%\nCommercial use: 200% giá cơ bản");
-            const extraFeesItems = formatSentenceCase(rawExtraFees).split('\n').filter(Boolean);
-
-            return (
-              <div className="w-full max-w-[1240px] grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-11 lg:gap-16 px-4 font-mono text-black">
+               return (
+              <div className="w-full max-w-[1240px] grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-11 lg:gap-16 px-4 font-mono text-[#4A4542]">
                 
                 {/* Bottom Left Card: Scope info */}
                 <div className="flex flex-col items-start w-full max-w-[540px] justify-self-center md:justify-self-start">
@@ -348,7 +346,7 @@ export default async function Home() {
                       ))}
                     </ul>
                   </div>
-                  <p className="mt-2.5 pl-3 sm:pl-4 lg:pl-5 text-[21.5px] sm:text-[25px] lg:text-[16px] font-normal text-black leading-[1.3] w-full">
+                  <p className="mt-2.5 pl-3 sm:pl-4 lg:pl-5 text-[21.5px] sm:text-[25px] lg:text-[16px] font-normal text-[#4A4542] leading-[1.3] w-full">
                     {formatSentenceCase(getContent('commission_extra_fees_note', 'Phụ phí sẽ được mình báo và thống nhất sau khi hoàn thiện bước sketch'))}
                   </p>
                 </div>
