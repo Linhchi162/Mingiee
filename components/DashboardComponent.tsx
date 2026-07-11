@@ -52,7 +52,24 @@ export default function DashboardComponent() {
         commission_scope_items: "1 nhân vật có thiết kế đơn giản\nBackground đơn giản (màu, gradient, hiệu ứng nhẹ)\nCanvas 3000 pixels trở lên, 400DPI\nCanvas dọc / vuông (1:1, 3:4, 4:5)",
         commission_extra_fees_title: 'PHỤ PHÍ',
         commission_extra_fees_items: "Thiết kế nhân vật nhiều chi tiết: 100.000VND up tuỳ mức độ phức tạp\nCanvas dài (16:9): +50% giá cơ bản\nThêm nhân vật: +100% giá gốc/char\nBackground chi tiết (kiến trúc, nội thất, phong cảnh, nhiều vật thể...): Thương lượng riêng\nPrivate commission (không đăng tải công khai): +40%\nCommercial use: 200% giá cơ bản",
-        commission_extra_fees_note: "Phụ phí sẽ được mình báo và thống nhất sau khi hoàn thiện bước sketch"
+        commission_extra_fees_note: "Phụ phí sẽ được mình báo và thống nhất sau khi hoàn thiện bước sketch",
+        terms_payment_items: "Thanh toán qua chuyển khoản ngân hàng.\nThanh toán trước 50% khi 2 bên đã thống nhất giá.\nSau khi duyệt bản nháp thô (Rough sketch), khách vui lòng thanh toán 100% để mình bắt đầu line và render.\nSau 24 giờ kể từ khi gửi thông tin thanh toán mà chưa nhận được phản hồi, mình có quyền hủy slot.",
+        terms_process_flow: "Brief ➔ Sketch ➔ Thanh toán ➔ Lineart ➔ Render ➔ Final",
+        terms_process_items: "Reference nhân vật đầy đủ\nMô tả tính cách hoặc biểu cảm mong muốn\nPose hoặc ý tưởng cụ thể (nếu có)\nReference màu sắc, ánh sáng, mood tranh (nếu có)",
+        terms_process_note: "Reference càng đầy đủ thì kết quả càng sát mong muốn.",
+        terms_revision_sketch_items: "Được sửa miễn phí tối đa 3 lần.\nVui lòng tổng hợp các chỉnh sửa trong cùng một lần phản hồi.",
+        terms_revision_after_sketch_items: "Các thay đổi lớn như:\n- Đổi pose\n- Đổi outfit\n- Đổi hairstyle\n- Đổi thiết kế nhân vật",
+        terms_revision_render_items: "Chỉ hỗ trợ chỉnh các lỗi nhỏ.\nKhông nhận thay đổi lớn sau khi đã bắt đầu render.",
+        terms_time_items: "Thời gian hoàn thành dự kiến: 3-5 tuần tùy độ phức tạp và số lượng đơn đang chờ.\nNếu có deadline, vui lòng báo trước khi đặt commission.\nMình sẽ cố gắng hoàn thiện đúng thời hạn nhưng không nhận deadline quá gấp.",
+        terms_declined_items: "NSFW\nOld man\nMecha/Gundam phức tạp\nFurry\nGore nặng\nNội dung vi phạm pháp luật hoặc mang tính xúc phạm",
+        terms_declined_note: "(Có thể từ chối commission nếu cảm thấy không phù hợp với khả năng hoặc phong cách hiện tại.)",
+        terms_usage_allowed_items: "Sử dụng cho mục đích cá nhân.\nĐăng tải lên mạng xã hội có credit.\nIn ấn cá nhân với số lượng nhỏ.",
+        terms_usage_forbidden_items: "Chỉnh sửa artwork khi chưa có sự đồng ý.\nSử dụng cho AI, NFT hoặc các mục đích tương tự.\nSử dụng cho mục đích thương mại khi chưa mua quyền Commercial use.",
+        terms_copyright_items: "Mình giữ bản quyền đối với artwork do mình thực hiện.\nQuyền sở hữu OC/nhân vật vẫn thuộc về khách hàng.\nMọi hình thức sử dụng thương mại cần được thỏa thuận riêng.",
+        terms_posting_items: "Mình có quyền sử dụng commission làm portfolio, sample hoặc đăng tải trên các nền tảng mạng xã hội.\nNếu không muốn artwork được công khai, vui lòng đăng ký Private commission (+40%).",
+        terms_cancel_client_items: "Sau khi duyệt sketch: hoàn lại 50% giá trị commission.\nSau khi đã bắt đầu line/render: không hoàn tiền.",
+        terms_cancel_artist_items: "Hoàn lại toàn bộ hoặc một phần chi phí tùy theo tiến độ đã thực hiện.",
+        terms_note_items: "Vui lòng chỉ đặt commission khi bạn có thể chủ động thanh toán và phản hồi trong quá trình làm việc.\nMình ưu tiên những khách hàng lịch sự, hợp tác và phản hồi rõ ràng.\nKhi đặt commission đồng nghĩa với việc bạn đã đọc và đồng ý với toàn bộ điều khoản trên."
     })
 
     // Missing table flags (to warn user if they haven't run SQL)
@@ -903,6 +920,191 @@ CREATE POLICY "Allow auth all access" ON site_content FOR ALL USING (auth.role()
                                                 className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500 font-mono leading-relaxed"
                                                 required
                                             />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Terms of Service Editor */}
+                                <div className="bg-slate-950 p-5 rounded-xl border border-slate-800 space-y-4">
+                                    <h3 className="text-sm font-bold text-amber-500 tracking-wide uppercase border-b border-slate-900 pb-1">📜 Terms of Service Sections</h3>
+                                    
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        {/* Col 1 */}
+                                        <div className="space-y-4">
+                                            <div>
+                                                <label className="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Row 1: Payment Items (One per line)</label>
+                                                <textarea
+                                                    rows={4}
+                                                    value={contents.terms_payment_items || ''}
+                                                    onChange={(e) => handleContentChange('terms_payment_items', e.target.value)}
+                                                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500 font-mono"
+                                                    required
+                                                />
+                                            </div>
+                                            <div>
+                                                <label className="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Row 2: Process Flow String</label>
+                                                <input
+                                                    type="text"
+                                                    value={contents.terms_process_flow || ''}
+                                                    onChange={(e) => handleContentChange('terms_process_flow', e.target.value)}
+                                                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500"
+                                                    required
+                                                />
+                                            </div>
+                                            <div>
+                                                <label className="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Row 2: Process Items (One per line)</label>
+                                                <textarea
+                                                    rows={4}
+                                                    value={contents.terms_process_items || ''}
+                                                    onChange={(e) => handleContentChange('terms_process_items', e.target.value)}
+                                                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500 font-mono"
+                                                    required
+                                                />
+                                            </div>
+                                            <div>
+                                                <label className="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Row 2: Process Guideline Note</label>
+                                                <input
+                                                    type="text"
+                                                    value={contents.terms_process_note || ''}
+                                                    onChange={(e) => handleContentChange('terms_process_note', e.target.value)}
+                                                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500"
+                                                    required
+                                                />
+                                            </div>
+                                            <div>
+                                                <label className="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Row 3: Revision Sketch Stage Items (One per line)</label>
+                                                <textarea
+                                                    rows={3}
+                                                    value={contents.terms_revision_sketch_items || ''}
+                                                    onChange={(e) => handleContentChange('terms_revision_sketch_items', e.target.value)}
+                                                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500 font-mono"
+                                                    required
+                                                />
+                                            </div>
+                                            <div>
+                                                <label className="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Row 3: Revision After Sketch Stage Items (One per line)</label>
+                                                <textarea
+                                                    rows={4}
+                                                    value={contents.terms_revision_after_sketch_items || ''}
+                                                    onChange={(e) => handleContentChange('terms_revision_after_sketch_items', e.target.value)}
+                                                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500 font-mono"
+                                                    required
+                                                />
+                                            </div>
+                                            <div>
+                                                <label className="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Row 3: Revision Render Stage Items (One per line)</label>
+                                                <textarea
+                                                    rows={3}
+                                                    value={contents.terms_revision_render_items || ''}
+                                                    onChange={(e) => handleContentChange('terms_revision_render_items', e.target.value)}
+                                                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500 font-mono"
+                                                    required
+                                                />
+                                            </div>
+                                            <div>
+                                                <label className="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Row 4: Time / Turnaround Items (One per line)</label>
+                                                <textarea
+                                                    rows={4}
+                                                    value={contents.terms_time_items || ''}
+                                                    onChange={(e) => handleContentChange('terms_time_items', e.target.value)}
+                                                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500 font-mono"
+                                                    required
+                                                />
+                                            </div>
+                                        </div>
+
+                                        {/* Col 2 */}
+                                        <div className="space-y-4">
+                                            <div>
+                                                <label className="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Row 5: Will Not Draw (Declined) Items (One per line)</label>
+                                                <textarea
+                                                    rows={5}
+                                                    value={contents.terms_declined_items || ''}
+                                                    onChange={(e) => handleContentChange('terms_declined_items', e.target.value)}
+                                                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500 font-mono"
+                                                    required
+                                                />
+                                            </div>
+                                            <div>
+                                                <label className="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Row 5: Will Not Draw Guideline Note</label>
+                                                <input
+                                                    type="text"
+                                                    value={contents.terms_declined_note || ''}
+                                                    onChange={(e) => handleContentChange('terms_declined_note', e.target.value)}
+                                                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500"
+                                                    required
+                                                />
+                                            </div>
+                                            <div>
+                                                <label className="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Row 6: Usage Allowed Items (One per line)</label>
+                                                <textarea
+                                                    rows={3}
+                                                    value={contents.terms_usage_allowed_items || ''}
+                                                    onChange={(e) => handleContentChange('terms_usage_allowed_items', e.target.value)}
+                                                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500 font-mono"
+                                                    required
+                                                />
+                                            </div>
+                                            <div>
+                                                <label className="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Row 6: Usage Forbidden Items (One per line)</label>
+                                                <textarea
+                                                    rows={3}
+                                                    value={contents.terms_usage_forbidden_items || ''}
+                                                    onChange={(e) => handleContentChange('terms_usage_forbidden_items', e.target.value)}
+                                                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500 font-mono"
+                                                    required
+                                                />
+                                            </div>
+                                            <div>
+                                                <label className="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Row 7: Copyright & Ownership Items (One per line)</label>
+                                                <textarea
+                                                    rows={3}
+                                                    value={contents.terms_copyright_items || ''}
+                                                    onChange={(e) => handleContentChange('terms_copyright_items', e.target.value)}
+                                                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500 font-mono"
+                                                    required
+                                                />
+                                            </div>
+                                            <div>
+                                                <label className="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Row 8: Image Posting / Publishing Items (One per line)</label>
+                                                <textarea
+                                                    rows={3}
+                                                    value={contents.terms_posting_items || ''}
+                                                    onChange={(e) => handleContentChange('terms_posting_items', e.target.value)}
+                                                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500 font-mono"
+                                                    required
+                                                />
+                                            </div>
+                                            <div>
+                                                <label className="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Row 9: Cancel - Client Refund Items (One per line)</label>
+                                                <textarea
+                                                    rows={2}
+                                                    value={contents.terms_cancel_client_items || ''}
+                                                    onChange={(e) => handleContentChange('terms_cancel_client_items', e.target.value)}
+                                                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500 font-mono"
+                                                    required
+                                                />
+                                            </div>
+                                            <div>
+                                                <label className="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Row 9: Cancel - Artist Refund Items (One per line)</label>
+                                                <textarea
+                                                    rows={2}
+                                                    value={contents.terms_cancel_artist_items || ''}
+                                                    onChange={(e) => handleContentChange('terms_cancel_artist_items', e.target.value)}
+                                                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500 font-mono"
+                                                    required
+                                                />
+                                            </div>
+                                            <div>
+                                                <label className="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Row 10: Crucial Notes (One per line)</label>
+                                                <textarea
+                                                    rows={4}
+                                                    value={contents.terms_note_items || ''}
+                                                    onChange={(e) => handleContentChange('terms_note_items', e.target.value)}
+                                                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500 font-mono"
+                                                    required
+                                                />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

@@ -258,10 +258,10 @@ export default async function Home() {
               }}
             >
               {/* Inner content wrapper, padded to fit inside the plain center box of the lace card */}
-              <div className="w-[74%] h-[68%] flex flex-col justify-center text-[#4A4542] font-mono px-2 sm:px-4 lg:translate-x-[0px]">
+              <div className="w-[74%] h-[68%] flex flex-col justify-center text-black font-mono px-2 sm:px-4 lg:translate-x-[0px]">
                 <table className="w-full text-left border-collapse">
                   <thead>
-                    <tr className="border-b-2 border-[#4A4542]">
+                    <tr className="border-b-2 border-black">
                       <th className="pt-[4px] pb-[1px] sm:pt-[6px] sm:pb-[1px] lg:pt-[8px] lg:pb-[8px] font-extrabold text-[14px] sm:text-[15.5px] lg:text-[16.8px] tracking-wider w-[50%] whitespace-nowrap">
                         <span className="relative inline-block translate-y-[2px] sm:translate-y-[3.5px] lg:translate-y-[4.5px]">(TYPE)</span>
                       </th>
@@ -276,7 +276,7 @@ export default async function Home() {
                   </thead>
                   <tbody>
                     {prices.map((priceItem, index) => (
-                      <tr key={priceItem.id || index} className="border-b border-[#4A4542]/40">
+                      <tr key={priceItem.id || index} className="border-b border-black/40">
                         <td className={`pt-[2px] pb-[1px] sm:pt-[4px] sm:pb-[1px] lg:pb-[2px] font-normal text-[14px] sm:text-[15.5px] lg:text-[16.8px] tracking-wide whitespace-nowrap ${index === 0 ? 'lg:pt-[36px]' : 'lg:pt-[6px]'}`}>
                           <span className="relative inline-block translate-y-[-1px] sm:translate-y-[0.5px] lg:translate-y-[1.5px]">{priceItem.type}</span>
                         </td>
@@ -313,8 +313,10 @@ export default async function Home() {
             const scopeItems = formatSentenceCase(rawScope).split('\n').filter(Boolean);
 
             const rawExtraFees = getContent('commission_extra_fees_items', "Thiết kế nhân vật nhiều chi tiết: 100.000VND up tuỳ mức độ phức tạp\nCanvas dài (16:9): +50% giá cơ bản\nThêm nhân vật: +100% giá gốc/char\nBackground chi tiết (kiến trúc, nội thất, phong cảnh, nhiều vật thể...): Thương lượng riêng\nPrivate commission (không đăng tải công khai): +40%\nCommercial use: 200% giá cơ bản");
-               return (
-              <div className="w-full max-w-[1240px] grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-11 lg:gap-16 px-4 font-mono text-[#4A4542]">
+            const extraFeesItems = formatSentenceCase(rawExtraFees).split('\n').filter(Boolean);
+
+            return (
+              <div className="w-full max-w-[1240px] grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-11 lg:gap-16 px-4 font-mono text-black">
                 
                 {/* Bottom Left Card: Scope info */}
                 <div className="flex flex-col items-start w-full max-w-[540px] justify-self-center md:justify-self-start">
@@ -346,7 +348,7 @@ export default async function Home() {
                       ))}
                     </ul>
                   </div>
-                  <p className="mt-2.5 pl-3 sm:pl-4 lg:pl-5 text-[21.5px] sm:text-[25px] lg:text-[16px] font-normal text-[#4A4542] leading-[1.3] w-full">
+                  <p className="mt-2.5 pl-3 sm:pl-4 lg:pl-5 text-[21.5px] sm:text-[25px] lg:text-[16px] font-normal text-black leading-[1.3] w-full">
                     {formatSentenceCase(getContent('commission_extra_fees_note', 'Phụ phí sẽ được mình báo và thống nhất sau khi hoàn thiện bước sketch'))}
                   </p>
                 </div>
@@ -400,281 +402,300 @@ export default async function Home() {
             <div className="absolute right-2 sm:right-3 lg:right-4 top-1/2 -translate-y-1/2 w-[11px] h-[11px] sm:w-[15px] sm:h-[15px] lg:w-[19px] lg:h-[19px] flex items-center justify-center">
               <Image
                 src="/images/sao.svg"
-                alt="star icon"
-                fill
-                className="object-contain"
-              />
-            </div>
-          </div>
+                        {/* Terms Container Grid (Cascading Staggered Rows) */}
+          {(() => {
+            const paymentItems = formatSentenceCase(getContent('terms_payment_items', "Thanh toán qua chuyển khoản ngân hàng.\nThanh toán trước 50% khi 2 bên đã thống nhất giá.\nSau khi duyệt bản nháp thô (Rough sketch), khách vui lòng thanh toán 100% để mình bắt đầu line và render.\nSau 24 giờ kể từ khi gửi thông tin thanh toán mà chưa nhận được phản hồi, mình có quyền hủy slot.")).split('\n').filter(Boolean);
+            const processFlow = formatSentenceCase(getContent('terms_process_flow', "Brief ➔ Sketch ➔ Thanh toán ➔ Lineart ➔ Render ➔ Final"));
+            const processItems = formatSentenceCase(getContent('terms_process_items', "Reference nhân vật đầy đủ\nMô tả tính cách hoặc biểu cảm mong muốn\nPose hoặc ý tưởng cụ thể (nếu có)\nReference màu sắc, ánh sáng, mood tranh (nếu có)")).split('\n').filter(Boolean);
+            const processNote = formatSentenceCase(getContent('terms_process_note', "Reference càng đầy đủ thì kết quả càng sát mong muốn."));
+            const revisionSketchItems = formatSentenceCase(getContent('terms_revision_sketch_items', "Được sửa miễn phí tối đa 3 lần.\nVui lòng tổng hợp các chỉnh sửa trong cùng một lần phản hồi.")).split('\n').filter(Boolean);
+            const revisionAfterSketchItems = formatSentenceCase(getContent('terms_revision_after_sketch_items', "Các thay đổi lớn như:\n- Đổi pose\n- Đổi outfit\n- Đổi hairstyle\n- Đổi thiết kế nhân vật")).split('\n').filter(Boolean);
+            const revisionRenderItems = formatSentenceCase(getContent('terms_revision_render_items', "Chỉ hỗ trợ chỉnh các lỗi nhỏ.\nKhông nhận thay đổi lớn sau khi đã bắt đầu render.")).split('\n').filter(Boolean);
+            const timeItems = formatSentenceCase(getContent('terms_time_items', "Thời gian hoàn thành dự kiến: 3-5 tuần tùy độ phức tạp và số lượng đơn đang chờ.\nNếu có deadline, vui lòng báo trước khi đặt commission.\nMình sẽ cố gắng hoàn thiện đúng thời hạn nhưng không nhận deadline quá gấp.")).split('\n').filter(Boolean);
+            const declinedItems = formatSentenceCase(getContent('terms_declined_items', "NSFW\nOld man\nMecha/Gundam phức tạp\nFurry\nGore nặng\nNội dung vi phạm pháp luật hoặc mang tính xúc phạm")).split('\n').filter(Boolean);
+            const declinedNote = formatSentenceCase(getContent('terms_declined_note', "(Có thể từ chối commission nếu cảm thấy không phù hợp với khả năng hoặc phong cách hiện tại.)"));
+            const usageAllowedItems = formatSentenceCase(getContent('terms_usage_allowed_items', "Sử dụng cho mục đích cá nhân.\nĐăng tải lên mạng xã hội có credit.\nIn ấn cá nhân với số lượng nhỏ.")).split('\n').filter(Boolean);
+            const usageForbiddenItems = formatSentenceCase(getContent('terms_usage_forbidden_items', "Chỉnh sửa artwork khi chưa có sự đồng ý.\nSử dụng cho AI, NFT hoặc các mục đích tương tự.\nSử dụng cho mục đích thương mại khi chưa mua quyền Commercial use.")).split('\n').filter(Boolean);
+            const copyrightItems = formatSentenceCase(getContent('terms_copyright_items', "Mình giữ bản quyền đối với artwork do mình thực hiện.\nQuyền sở hữu OC/nhân vật vẫn thuộc về khách hàng.\nMọi hình thức sử dụng thương mại cần được thỏa thuận riêng.")).split('\n').filter(Boolean);
+            const postingItems = formatSentenceCase(getContent('terms_posting_items', "Mình có quyền sử dụng commission làm portfolio, sample hoặc đăng tải trên các nền tảng mạng xã hội.\nNếu không muốn artwork được công khai, vui lòng đăng ký Private commission (+40%).")).split('\n').filter(Boolean);
+            const cancelClientItems = formatSentenceCase(getContent('terms_cancel_client_items', "Sau khi duyệt sketch: hoàn lại 50% giá trị commission.\nSau khi đã bắt đầu line/render: không hoàn tiền.")).split('\n').filter(Boolean);
+            const cancelArtistItems = formatSentenceCase(getContent('terms_cancel_artist_items', "Hoàn lại toàn bộ hoặc một phần chi phí tùy theo tiến độ đã thực hiện.")).split('\n').filter(Boolean);
+            const noteItems = formatSentenceCase(getContent('terms_note_items', "Vui lòng chỉ đặt commission khi bạn có thể chủ động thanh toán và phản hồi trong quá trình làm việc.\nMình ưu tiên những khách hàng lịch sự, hợp tác và phản hồi rõ ràng.\nKhi đặt commission đồng nghĩa với việc bạn đã đọc và đồng ý với toàn bộ điều khoản trên.")).split('\n').filter(Boolean);
 
-          {/* Terms Container Grid (Cascading Staggered Rows) */}
-          <div className="w-full max-w-[1240px] flex flex-col space-y-7 sm:space-y-12 lg:space-y-16 px-4 font-mono text-black mt-4">
-            
-            {/* Row 1: THANH TOÁN (Left) */}
-            <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-8 relative">
-              <div className="flex flex-col items-start w-full z-10">
-                <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
-                  THANH TOÁN
-                </span>
-                <div className="pl-6 sm:pl-8 lg:pl-10 w-full">
-                  <ul className="space-y-[2px] text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal">
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Thanh toán qua chuyển khoản ngân hàng.</li>
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Thanh toán trước 50% khi 2 bên đã thống nhất giá.</li>
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Sau khi duyệt bản nháp thô (Rough sketch), khách vui lòng thanh toán 100% để mình bắt đầu line và render.</li>
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Sau 24 giờ kể từ khi gửi thông tin thanh toán mà chưa nhận được phản hồi, mình có quyền hủy slot.</li>
-                  </ul>
+            return (
+              <div className="w-full max-w-[1240px] flex flex-col space-y-7 sm:space-y-12 lg:space-y-16 px-4 font-mono text-black mt-4">
+                
+                {/* Row 1: THANH TOÁN (Left) */}
+                <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-8 relative">
+                  <div className="flex flex-col items-start w-full z-10">
+                    <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
+                      THANH TOÁN
+                    </span>
+                    <div className="pl-6 sm:pl-8 lg:pl-10 w-full">
+                      <ul className="space-y-[2px] text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal">
+                        {paymentItems.map((item, idx) => (
+                          <li key={idx}><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> {item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="absolute right-[-20px] sm:right-[-150px] top-[10%] sm:top-[-50px] w-[180px] sm:w-[450px] lg:w-[520px] aspect-[879/513] pointer-events-none select-none z-0">
+                    <Image
+                      src="/images/button1.png"
+                      alt="Decorative Button Group 1"
+                      fill
+                      className="object-contain"
+                      priority
+                    />
+                  </div>
                 </div>
-              </div>
-              <div className="absolute right-[-20px] sm:right-[-150px] top-[10%] sm:top-[-50px] w-[180px] sm:w-[450px] lg:w-[520px] aspect-[879/513] pointer-events-none select-none z-0">
-                <Image
-                  src="/images/button1.png"
-                  alt="Decorative Button Group 1"
-                  fill
-                  className="object-contain"
-                  priority
-                />
-              </div>
-            </div>
 
-            {/* Row 2: QUY TRÌNH LÀM VIỆC (Right) */}
-            <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-8 relative">
-              <div className="absolute left-[-20px] sm:left-[-150px] top-[-10px] w-[130px] sm:w-[340px] lg:w-[450px] aspect-[567/479] pointer-events-none select-none z-0">
-                <Image
-                  src="/images/button2.png"
-                  alt="Decorative Button Group 2"
-                  fill
-                  className="object-contain"
-                  priority
-                />
-              </div>
-              <div className="hidden sm:block"></div>
-              <div className="flex flex-col items-start w-full md:translate-x-[5%] z-10">
-                <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
-                  QUY TRÌNH LÀM VIỆC
-                </span>
-                <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal">
-                  <p className="mb-3 font-normal tracking-wide text-black">
-                    Brief ➔ Sketch ➔ Thanh toán ➔ Lineart ➔ Render ➔ Final
-                  </p>
-                  <p className="mb-2 font-normal text-black">Khi gửi commission, chuẩn bị:</p>
-                  <ul className="space-y-[2px] pl-4 mb-2">
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Reference nhân vật đầy đủ</li>
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Mô tả tính cách hoặc biểu cảm mong muốn</li>
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Pose hoặc ý tưởng cụ thể (nếu có)</li>
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Reference màu sắc, ánh sáng, mood tranh (nếu có)</li>
-                  </ul>
-                  <p className="text-black text-[16px] sm:text-[20px] lg:text-[16px]">Reference càng đầy đủ thì kết quả càng sát mong muốn.</p>
+                {/* Row 2: QUY TRÌNH LÀM VIỆC (Right) */}
+                <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-8 relative">
+                  <div className="absolute left-[-20px] sm:left-[-150px] top-[-10px] w-[130px] sm:w-[340px] lg:w-[450px] aspect-[567/479] pointer-events-none select-none z-0">
+                    <Image
+                      src="/images/button2.png"
+                      alt="Decorative Button Group 2"
+                      fill
+                      className="object-contain"
+                      priority
+                    />
+                  </div>
+                  <div className="hidden sm:block"></div>
+                  <div className="flex flex-col items-start w-full md:translate-x-[5%] z-10">
+                    <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
+                      QUY TRÌNH LÀM VIỆC
+                    </span>
+                    <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal">
+                      <p className="mb-3 font-normal tracking-wide text-black">
+                        {processFlow}
+                      </p>
+                      <p className="mb-2 font-normal text-black">Khi gửi commission, chuẩn bị:</p>
+                      <ul className="space-y-[2px] pl-4 mb-2">
+                        {processItems.map((item, idx) => (
+                          <li key={idx}><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> {item}</li>
+                        ))}
+                      </ul>
+                      <p className="text-black text-[16px] sm:text-[20px] lg:text-[16px]">{processNote}</p>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
 
-            {/* Row 3: CHỈNH SỬA (Left) */}
-            <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-8 relative">
-              <div className="flex flex-col items-start w-full z-10">
-                <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
-                  CHỈNH SỬA
-                </span>
-                <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.2] font-normal text-black space-y-1">
-                  <p>Giai đoạn Sketch</p>
-                  <p className="pl-4"><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Được sửa miễn phí tối đa 3 lần.</p>
-                  <p className="pl-4"><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Vui lòng tổng hợp các chỉnh sửa trong cùng một lần phản hồi.</p>
+                {/* Row 3: CHỈNH SỬA (Left) */}
+                <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-8 relative">
+                  <div className="flex flex-col items-start w-full z-10">
+                    <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
+                      CHỈNH SỬA
+                    </span>
+                    <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.2] font-normal text-black space-y-1">
+                      <p>Giai đoạn Sketch</p>
+                      {revisionSketchItems.map((item, idx) => (
+                        <p key={idx} className="pl-4"><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> {item}</p>
+                      ))}
+                      
+                      <p className="pt-2">Sau khi duyệt Sketch</p>
+                      {revisionAfterSketchItems.map((item, idx) => {
+                        const isMainBullet = item.trim().startsWith('-');
+                        const content = isMainBullet ? item.replace(/^-/, '').trim() : item;
+                        return (
+                          <p key={idx} className={isMainBullet ? "pl-10" : "pl-4"}>
+                            <span className="text-[1.2em] inline-block align-middle mr-1.5 -translate-y-[1px] leading-[0]">{isMainBullet ? "o" : "•"}</span> {content}
+                          </p>
+                        );
+                      })}
+
+                      <p className="pt-2">Giai đoạn Render</p>
+                      {revisionRenderItems.map((item, idx) => (
+                        <p key={idx} className="pl-4"><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> {item}</p>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="absolute right-[-20px] sm:right-[-150px] top-[10px] sm:top-[20px] w-[180px] sm:w-[460px] lg:w-[520px] aspect-[1/1] pointer-events-none select-none z-0">
+                    <Image
+                      src="/images/button3.png"
+                      alt="Decorative Button Group 3"
+                      fill
+                      className="object-contain"
+                      priority
+                    />
+                  </div>
+                </div>
+
+                {/* Row 4: THỜI GIAN HOÀN THÀNH (Right) */}
+                <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-8 relative">
+                  <div className="hidden sm:block"></div>
+                  <div className="flex flex-col items-start w-full md:translate-x-[5%] z-10">
+                    <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
+                      Thời gian hoàn thành
+                    </span>
+                    <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal text-black">
+                      <ul className="space-y-[2px]">
+                        {timeItems.map((item, idx) => (
+                          <li key={idx}><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> {item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Row 5: KHÔNG NHẬN (Left) */}
+                <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-8 relative">
+                  <div className="flex flex-col items-start w-full z-10">
+                    <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
+                      KHÔNG NHẬN
+                    </span>
+                    <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal text-black">
+                      <p className="mb-2 font-normal text-black">Mình không nhận những đơn chứa nội dung sau:</p>
+                      <ul className="space-y-[2px] pl-4 mb-2">
+                        {declinedItems.map((item, idx) => (
+                          <li key={idx}><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> {item}</li>
+                        ))}
+                      </ul>
+                      <p className="text-[16px] sm:text-[20px] lg:text-[16px] text-black/80 mt-2">
+                        {declinedNote}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="absolute right-[-30px] sm:right-[-195px] top-[10px] w-[200px] sm:w-[580px] lg:w-[660px] aspect-[1029/531] pointer-events-none select-none z-0">
+                    <Image
+                      src="/images/button4.png"
+                      alt="Decorative Button Group 4"
+                      fill
+                      className="object-contain"
+                      priority
+                    />
+                  </div>
+                </div>
+
+                {/* Row 6: QUYỀN SỬ DỤNG (Right) */}
+                <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-8 relative">
+                  <div className="absolute left-[-30px] sm:left-[-170px] top-[30px] sm:top-[-50px] w-[180px] sm:w-[480px] lg:w-[440px] aspect-[834/671] pointer-events-none select-none z-0">
+                    <Image
+                      src="/images/button5.png"
+                      alt="Decorative Button Group 5"
+                      fill
+                      className="object-contain"
+                      priority
+                    />
+                  </div>
+                  <div className="hidden sm:block"></div>
+                  <div className="flex flex-col items-start w-full md:translate-x-[5%] z-10">
+                    <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
+                      QUYỀN SỬ DỤNG
+                    </span>
+                    <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal text-black">
+                      <p className="mb-2 font-normal text-black">Khách hàng được phép</p>
+                      <ul className="space-y-[2px] pl-4 mb-4">
+                        {usageAllowedItems.map((item, idx) => (
+                          <li key={idx}><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> {item}</li>
+                        ))}
+                      </ul>
+                      <p className="mb-2 font-normal text-black">Khách hàng không được phép</p>
+                      <ul className="space-y-[2px] pl-4">
+                        {usageForbiddenItems.map((item, idx) => (
+                          <li key={idx}><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> {item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Row 7: BẢN QUYỀN (Left) */}
+                <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-8 relative">
+                  <div className="flex flex-col items-start w-full z-10">
+                    <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
+                      BẢN QUYỀN
+                    </span>
+                    <div className="pl-6 sm:pl-8 lg:pl-10 w-full">
+                      <ul className="space-y-[2px] text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal text-black font-mono">
+                        {copyrightItems.map((item, idx) => (
+                          <li key={idx}><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> {item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="absolute right-[20px] sm:right-[150px] top-[5px] sm:top-[10px] w-[80px] sm:w-[120px] lg:w-[160px] aspect-[307/316] pointer-events-none select-none z-0">
+                    <Image
+                      src="/images/button6.png"
+                      alt="Decorative Button Group 6"
+                      fill
+                      className="object-contain"
+                      priority
+                    />
+                  </div>
+                </div>
+
+                {/* Row 8: QUYỀN ĐĂNG TRANH (Right) */}
+                <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-8 relative">
                   
-                  <p className="pt-2">Sau khi duyệt Sketch</p>
-                  <p className="pl-4"><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Các thay đổi lớn như:</p>
-                  <p className="pl-10"><span className="text-[1.1em] inline-block align-middle mr-2 -translate-y-[1px] leading-[0]">o</span> Đổi pose</p>
-                  <p className="pl-10"><span className="text-[1.1em] inline-block align-middle mr-2 -translate-y-[1px] leading-[0]">o</span> Đổi outfit</p>
-                  <p className="pl-10"><span className="text-[1.1em] inline-block align-middle mr-2 -translate-y-[1px] leading-[0]">o</span> Đổi hairstyle</p>
-                  <p className="pl-10"><span className="text-[1.1em] inline-block align-middle mr-2 -translate-y-[1px] leading-[0]">o</span> Đổi thiết kế nhân vật</p>
-                  <p className="text-black">Sẽ phát sinh phụ phí.</p>
-
-                  <p className="pt-2">Giai đoạn Render</p>
-                  <p className="pl-4"><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Chỉ hỗ trợ chỉnh các lỗi nhỏ.</p>
-                  <p className="pl-4"><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Không nhận thay đổi lớn sau khi đã bắt đầu render.</p>
+                  <div className="hidden sm:block"></div>
+                  <div className="flex flex-col items-start w-full md:translate-x-[5%] z-10">
+                    <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
+                      QUYỀN ĐĂNG TRANH
+                    </span>
+                    <div className="pl-6 sm:pl-8 lg:pl-10 w-full">
+                      <ul className="space-y-[2px] text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal text-black font-mono">
+                        {postingItems.map((item, idx) => (
+                          <li key={idx}><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> {item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div className="absolute right-[-20px] sm:right-[-150px] top-[10px] sm:top-[20px] w-[180px] sm:w-[460px] lg:w-[520px] aspect-[1/1] pointer-events-none select-none z-0">
-                <Image
-                  src="/images/button3.png"
-                  alt="Decorative Button Group 3"
-                  fill
-                  className="object-contain"
-                  priority
-                />
-              </div>
-            </div>
 
-            {/* Row 4: THỜI GIAN HOÀN THÀNH (Right) */}
-            <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-8 relative">
-              <div className="hidden sm:block"></div>
-              <div className="flex flex-col items-start w-full md:translate-x-[5%] z-10">
-                <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
-                  Thời gian hoàn thành
-                </span>
-                <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal text-black">
-                  <ul className="space-y-[2px]">
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Thời gian hoàn thành dự kiến: 3-5 tuần tùy độ phức tạp và số lượng đơn đang chờ.</li>
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Nếu có deadline, vui lòng báo trước khi đặt commission.</li>
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Mình sẽ cố gắng hoàn thiện đúng thời hạn nhưng không nhận deadline quá gấp.</li>
-                  </ul>
+                {/* Row 9: TIỀN HÀNG HỦY (Left) */}
+                <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-8 relative">
+                  <div className="flex flex-col items-start w-full z-10">
+                    <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
+                      VỀ VIỆC HỦY COMMISSION
+                    </span>
+                    <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal text-black font-mono">
+                      <p className="mb-2 font-normal text-black">Khách hàng hủy:</p>
+                      <ul className="space-y-[2px] pl-4 mb-4">
+                        {cancelClientItems.map((item, idx) => (
+                          <li key={idx}><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> {item}</li>
+                        ))}
+                      </ul>
+                      
+                      <p className="mb-2 font-normal text-black">Nếu mình hủy:</p>
+                      <ul className="space-y-[2px] pl-4 text-black font-mono">
+                        {cancelArtistItems.map((item, idx) => (
+                          <li key={idx}><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> {item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="absolute left-[-20px] sm:left-[80px] bottom-[-50px] sm:bottom-[-470px] w-[80px] sm:w-[180px] lg:w-[290px] aspect-[1/1] pointer-events-none select-none z-0">
+                    <Image
+                      src="/images/button7.png"
+                      alt="Decorative Button Group 7"
+                      fill
+                      className="object-contain"
+                      priority
+                    />
+                  </div>
                 </div>
-              </div>
-            </div>
 
-            {/* Row 5: KHÔNG NHẬN (Left) */}
-            <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-8 relative">
-              <div className="flex flex-col items-start w-full z-10">
-                <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
-                  KHÔNG NHẬN
-                </span>
-                <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal text-black">
-                  <p className="mb-2 font-normal text-black">Mình không nhận những đơn chứa nội dung sau:</p>
-                  <ul className="space-y-[2px] pl-4 mb-2">
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> NSFW</li>
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Old man</li>
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Mecha/Gundam phức tạp</li>
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Furry</li>
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Gore nặng</li>
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Nội dung vi phạm pháp luật hoặc mang tính xúc phạm</li>
-                  </ul>
-                  <p className="text-[16px] sm:text-[20px] lg:text-[16px] text-black/80 mt-2">
-                    (Có thể từ chối commission nếu cảm thấy không phù hợp với khả năng hoặc phong cách hiện tại.)
-                  </p>
+                {/* Row 10: LƯU Ý (Right) */}
+                <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-8 relative">
+                  <div className="hidden sm:block"></div>
+                  <div className="flex flex-col items-start w-full md:translate-x-[5%] z-10">
+                    <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
+                      LƯU Ý
+                    </span>
+                    <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-black font-mono">
+                      <ul className="space-y-[2px] text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal">
+                        {noteItems.map((item, idx) => (
+                          <li key={idx}><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> {item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div className="absolute right-[-30px] sm:right-[-195px] top-[10px] w-[200px] sm:w-[580px] lg:w-[660px] aspect-[1029/531] pointer-events-none select-none z-0">
-                <Image
-                  src="/images/button4.png"
-                  alt="Decorative Button Group 4"
-                  fill
-                  className="object-contain"
-                  priority
-                />
-              </div>
-            </div>
 
-            {/* Row 6: QUYỀN SỬ DỤNG (Right) */}
-            <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-8 relative">
-              <div className="absolute left-[-30px] sm:left-[-170px] top-[30px] sm:top-[-50px] w-[180px] sm:w-[480px] lg:w-[440px] aspect-[834/671] pointer-events-none select-none z-0">
-                <Image
-                  src="/images/button5.png"
-                  alt="Decorative Button Group 5"
-                  fill
-                  className="object-contain"
-                  priority
-                />
               </div>
-              <div className="hidden sm:block"></div>
-              <div className="flex flex-col items-start w-full md:translate-x-[5%] z-10">
-                <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
-                  QUYỀN SỬ DỤNG
-                </span>
-                <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal text-black">
-                  <p className="mb-2 font-normal text-black">Khách hàng được phép</p>
-                  <ul className="space-y-[2px] pl-4 mb-4">
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Sử dụng cho mục đích cá nhân.</li>
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Đăng tải lên mạng xã hội có credit.</li>
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> In ấn cá nhân với số lượng nhỏ.</li>
-                  </ul>
-                  <p className="mb-2 font-normal text-black">Khách hàng không được phép</p>
-                  <ul className="space-y-[2px] pl-4">
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Chỉnh sửa artwork khi chưa có sự đồng ý.</li>
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Sử dụng cho AI, NFT hoặc các mục đích tương tự.</li>
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Sử dụng cho mục đích thương mại khi chưa mua quyền Commercial use.</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            {/* Row 7: BẢN QUYỀN (Left) */}
-            <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-8 relative">
-              <div className="flex flex-col items-start w-full z-10">
-                <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
-                  BẢN QUYỀN
-                </span>
-                <div className="pl-6 sm:pl-8 lg:pl-10 w-full">
-                  <ul className="space-y-[2px] text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal text-black font-mono">
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Mình giữ bản quyền đối với artwork do mình thực hiện.</li>
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Quyền sở hữu OC/nhân vật vẫn thuộc về khách hàng.</li>
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Mọi hình thức sử dụng thương mại cần được thỏa thuận riêng.</li>
-                  </ul>
-                </div>
-              </div>
-              <div className="absolute right-[20px] sm:right-[150px] top-[5px] sm:top-[10px] w-[80px] sm:w-[120px] lg:w-[160px] aspect-[307/316] pointer-events-none select-none z-0">
-                <Image
-                  src="/images/button6.png"
-                  alt="Decorative Button Group 6"
-                  fill
-                  className="object-contain"
-                  priority
-                />
-              </div>
-            </div>
-
-            {/* Row 8: QUYỀN ĐĂNG TRANH (Right) */}
-            <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-8 relative">
-              
-              <div className="hidden sm:block"></div>
-              <div className="flex flex-col items-start w-full md:translate-x-[5%] z-10">
-                <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
-                  QUYỀN ĐĂNG TRANH
-                </span>
-                <div className="pl-6 sm:pl-8 lg:pl-10 w-full">
-                  <ul className="space-y-[2px] text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal text-black font-mono">
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Mình có quyền sử dụng commission làm portfolio, sample hoặc đăng tải trên các nền tảng mạng xã hội.</li>
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Nếu không muốn artwork được công khai, vui lòng đăng ký Private commission (+40%).</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            {/* Row 9: TIỀN HÀNG HỦY (Left) */}
-            <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-8 relative">
-              <div className="flex flex-col items-start w-full z-10">
-                <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
-                  VỀ VIỆC HỦY COMMISSION
-                </span>
-                <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal text-black font-mono">
-                  <p className="mb-2 font-normal text-black">Khách hàng hủy:</p>
-                  <ul className="space-y-[2px] pl-4 mb-4">
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Sau khi duyệt sketch: hoàn lại 50% giá trị commission.</li>
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Sau khi đã bắt đầu line/render: không hoàn tiền.</li>
-                  </ul>
-                  
-                  <p className="mb-2 font-normal text-black">Nếu mình hủy:</p>
-                  <ul className="space-y-[2px] pl-4 text-black font-mono">
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Hoàn lại toàn bộ hoặc một phần chi phí tùy theo tiến độ đã thực hiện.</li>
-                  </ul>
-                </div>
-              </div>
-              <div className="absolute left-[-20px] sm:left-[80px] bottom-[-50px] sm:bottom-[-470px] w-[80px] sm:w-[180px] lg:w-[290px] aspect-[1/1] pointer-events-none select-none z-0">
-                <Image
-                  src="/images/button7.png"
-                  alt="Decorative Button Group 7"
-                  fill
-                  className="object-contain"
-                  priority
-                />
-              </div>
-            </div>
-
-            {/* Row 10: LƯU Ý (Right) */}
-            <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-8 relative">
-              <div className="hidden sm:block"></div>
-              <div className="flex flex-col items-start w-full md:translate-x-[5%] z-10">
-                <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
-                  LƯU Ý
-                </span>
-                <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-black font-mono">
-                  <ul className="space-y-[2px] text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal">
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Vui lòng chỉ đặt commission khi bạn có thể chủ động thanh toán và phản hồi trong quá trình làm việc.</li>
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Mình ưu tiên những khách hàng lịch sự, hợp tác và phản hồi rõ ràng.</li>
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Khi đặt commission đồng nghĩa với việc bạn đã đọc và đồng ý với toàn bộ điều khoản trên.</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-          </div>
+            );
+          })()}
         </section>
 
       </div>
