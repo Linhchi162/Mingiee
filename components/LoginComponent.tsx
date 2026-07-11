@@ -22,7 +22,7 @@ export default function LoginComponent() {
             })
 
             if (signInError) throw signInError
-            // Redirect or handle successful login
+            window.location.href = '/dashboard'
         } catch (err) {
             setError(err instanceof Error ? err.message : 'An error occurred')
         } finally {
