@@ -36,15 +36,23 @@ interface SiteContent {
     value: string
 }
 
+interface TermOfService {
+    id?: number
+    title: string
+    content: string
+    display_order: number
+}
+
 export default function DashboardComponent() {
     const [user, setUser] = useState<User | null>(null)
     const [loading, setLoading] = useState(true)
-    const [activeTab, setActiveTab] = useState<'gallery' | 'prices' | 'links' | 'content'>('gallery')
+    const [activeTab, setActiveTab] = useState<'gallery' | 'prices' | 'links' | 'terms' | 'content'>('gallery')
 
     // Data states
     const [slides, setSlides] = useState<Slide[]>([])
     const [prices, setPrices] = useState<Price[]>([])
     const [links, setLinks] = useState<PlatformLink[]>([])
+    const [terms, setTerms] = useState<TermOfService[]>([])
     const [contents, setContents] = useState<Record<string, string>>({
         welcome_line1: "HI, I'M MINGIEE!",
         welcome_line2: "WELCOME TO MY CREATIVE SPACE!",
@@ -52,24 +60,7 @@ export default function DashboardComponent() {
         commission_scope_items: "1 nhân vật có thiết kế đơn giản\nBackground đơn giản (màu, gradient, hiệu ứng nhẹ)\nCanvas 3000 pixels trở lên, 400DPI\nCanvas dọc / vuông (1:1, 3:4, 4:5)",
         commission_extra_fees_title: 'PHỤ PHÍ',
         commission_extra_fees_items: "Thiết kế nhân vật nhiều chi tiết: 100.000VND up tuỳ mức độ phức tạp\nCanvas dài (16:9): +50% giá cơ bản\nThêm nhân vật: +100% giá gốc/char\nBackground chi tiết (kiến trúc, nội thất, phong cảnh, nhiều vật thể...): Thương lượng riêng\nPrivate commission (không đăng tải công khai): +40%\nCommercial use: 200% giá cơ bản",
-        commission_extra_fees_note: "Phụ phí sẽ được mình báo và thống nhất sau khi hoàn thiện bước sketch",
-        terms_payment_items: "Thanh toán qua chuyển khoản ngân hàng.\nThanh toán trước 50% khi 2 bên đã thống nhất giá.\nSau khi duyệt bản nháp thô (Rough sketch), khách vui lòng thanh toán 100% để mình bắt đầu line và render.\nSau 24 giờ kể từ khi gửi thông tin thanh toán mà chưa nhận được phản hồi, mình có quyền hủy slot.",
-        terms_process_flow: "Brief ➔ Sketch ➔ Thanh toán ➔ Lineart ➔ Render ➔ Final",
-        terms_process_items: "Reference nhân vật đầy đủ\nMô tả tính cách hoặc biểu cảm mong muốn\nPose hoặc ý tưởng cụ thể (nếu có)\nReference màu sắc, ánh sáng, mood tranh (nếu có)",
-        terms_process_note: "Reference càng đầy đủ thì kết quả càng sát mong muốn.",
-        terms_revision_sketch_items: "Được sửa miễn phí tối đa 3 lần.\nVui lòng tổng hợp các chỉnh sửa trong cùng một lần phản hồi.",
-        terms_revision_after_sketch_items: "Các thay đổi lớn như:\n- Đổi pose\n- Đổi outfit\n- Đổi hairstyle\n- Đổi thiết kế nhân vật",
-        terms_revision_render_items: "Chỉ hỗ trợ chỉnh các lỗi nhỏ.\nKhông nhận thay đổi lớn sau khi đã bắt đầu render.",
-        terms_time_items: "Thời gian hoàn thành dự kiến: 3-5 tuần tùy độ phức tạp và số lượng đơn đang chờ.\nNếu có deadline, vui lòng báo trước khi đặt commission.\nMình sẽ cố gắng hoàn thiện đúng thời hạn nhưng không nhận deadline quá gấp.",
-        terms_declined_items: "NSFW\nOld man\nMecha/Gundam phức tạp\nFurry\nGore nặng\nNội dung vi phạm pháp luật hoặc mang tính xúc phạm",
-        terms_declined_note: "(Có thể từ chối commission nếu cảm thấy không phù hợp với khả năng hoặc phong cách hiện tại.)",
-        terms_usage_allowed_items: "Sử dụng cho mục đích cá nhân.\nĐăng tải lên mạng xã hội có credit.\nIn ấn cá nhân với số lượng nhỏ.",
-        terms_usage_forbidden_items: "Chỉnh sửa artwork khi chưa có sự đồng ý.\nSử dụng cho AI, NFT hoặc các mục đích tương tự.\nSử dụng cho mục đích thương mại khi chưa mua quyền Commercial use.",
-        terms_copyright_items: "Mình giữ bản quyền đối với artwork do mình thực hiện.\nQuyền sở hữu OC/nhân vật vẫn thuộc về khách hàng.\nMọi hình thức sử dụng thương mại cần được thỏa thuận riêng.",
-        terms_posting_items: "Mình có quyền sử dụng commission làm portfolio, sample hoặc đăng tải trên các nền tảng mạng xã hội.\nNếu không muốn artwork được công khai, vui lòng đăng ký Private commission (+40%).",
-        terms_cancel_client_items: "Sau khi duyệt sketch: hoàn lại 50% giá trị commission.\nSau khi đã bắt đầu line/render: không hoàn tiền.",
-        terms_cancel_artist_items: "Hoàn lại toàn bộ hoặc một phần chi phí tùy theo tiến độ đã thực hiện.",
-        terms_note_items: "Vui lòng chỉ đặt commission khi bạn có thể chủ động thanh toán và phản hồi trong quá trình làm việc.\nMình ưu tiên những khách hàng lịch sự, hợp tác và phản hồi rõ ràng.\nKhi đặt commission đồng nghĩa với việc bạn đã đọc và đồng ý với toàn bộ điều khoản trên."
+        commission_extra_fees_note: "Phụ phí sẽ được mình báo và thống nhất sau khi hoàn thiện bước sketch"
     })
 
     // Missing table flags (to warn user if they haven't run SQL)
@@ -84,6 +75,9 @@ export default function DashboardComponent() {
 
     const [linkForm, setLinkForm] = useState<PlatformLink>({ label: '', url: '', display_order: 1 })
     const [editingLinkId, setEditingLinkId] = useState<number | null>(null)
+
+    const [termForm, setTermForm] = useState<TermOfService>({ title: '', content: '', display_order: 1 })
+    const [editingTermId, setEditingTermId] = useState<number | null>(null)
 
     const [savingContent, setSavingContent] = useState(false)
     const [actionMessage, setActionMessage] = useState<{ text: string; type: 'success' | 'error' } | null>(null)
@@ -152,6 +146,18 @@ export default function DashboardComponent() {
             missing.push('platform_links')
         } else {
             setLinks(linksData || [])
+        }
+
+        // Fetch Terms of Service
+        const { data: termsData, error: termsError } = await supabase
+            .from('terms_of_service')
+            .select('*')
+            .order('display_order', { ascending: true })
+        if (termsError) {
+            console.warn('Table terms_of_service not found. Needs database setup.')
+            missing.push('terms_of_service')
+        } else {
+            setTerms(termsData || [])
         }
 
         // 4. Fetch Site Content
@@ -332,6 +338,56 @@ export default function DashboardComponent() {
         }
     }
 
+    // TERMS OF SERVICE CRUD
+    const saveTerm = async (e: React.FormEvent) => {
+        e.preventDefault()
+        try {
+            if (editingTermId !== null) {
+                const { error } = await supabase
+                    .from('terms_of_service')
+                    .update(termForm)
+                    .eq('id', editingTermId)
+                if (error) throw error
+                showMessage('Terms of service row updated successfully!')
+            } else {
+                const { error } = await supabase
+                    .from('terms_of_service')
+                    .insert([termForm])
+                if (error) throw error
+                showMessage('Terms of service row created successfully!')
+            }
+            setTermForm({ title: '', content: '', display_order: terms.length + 2 })
+            setEditingTermId(null)
+            fetchData()
+        } catch (err: any) {
+            showMessage(err.message, 'error')
+        }
+    }
+
+    const startEditTerm = (term: TermOfService) => {
+        setTermForm({
+            title: term.title,
+            content: term.content,
+            display_order: term.display_order
+        })
+        setEditingTermId(term.id || null)
+    }
+
+    const deleteTerm = async (id: number) => {
+        if (!confirm('Are you sure you want to delete this terms row?')) return
+        try {
+            const { error } = await supabase
+                .from('terms_of_service')
+                .delete()
+                .eq('id', id)
+            if (error) throw error
+            showMessage('Terms row deleted successfully!')
+            fetchData()
+        } catch (err: any) {
+            showMessage(err.message, 'error')
+        }
+    }
+
     // SITE CONTENT SAVE
     const saveContentSettings = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -429,7 +485,18 @@ CREATE TABLE IF NOT EXISTS site_content (
 );
 ALTER TABLE site_content ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Allow public read access" ON site_content FOR SELECT USING (true);
-CREATE POLICY "Allow auth all access" ON site_content FOR ALL USING (auth.role() = 'authenticated');`}
+CREATE POLICY "Allow auth all access" ON site_content FOR ALL USING (auth.role() = 'authenticated');
+
+CREATE TABLE IF NOT EXISTS public.terms_of_service (
+  id BIGSERIAL PRIMARY KEY,
+  title TEXT NOT NULL,
+  content TEXT NOT NULL,
+  display_order INTEGER NOT NULL DEFAULT 0,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
+);
+ALTER TABLE public.terms_of_service ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Allow public read access" ON terms_of_service FOR SELECT USING (true);
+CREATE POLICY "Allow auth all access" ON terms_of_service FOR ALL USING (auth.role() = 'authenticated');`}
                             </pre>
                         </details>
                     </div>
@@ -453,6 +520,7 @@ CREATE POLICY "Allow auth all access" ON site_content FOR ALL USING (auth.role()
                         { id: 'gallery', label: '🎨 Gallery Manager' },
                         { id: 'prices', label: '💰 Prices Manager' },
                         { id: 'links', label: '🔗 Social Links' },
+                        { id: 'terms', label: '📜 Terms of Service' },
                         { id: 'content', label: '📝 Website Text Content' },
                     ].map(tab => (
                         <button
@@ -825,6 +893,118 @@ CREATE POLICY "Allow auth all access" ON site_content FOR ALL USING (auth.role()
                     </div>
                 )}
 
+                {/* TERMS OF SERVICE TAB */}
+                {activeTab === 'terms' && (
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                        {/* Form Column */}
+                        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-lg h-fit">
+                            <h2 className="text-lg font-bold mb-4 tracking-wide text-slate-200 border-b border-slate-800 pb-2">
+                                {editingTermId !== null ? '✏️ Edit Terms Row' : '➕ Add Terms Row'}
+                            </h2>
+                            <form onSubmit={saveTerm} className="space-y-4">
+                                <div>
+                                    <label className="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Row Title</label>
+                                    <input
+                                        type="text"
+                                        value={termForm.title}
+                                        onChange={(e) => setTermForm({ ...termForm, title: e.target.value })}
+                                        placeholder="THANH TOÁN, KHÔNG NHẬN"
+                                        className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500"
+                                        required
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Row Content</label>
+                                    <textarea
+                                        rows={10}
+                                        value={termForm.content}
+                                        onChange={(e) => setTermForm({ ...termForm, content: e.target.value })}
+                                        placeholder={`Use markdown-style lists for bullet formatting:\n- First main point\n- Second main point\n  - Sub-bullet under second\nPlain text (no prefix) renders normally.`}
+                                        className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500 font-mono text-xs leading-relaxed"
+                                        required
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Display Order</label>
+                                    <input
+                                        type="number"
+                                        value={termForm.display_order}
+                                        onChange={(e) => setTermForm({ ...termForm, display_order: parseInt(e.target.value) || 0 })}
+                                        placeholder="1"
+                                        className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500"
+                                        required
+                                    />
+                                </div>
+                                <div className="flex gap-2 pt-2">
+                                    <Button type="submit" className="flex-1 bg-amber-500 text-slate-950 hover:bg-amber-600 font-bold">
+                                        {editingTermId !== null ? 'Update Row' : 'Create Row'}
+                                    </Button>
+                                    {editingTermId !== null && (
+                                        <Button 
+                                            type="button" 
+                                            variant="outline" 
+                                            onClick={() => {
+                                                setEditingTermId(null)
+                                                setTermForm({ title: '', content: '', display_order: terms.length + 2 })
+                                            }}
+                                            className="border-slate-700 text-slate-300 hover:bg-slate-800"
+                                        >
+                                            Cancel
+                                        </Button>
+                                    )}
+                                </div>
+                            </form>
+                        </div>
+
+                        {/* List Column */}
+                        <div className="lg:col-span-2 bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-lg">
+                            <h2 className="text-lg font-bold mb-4 tracking-wide text-slate-200 border-b border-slate-800 pb-2">
+                                📋 Terms of Service Rows
+                            </h2>
+                            {missingTables.includes('terms_of_service') ? (
+                                <div className="p-8 text-center text-slate-400 bg-slate-950/40 rounded-xl border border-dashed border-slate-800">
+                                    This feature requires the `terms_of_service` table. Please run the SQL Setup Script above in your Supabase project first.
+                                </div>
+                            ) : terms.length === 0 ? (
+                                <p className="text-slate-400 text-sm py-4">No terms of service rows created yet.</p>
+                            ) : (
+                                <div className="space-y-4">
+                                    {terms.map(term => (
+                                        <div key={term.id} className="bg-slate-950 border border-slate-800/60 rounded-xl p-5 flex flex-col md:flex-row justify-between gap-4">
+                                            <div className="flex-1 space-y-2">
+                                                <div className="flex items-center gap-2">
+                                                    <span className="bg-[#5A504D] text-[#FAF6EE] font-bold text-xs tracking-wider py-1 px-2.5 rounded-lg uppercase">
+                                                        {term.title}
+                                                    </span>
+                                                    <span className="text-slate-500 text-xs font-mono">Order: {term.display_order}</span>
+                                                </div>
+                                                <pre className="text-slate-300 font-mono text-xs bg-slate-900/50 p-3 rounded-lg border border-slate-900 overflow-x-auto whitespace-pre-wrap max-h-48 leading-relaxed">
+                                                    {term.content}
+                                                </pre>
+                                            </div>
+                                            <div className="flex md:flex-col justify-end gap-2 h-fit">
+                                                <Button 
+                                                    onClick={() => startEditTerm(term)} 
+                                                    className="bg-slate-800 hover:bg-slate-700 text-amber-500 text-xs font-semibold py-1.5 px-4"
+                                                >
+                                                    Edit
+                                                </Button>
+                                                <Button 
+                                                    onClick={() => deleteTerm(term.id!)} 
+                                                    variant="destructive"
+                                                    className="bg-red-950/50 hover:bg-red-900 text-red-200 border border-red-900 text-xs py-1.5 px-4"
+                                                >
+                                                    Delete
+                                                </Button>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                )}
+
                 {/* CONTENT TAB */}
                 {activeTab === 'content' && (
                     <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-lg">
@@ -920,194 +1100,9 @@ CREATE POLICY "Allow auth all access" ON site_content FOR ALL USING (auth.role()
                                                 className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500 font-mono leading-relaxed"
                                                 required
                                             />
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* Terms of Service Editor */}
-                                <div className="bg-slate-950 p-5 rounded-xl border border-slate-800 space-y-4">
-                                    <h3 className="text-sm font-bold text-amber-500 tracking-wide uppercase border-b border-slate-900 pb-1">📜 Terms of Service Sections</h3>
-                                    
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                        {/* Col 1 */}
-                                        <div className="space-y-4">
-                                            <div>
-                                                <label className="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Row 1: Payment Items (One per line)</label>
-                                                <textarea
-                                                    rows={4}
-                                                    value={contents.terms_payment_items || ''}
-                                                    onChange={(e) => handleContentChange('terms_payment_items', e.target.value)}
-                                                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500 font-mono"
-                                                    required
-                                                />
-                                            </div>
-                                            <div>
-                                                <label className="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Row 2: Process Flow String</label>
-                                                <input
-                                                    type="text"
-                                                    value={contents.terms_process_flow || ''}
-                                                    onChange={(e) => handleContentChange('terms_process_flow', e.target.value)}
-                                                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500"
-                                                    required
-                                                />
-                                            </div>
-                                            <div>
-                                                <label className="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Row 2: Process Items (One per line)</label>
-                                                <textarea
-                                                    rows={4}
-                                                    value={contents.terms_process_items || ''}
-                                                    onChange={(e) => handleContentChange('terms_process_items', e.target.value)}
-                                                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500 font-mono"
-                                                    required
-                                                />
-                                            </div>
-                                            <div>
-                                                <label className="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Row 2: Process Guideline Note</label>
-                                                <input
-                                                    type="text"
-                                                    value={contents.terms_process_note || ''}
-                                                    onChange={(e) => handleContentChange('terms_process_note', e.target.value)}
-                                                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500"
-                                                    required
-                                                />
-                                            </div>
-                                            <div>
-                                                <label className="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Row 3: Revision Sketch Stage Items (One per line)</label>
-                                                <textarea
-                                                    rows={3}
-                                                    value={contents.terms_revision_sketch_items || ''}
-                                                    onChange={(e) => handleContentChange('terms_revision_sketch_items', e.target.value)}
-                                                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500 font-mono"
-                                                    required
-                                                />
-                                            </div>
-                                            <div>
-                                                <label className="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Row 3: Revision After Sketch Stage Items (One per line)</label>
-                                                <textarea
-                                                    rows={4}
-                                                    value={contents.terms_revision_after_sketch_items || ''}
-                                                    onChange={(e) => handleContentChange('terms_revision_after_sketch_items', e.target.value)}
-                                                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500 font-mono"
-                                                    required
-                                                />
-                                            </div>
-                                            <div>
-                                                <label className="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Row 3: Revision Render Stage Items (One per line)</label>
-                                                <textarea
-                                                    rows={3}
-                                                    value={contents.terms_revision_render_items || ''}
-                                                    onChange={(e) => handleContentChange('terms_revision_render_items', e.target.value)}
-                                                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500 font-mono"
-                                                    required
-                                                />
-                                            </div>
-                                            <div>
-                                                <label className="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Row 4: Time / Turnaround Items (One per line)</label>
-                                                <textarea
-                                                    rows={4}
-                                                    value={contents.terms_time_items || ''}
-                                                    onChange={(e) => handleContentChange('terms_time_items', e.target.value)}
-                                                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500 font-mono"
-                                                    required
-                                                />
-                                            </div>
-                                        </div>
-
-                                        {/* Col 2 */}
-                                        <div className="space-y-4">
-                                            <div>
-                                                <label className="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Row 5: Will Not Draw (Declined) Items (One per line)</label>
-                                                <textarea
-                                                    rows={5}
-                                                    value={contents.terms_declined_items || ''}
-                                                    onChange={(e) => handleContentChange('terms_declined_items', e.target.value)}
-                                                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500 font-mono"
-                                                    required
-                                                />
-                                            </div>
-                                            <div>
-                                                <label className="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Row 5: Will Not Draw Guideline Note</label>
-                                                <input
-                                                    type="text"
-                                                    value={contents.terms_declined_note || ''}
-                                                    onChange={(e) => handleContentChange('terms_declined_note', e.target.value)}
-                                                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500"
-                                                    required
-                                                />
-                                            </div>
-                                            <div>
-                                                <label className="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Row 6: Usage Allowed Items (One per line)</label>
-                                                <textarea
-                                                    rows={3}
-                                                    value={contents.terms_usage_allowed_items || ''}
-                                                    onChange={(e) => handleContentChange('terms_usage_allowed_items', e.target.value)}
-                                                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500 font-mono"
-                                                    required
-                                                />
-                                            </div>
-                                            <div>
-                                                <label className="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Row 6: Usage Forbidden Items (One per line)</label>
-                                                <textarea
-                                                    rows={3}
-                                                    value={contents.terms_usage_forbidden_items || ''}
-                                                    onChange={(e) => handleContentChange('terms_usage_forbidden_items', e.target.value)}
-                                                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500 font-mono"
-                                                    required
-                                                />
-                                            </div>
-                                            <div>
-                                                <label className="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Row 7: Copyright & Ownership Items (One per line)</label>
-                                                <textarea
-                                                    rows={3}
-                                                    value={contents.terms_copyright_items || ''}
-                                                    onChange={(e) => handleContentChange('terms_copyright_items', e.target.value)}
-                                                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500 font-mono"
-                                                    required
-                                                />
-                                            </div>
-                                            <div>
-                                                <label className="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Row 8: Image Posting / Publishing Items (One per line)</label>
-                                                <textarea
-                                                    rows={3}
-                                                    value={contents.terms_posting_items || ''}
-                                                    onChange={(e) => handleContentChange('terms_posting_items', e.target.value)}
-                                                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500 font-mono"
-                                                    required
-                                                />
-                                            </div>
-                                            <div>
-                                                <label className="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Row 9: Cancel - Client Refund Items (One per line)</label>
-                                                <textarea
-                                                    rows={2}
-                                                    value={contents.terms_cancel_client_items || ''}
-                                                    onChange={(e) => handleContentChange('terms_cancel_client_items', e.target.value)}
-                                                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500 font-mono"
-                                                    required
-                                                />
-                                            </div>
-                                            <div>
-                                                <label className="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Row 9: Cancel - Artist Refund Items (One per line)</label>
-                                                <textarea
-                                                    rows={2}
-                                                    value={contents.terms_cancel_artist_items || ''}
-                                                    onChange={(e) => handleContentChange('terms_cancel_artist_items', e.target.value)}
-                                                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500 font-mono"
-                                                    required
-                                                />
-                                            </div>
-                                            <div>
-                                                <label className="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Row 10: Crucial Notes (One per line)</label>
-                                                <textarea
-                                                    rows={4}
-                                                    value={contents.terms_note_items || ''}
-                                                    onChange={(e) => handleContentChange('terms_note_items', e.target.value)}
-                                                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500 font-mono"
-                                                    required
-                                                />
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
                                 <div className="pt-2 border-t border-slate-800 flex justify-end">
                                     <Button 

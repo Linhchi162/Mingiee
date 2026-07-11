@@ -49,6 +49,12 @@ export default async function Home() {
     .from('site_content')
     .select('key, value')
 
+  // Fetch terms of service
+  const { data: dbTerms } = await supabase
+    .from('terms_of_service')
+    .select('*')
+    .order('display_order', { ascending: true })
+
   const contentMap: Record<string, string> = {}
   if (dbContent) {
     dbContent.forEach(item => {
@@ -75,6 +81,107 @@ export default async function Home() {
     title: slide.title || '',
     author: slide.author || ''
   })) : []
+
+  const defaultTerms = [
+    {
+      id: 1,
+      title: 'THANH TOÁN',
+      content: `- Thanh toán qua chuyển khoản ngân hàng.
+- Thanh toán trước 50% khi 2 bên đã thống nhất giá.
+- Sau khi duyệt bản nháp thô (Rough sketch), khách vui lòng thanh toán 100% để mình bắt đầu line và render.
+- Sau 24 giờ kể từ khi gửi thông tin thanh toán mà chưa nhận được phản hồi, mình có quyền hủy slot.`
+    },
+    {
+      id: 2,
+      title: 'QUY TRÌNH LÀM VIỆC',
+      content: `Brief ➔ Sketch ➔ Thanh toán ➔ Lineart ➔ Render ➔ Final
+Khi gửi commission, chuẩn bị:
+- Reference nhân vật đầy đủ
+- Mô tả tính cách hoặc biểu cảm mong muốn
+- Pose hoặc ý tưởng cụ thể (nếu có)
+- Reference màu sắc, ánh sáng, mood tranh (nếu có)
+Reference càng đầy đủ thì kết quả càng sát mong muốn.`
+    },
+    {
+      id: 3,
+      title: 'CHỈNH SỬA',
+      content: `Giai đoạn Sketch
+- Được sửa miễn phí tối đa 3 lần.
+- Vui lòng tổng hợp các chỉnh sửa trong cùng một lần phản hồi.
+Sau khi duyệt Sketch
+- Các thay đổi lớn như:
+-- Đổi pose
+-- Đổi outfit
+-- Đổi hairstyle
+-- Đổi thiết kế nhân vật
+Sẽ phát sinh phụ phí.
+Giai đoạn Render
+- Chỉ hỗ trợ chỉnh các lỗi nhỏ.
+- Không nhận thay đổi lớn sau khi đã bắt đầu render.`
+    },
+    {
+      id: 4,
+      title: 'THỜI GIAN HOÀN THÀNH',
+      content: `- Thời gian hoàn thành dự kiến: 3-5 tuần tùy độ phức tạp và số lượng đơn đang chờ.
+- Nếu có deadline, vui lòng báo trước khi đặt commission.
+- Mình sẽ cố gắng hoàn thiện đúng thời hạn nhưng không nhận deadline quá gấp.`
+    },
+    {
+      id: 5,
+      title: 'KHÔNG NHẬN',
+      content: `Mình không nhận những đơn chứa nội dung sau:
+- NSFW
+- Old man
+- Mecha/Gundam phức tạp
+- Furry
+- Gore nặng
+- Nội dung vi phạm pháp luật hoặc mang tính xúc phạm
+(Có thể từ chối commission nếu cảm thấy không phù hợp với khả năng hoặc phong cách hiện tại.)`
+    },
+    {
+      id: 6,
+      title: 'QUYỀN SỬ DỤNG',
+      content: `Khách hàng được phép
+- Sử dụng cho mục đích cá nhân.
+- Đăng tải lên mạng xã hội có credit.
+- In ấn cá nhân với số lượng nhỏ.
+Khách hàng không được phép
+- Chỉnh sửa artwork khi chưa có sự đồng ý.
+- Sử dụng cho AI, NFT hoặc các mục đích tương tự.
+- Sử dụng cho mục đích thương mại khi chưa mua quyền Commercial use.`
+    },
+    {
+      id: 7,
+      title: 'BẢN QUYỀN',
+      content: `- Mình giữ bản quyền đối với artwork do mình thực hiện.
+- Quyền sở hữu OC/nhân vật vẫn thuộc về khách hàng.
+- Mọi hình thức sử dụng thương mại cần được thỏa thuận riêng.`
+    },
+    {
+      id: 8,
+      title: 'QUYỀN ĐĂNG TRANH',
+      content: `- Mình có quyền sử dụng commission làm portfolio, sample hoặc đăng tải trên các nền tảng mạng xã hội.
+- Nếu không muốn artwork được công khai, vui lòng đăng ký Private commission (+40%).`
+    },
+    {
+      id: 9,
+      title: 'VỀ VIỆC HỦY COMMISSION',
+      content: `Khách hàng hủy:
+- Sau khi duyệt sketch: hoàn lại 50% giá trị commission.
+- Sau khi đã bắt đầu line/render: không hoàn tiền.
+Nếu mình hủy:
+- Hoàn lại toàn bộ hoặc một phần chi phí tùy theo tiến độ đã thực hiện.`
+    },
+    {
+      id: 10,
+      title: 'LƯU Ý',
+      content: `- Vui lòng chỉ đặt commission khi bạn có thể chủ động thanh toán và phản hồi trong quá trình làm việc.
+- Mình ưu tiên những khách hàng lịch sự, hợp tác và phản hồi rõ ràng.
+- Khi đặt commission đồng nghĩa với việc bạn đã đọc và đồng ý với toàn bộ điều khoản trên.`
+    }
+  ]
+
+  const terms = dbTerms && dbTerms.length > 0 ? dbTerms : defaultTerms
   return (
     <div className="w-full relative flex flex-col overflow-x-hidden">
       {/* Fixed background wrapper for rubber-band overscroll */}
@@ -410,299 +517,88 @@ export default async function Home() {
           </div>
 
           {/* Terms Container Grid (Cascading Staggered Rows) */}
-          {(() => {
-            const paymentItems = formatSentenceCase(getContent('terms_payment_items', "Thanh toán qua chuyển khoản ngân hàng.\nThanh toán trước 50% khi 2 bên đã thống nhất giá.\nSau khi duyệt bản nháp thô (Rough sketch), khách vui lòng thanh toán 100% để mình bắt đầu line và render.\nSau 24 giờ kể từ khi gửi thông tin thanh toán mà chưa nhận được phản hồi, mình có quyền hủy slot.")).split('\n').filter(Boolean);
-            const processFlow = formatSentenceCase(getContent('terms_process_flow', "Brief ➔ Sketch ➔ Thanh toán ➔ Lineart ➔ Render ➔ Final"));
-            const processItems = formatSentenceCase(getContent('terms_process_items', "Reference nhân vật đầy đủ\nMô tả tính cách hoặc biểu cảm mong muốn\nPose hoặc ý tưởng cụ thể (nếu có)\nReference màu sắc, ánh sáng, mood tranh (nếu có)")).split('\n').filter(Boolean);
-            const processNote = formatSentenceCase(getContent('terms_process_note', "Reference càng đầy đủ thì kết quả càng sát mong muốn."));
-            const revisionSketchItems = formatSentenceCase(getContent('terms_revision_sketch_items', "Được sửa miễn phí tối đa 3 lần.\nVui lòng tổng hợp các chỉnh sửa trong cùng một lần phản hồi.")).split('\n').filter(Boolean);
-            const revisionAfterSketchItems = formatSentenceCase(getContent('terms_revision_after_sketch_items', "Các thay đổi lớn như:\n- Đổi pose\n- Đổi outfit\n- Đổi hairstyle\n- Đổi thiết kế nhân vật")).split('\n').filter(Boolean);
-            const revisionRenderItems = formatSentenceCase(getContent('terms_revision_render_items', "Chỉ hỗ trợ chỉnh các lỗi nhỏ.\nKhông nhận thay đổi lớn sau khi đã bắt đầu render.")).split('\n').filter(Boolean);
-            const timeItems = formatSentenceCase(getContent('terms_time_items', "Thời gian hoàn thành dự kiến: 3-5 tuần tùy độ phức tạp và số lượng đơn đang chờ.\nNếu có deadline, vui lòng báo trước khi đặt commission.\nMình sẽ cố gắng hoàn thiện đúng thời hạn nhưng không nhận deadline quá gấp.")).split('\n').filter(Boolean);
-            const declinedItems = formatSentenceCase(getContent('terms_declined_items', "NSFW\nOld man\nMecha/Gundam phức tạp\nFurry\nGore nặng\nNội dung vi phạm pháp luật hoặc mang tính xúc phạm")).split('\n').filter(Boolean);
-            const declinedNote = formatSentenceCase(getContent('terms_declined_note', "(Có thể từ chối commission nếu cảm thấy không phù hợp với khả năng hoặc phong cách hiện tại.)"));
-            const usageAllowedItems = formatSentenceCase(getContent('terms_usage_allowed_items', "Sử dụng cho mục đích cá nhân.\nĐăng tải lên mạng xã hội có credit.\nIn ấn cá nhân với số lượng nhỏ.")).split('\n').filter(Boolean);
-            const usageForbiddenItems = formatSentenceCase(getContent('terms_usage_forbidden_items', "Chỉnh sửa artwork khi chưa có sự đồng ý.\nSử dụng cho AI, NFT hoặc các mục đích tương tự.\nSử dụng cho mục đích thương mại khi chưa mua quyền Commercial use.")).split('\n').filter(Boolean);
-            const copyrightItems = formatSentenceCase(getContent('terms_copyright_items', "Mình giữ bản quyền đối với artwork do mình thực hiện.\nQuyền sở hữu OC/nhân vật vẫn thuộc về khách hàng.\nMọi hình thức sử dụng thương mại cần được thỏa thuận riêng.")).split('\n').filter(Boolean);
-            const postingItems = formatSentenceCase(getContent('terms_posting_items', "Mình có quyền sử dụng commission làm portfolio, sample hoặc đăng tải trên các nền tảng mạng xã hội.\nNếu không muốn artwork được công khai, vui lòng đăng ký Private commission (+40%).")).split('\n').filter(Boolean);
-            const cancelClientItems = formatSentenceCase(getContent('terms_cancel_client_items', "Sau khi duyệt sketch: hoàn lại 50% giá trị commission.\nSau khi đã bắt đầu line/render: không hoàn tiền.")).split('\n').filter(Boolean);
-            const cancelArtistItems = formatSentenceCase(getContent('terms_cancel_artist_items', "Hoàn lại toàn bộ hoặc một phần chi phí tùy theo tiến độ đã thực hiện.")).split('\n').filter(Boolean);
-            const noteItems = formatSentenceCase(getContent('terms_note_items', "Vui lòng chỉ đặt commission khi bạn có thể chủ động thanh toán và phản hồi trong quá trình làm việc.\nMình ưu tiên những khách hàng lịch sự, hợp tác và phản hồi rõ ràng.\nKhi đặt commission đồng nghĩa với việc bạn đã đọc và đồng ý với toàn bộ điều khoản trên.")).split('\n').filter(Boolean);
+          <div className="w-full max-w-[1240px] flex flex-col space-y-7 sm:space-y-12 lg:space-y-16 px-4 font-mono text-black mt-4">
+            {terms.map((term, index) => {
+              const isEven = index % 2 === 0;
+              const buttonNum = (index % 7) + 1; // 1 to 7 buttons looping
+              
+              // Helper to parse content with custom bullet styling
+              const lines = term.content.split(/\n/);
+              
+              const buttonStyles: Record<number, { className: string, aspect: string }> = {
+                1: { className: 'right-[-20px] sm:right-[-150px] top-[10%] sm:top-[-50px] w-[180px] sm:w-[450px] lg:w-[520px]', aspect: 'aspect-[879/513]' },
+                2: { className: 'left-[-20px] sm:left-[-150px] top-[-10px] w-[130px] sm:w-[340px] lg:w-[450px]', aspect: 'aspect-[567/479]' },
+                3: { className: 'right-[-20px] sm:right-[-150px] top-[10px] sm:top-[20px] w-[180px] sm:w-[460px] lg:w-[520px]', aspect: 'aspect-[1/1]' },
+                4: { className: 'right-[-30px] sm:right-[-195px] top-[10px] w-[200px] sm:w-[580px] lg:w-[660px]', aspect: 'aspect-[1029/531]' },
+                5: { className: 'left-[-30px] sm:left-[-170px] top-[30px] sm:top-[-50px] w-[180px] sm:w-[480px] lg:w-[440px]', aspect: 'aspect-[834/671]' },
+                6: { className: 'right-[20px] sm:right-[150px] top-[5px] sm:top-[10px] w-[80px] sm:w-[120px] lg:w-[160px]', aspect: 'aspect-[307/316]' },
+                7: { className: 'left-[-20px] sm:left-[80px] bottom-[-50px] sm:bottom-[-470px] w-[80px] sm:w-[180px] lg:w-[290px]', aspect: 'aspect-[1/1]' }
+              };
+              
+              const btnStyle = buttonStyles[buttonNum];
 
-            return (
-              <div className="w-full max-w-[1240px] flex flex-col space-y-7 sm:space-y-12 lg:space-y-16 px-4 font-mono text-black mt-4">
-                
-                {/* Row 1: THANH TOÁN (Left) */}
-                <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-8 relative">
-                  <div className="flex flex-col items-start w-full z-10">
+              return (
+                <div key={term.id || index} className="w-full grid grid-cols-1 sm:grid-cols-2 gap-8 relative">
+                  
+                  {/* Left Column for Even, Spacer for Odd */}
+                  {!isEven && <div className="hidden sm:block"></div>}
+                  
+                  {/* Content Container */}
+                  <div className={`flex flex-col items-start w-full z-10 ${!isEven ? 'md:translate-x-[5%]' : ''}`}>
                     <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
-                      THANH TOÁN
+                      {term.title}
                     </span>
-                    <div className="pl-6 sm:pl-8 lg:pl-10 w-full">
-                      <ul className="space-y-[2px] text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal">
-                        {paymentItems.map((item, idx) => (
-                          <li key={idx}><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> {item}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="absolute right-[-20px] sm:right-[-150px] top-[10%] sm:top-[-50px] w-[180px] sm:w-[450px] lg:w-[520px] aspect-[879/513] pointer-events-none select-none z-0">
-                    <Image
-                      src="/images/button1.png"
-                      alt="Decorative Button Group 1"
-                      fill
-                      className="object-contain"
-                      priority
-                    />
-                  </div>
-                </div>
-
-                {/* Row 2: QUY TRÌNH LÀM VIỆC (Right) */}
-                <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-8 relative">
-                  <div className="absolute left-[-20px] sm:left-[-150px] top-[-10px] w-[130px] sm:w-[340px] lg:w-[450px] aspect-[567/479] pointer-events-none select-none z-0">
-                    <Image
-                      src="/images/button2.png"
-                      alt="Decorative Button Group 2"
-                      fill
-                      className="object-contain"
-                      priority
-                    />
-                  </div>
-                  <div className="hidden sm:block"></div>
-                  <div className="flex flex-col items-start w-full md:translate-x-[5%] z-10">
-                    <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
-                      QUY TRÌNH LÀM VIỆC
-                    </span>
-                    <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal">
-                      <p className="mb-3 font-normal tracking-wide text-black">
-                        {processFlow}
-                      </p>
-                      <p className="mb-2 font-normal text-black">Khi gửi commission, chuẩn bị:</p>
-                      <ul className="space-y-[2px] pl-4 mb-2">
-                        {processItems.map((item, idx) => (
-                          <li key={idx}><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> {item}</li>
-                        ))}
-                      </ul>
-                      <p className="text-black text-[16px] sm:text-[20px] lg:text-[16px]">{processNote}</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Row 3: CHỈNH SỬA (Left) */}
-                <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-8 relative">
-                  <div className="flex flex-col items-start w-full z-10">
-                    <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
-                      CHỈNH SỬA
-                    </span>
-                    <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.2] font-normal text-black space-y-1">
-                      <p>Giai đoạn Sketch</p>
-                      {revisionSketchItems.map((item, idx) => (
-                        <p key={idx} className="pl-4"><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> {item}</p>
-                      ))}
-                      
-                      <p className="pt-2">Sau khi duyệt Sketch</p>
-                      {revisionAfterSketchItems.map((item, idx) => {
-                        const isMainBullet = item.trim().startsWith('-');
-                        const content = isMainBullet ? item.replace(/^-/, '').trim() : item;
+                    <div className="pl-6 sm:pl-8 lg:pl-10 w-full space-y-1 text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal text-black font-mono">
+                      {lines.map((line: string, lineIdx: number) => {
+                        const trimmed = line.trim();
+                        if (!trimmed) return <div key={lineIdx} className="h-2" />;
+                        
+                        // Sub-bullet Check: starts with "-- " or "  - " or " - " or "- " inside nested indent
+                        if (line.startsWith('  -') || line.startsWith(' -') || line.startsWith('--')) {
+                          const text = line.replace(/^(\s*-\s*|\s*--\s*)/, '');
+                          return (
+                            <div key={lineIdx} className="pl-6 flex items-start">
+                              <span className="text-[1.2em] inline-block align-middle mr-1.5 -translate-y-[1px] leading-[0]">o</span>
+                              <span>{formatSentenceCase(text)}</span>
+                            </div>
+                          );
+                        }
+                        
+                        // Main Bullet Check: starts with "- " or "* "
+                        if (trimmed.startsWith('-') || trimmed.startsWith('*')) {
+                          const text = trimmed.replace(/^[-*]\s*/, '');
+                          return (
+                            <li key={lineIdx} className="flex items-start list-none">
+                              <span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span>
+                              <span>{formatSentenceCase(text)}</span>
+                            </li>
+                          );
+                        }
+                        
+                        // Default Plain Text / Header
                         return (
-                          <p key={idx} className={isMainBullet ? "pl-10" : "pl-4"}>
-                            <span className="text-[1.2em] inline-block align-middle mr-1.5 -translate-y-[1px] leading-[0]">{isMainBullet ? "o" : "•"}</span> {content}
+                          <p key={lineIdx} className="font-normal text-black">
+                            {formatSentenceCase(trimmed)}
                           </p>
                         );
                       })}
-
-                      <p className="pt-2">Giai đoạn Render</p>
-                      {revisionRenderItems.map((item, idx) => (
-                        <p key={idx} className="pl-4"><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> {item}</p>
-                      ))}
                     </div>
                   </div>
-                  <div className="absolute right-[-20px] sm:right-[-150px] top-[10px] sm:top-[20px] w-[180px] sm:w-[460px] lg:w-[520px] aspect-[1/1] pointer-events-none select-none z-0">
+
+                  {/* Decorative Button Images */}
+                  <div className={`absolute pointer-events-none select-none z-0 ${btnStyle.className} ${btnStyle.aspect}`}>
                     <Image
-                      src="/images/button3.png"
-                      alt="Decorative Button Group 3"
+                      src={`/images/button${buttonNum}.png`}
+                      alt={`Decorative Button Group ${buttonNum}`}
                       fill
                       className="object-contain"
                       priority
                     />
                   </div>
                 </div>
-
-                {/* Row 4: THỜI GIAN HOÀN THÀNH (Right) */}
-                <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-8 relative">
-                  <div className="hidden sm:block"></div>
-                  <div className="flex flex-col items-start w-full md:translate-x-[5%] z-10">
-                    <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
-                      Thời gian hoàn thành
-                    </span>
-                    <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal text-black">
-                      <ul className="space-y-[2px]">
-                        {timeItems.map((item, idx) => (
-                          <li key={idx}><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> {item}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Row 5: KHÔNG NHẬN (Left) */}
-                <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-8 relative">
-                  <div className="flex flex-col items-start w-full z-10">
-                    <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
-                      KHÔNG NHẬN
-                    </span>
-                    <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal text-black">
-                      <p className="mb-2 font-normal text-black">Mình không nhận những đơn chứa nội dung sau:</p>
-                      <ul className="space-y-[2px] pl-4 mb-2">
-                        {declinedItems.map((item, idx) => (
-                          <li key={idx}><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> {item}</li>
-                        ))}
-                      </ul>
-                      <p className="text-[16px] sm:text-[20px] lg:text-[16px] text-black/80 mt-2">
-                        {declinedNote}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="absolute right-[-30px] sm:right-[-195px] top-[10px] w-[200px] sm:w-[580px] lg:w-[660px] aspect-[1029/531] pointer-events-none select-none z-0">
-                    <Image
-                      src="/images/button4.png"
-                      alt="Decorative Button Group 4"
-                      fill
-                      className="object-contain"
-                      priority
-                    />
-                  </div>
-                </div>
-
-                {/* Row 6: QUYỀN SỬ DỤNG (Right) */}
-                <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-8 relative">
-                  <div className="absolute left-[-30px] sm:left-[-170px] top-[30px] sm:top-[-50px] w-[180px] sm:w-[480px] lg:w-[440px] aspect-[834/671] pointer-events-none select-none z-0">
-                    <Image
-                      src="/images/button5.png"
-                      alt="Decorative Button Group 5"
-                      fill
-                      className="object-contain"
-                      priority
-                    />
-                  </div>
-                  <div className="hidden sm:block"></div>
-                  <div className="flex flex-col items-start w-full md:translate-x-[5%] z-10">
-                    <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
-                      QUYỀN SỬ DỤNG
-                    </span>
-                    <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal text-black">
-                      <p className="mb-2 font-normal text-black">Khách hàng được phép</p>
-                      <ul className="space-y-[2px] pl-4 mb-4">
-                        {usageAllowedItems.map((item, idx) => (
-                          <li key={idx}><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> {item}</li>
-                        ))}
-                      </ul>
-                      <p className="mb-2 font-normal text-black">Khách hàng không được phép</p>
-                      <ul className="space-y-[2px] pl-4">
-                        {usageForbiddenItems.map((item, idx) => (
-                          <li key={idx}><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> {item}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Row 7: BẢN QUYỀN (Left) */}
-                <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-8 relative">
-                  <div className="flex flex-col items-start w-full z-10">
-                    <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
-                      BẢN QUYỀN
-                    </span>
-                    <div className="pl-6 sm:pl-8 lg:pl-10 w-full">
-                      <ul className="space-y-[2px] text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal text-black font-mono">
-                        {copyrightItems.map((item, idx) => (
-                          <li key={idx}><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> {item}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="absolute right-[20px] sm:right-[150px] top-[5px] sm:top-[10px] w-[80px] sm:w-[120px] lg:w-[160px] aspect-[307/316] pointer-events-none select-none z-0">
-                    <Image
-                      src="/images/button6.png"
-                      alt="Decorative Button Group 6"
-                      fill
-                      className="object-contain"
-                      priority
-                    />
-                  </div>
-                </div>
-
-                {/* Row 8: QUYỀN ĐĂNG TRANH (Right) */}
-                <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-8 relative">
-                  
-                  <div className="hidden sm:block"></div>
-                  <div className="flex flex-col items-start w-full md:translate-x-[5%] z-10">
-                    <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
-                      QUYỀN ĐĂNG TRANH
-                    </span>
-                    <div className="pl-6 sm:pl-8 lg:pl-10 w-full">
-                      <ul className="space-y-[2px] text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal text-black font-mono">
-                        {postingItems.map((item, idx) => (
-                          <li key={idx}><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> {item}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Row 9: TIỀN HÀNG HỦY (Left) */}
-                <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-8 relative">
-                  <div className="flex flex-col items-start w-full z-10">
-                    <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
-                      VỀ VIỆC HỦY COMMISSION
-                    </span>
-                    <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal text-black font-mono">
-                      <p className="mb-2 font-normal text-black">Khách hàng hủy:</p>
-                      <ul className="space-y-[2px] pl-4 mb-4">
-                        {cancelClientItems.map((item, idx) => (
-                          <li key={idx}><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> {item}</li>
-                        ))}
-                      </ul>
-                      
-                      <p className="mb-2 font-normal text-black">Nếu mình hủy:</p>
-                      <ul className="space-y-[2px] pl-4 text-black font-mono">
-                        {cancelArtistItems.map((item, idx) => (
-                          <li key={idx}><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> {item}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="absolute left-[-20px] sm:left-[80px] bottom-[-50px] sm:bottom-[-470px] w-[80px] sm:w-[180px] lg:w-[290px] aspect-[1/1] pointer-events-none select-none z-0">
-                    <Image
-                      src="/images/button7.png"
-                      alt="Decorative Button Group 7"
-                      fill
-                      className="object-contain"
-                      priority
-                    />
-                  </div>
-                </div>
-
-                {/* Row 10: LƯU Ý (Right) */}
-                <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-8 relative">
-                  <div className="hidden sm:block"></div>
-                  <div className="flex flex-col items-start w-full md:translate-x-[5%] z-10">
-                    <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
-                      LƯU Ý
-                    </span>
-                    <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-black font-mono">
-                      <ul className="space-y-[2px] text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal">
-                        {noteItems.map((item, idx) => (
-                          <li key={idx}><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> {item}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            );
-          })()}
+              );
+            })}
+          </div>
         </section>
 
       </div>
