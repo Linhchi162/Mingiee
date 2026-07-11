@@ -1,10 +1,50 @@
 import Image from 'next/image'
 import Navbar from '@/components/Navbar'
 import CoverFlowCarousel from '@/components/CoverFlowCarousel'
+import { supabase } from '@/lib/supabase'
 
-export default function Home() {
+export const revalidate = 0;
+
+export default async function Home() {
+  // Fetch prices
+  const { data: dbPrices } = await supabase
+    .from('prices')
+    .select('*')
+    .order('display_order', { ascending: true })
+
+  // Fetch gallery slides
+  const { data: dbSlides } = await supabase
+    .from('gallery_slides')
+    .select('*')
+    .order('display_order', { ascending: true })
+
+  const defaultPrices = [
+    { id: 1, type: 'BUST-UP', price_vnd: '1.900.000 VND' },
+    { id: 2, type: 'HALF-BODY', price_vnd: '2.400.000 VND' },
+    { id: 3, type: 'THIGH-UP', price_vnd: '3.200.000 VND' },
+    { id: 4, type: 'FULL-BODY', price_vnd: '4.200.000 VND' },
+  ]
+
+  const prices = dbPrices && dbPrices.length > 0 ? dbPrices : defaultPrices
+
+  const slides = dbSlides ? dbSlides.map(slide => ({
+    id: slide.id,
+    src: slide.image_url,
+    title: slide.title || '',
+    author: slide.author || ''
+  })) : []
   return (
-    <div className="min-h-screen w-full relative flex flex-col overflow-x-hidden overflow-y-auto bg-[#5A504D]">
+    <div className="w-full relative flex flex-col overflow-x-hidden">
+      {/* Fixed background wrapper for rubber-band overscroll */}
+      <div 
+        className="fixed -inset-y-[50vh] inset-x-0 z-0 pointer-events-none"
+        style={{
+          backgroundImage: "url('/images/trang-chu-nau-v2.jpg')",
+          backgroundRepeat: 'repeat',
+          backgroundPosition: 'top center',
+          backgroundSize: '100% auto',
+        }}
+      />
       {/* SECTION 1: Blue Grid Background Section */}
       <section className="relative z-10 w-full min-h-[65vh] sm:min-h-screen flex flex-col overflow-hidden">
         {/* Background Image */}
@@ -119,7 +159,7 @@ export default function Home() {
             </div>
             {/* GALLERY CAROUSEL CONTAINER */}
             <div className="w-full max-w-4xl relative -mt-2 sm:-mt-12 md:-mt-16">
-              <CoverFlowCarousel />
+              <CoverFlowCarousel slides={slides} />
             </div>
           </div>
         </section>
@@ -201,38 +241,16 @@ export default function Home() {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className="border-b border-black/40">
-                      <td className="pt-[2px] pb-[1px] sm:pt-[4px] sm:pb-[1px] font-normal text-[20px] sm:text-[25.5px] lg:text-[30px] tracking-wide">
-                        <span className="relative inline-block translate-y-[2px] sm:translate-y-[3.5px] lg:translate-y-[4.5px]">BUST-UP</span>
-                      </td>
-                      <td className="pt-[2px] pb-[1px] sm:pt-[4px] sm:pb-[1px] text-left font-normal text-[20px] sm:text-[25.5px] lg:text-[30px]">
-                        <span className="relative inline-block translate-y-[2px] sm:translate-y-[3.5px] lg:translate-y-[4.5px]">1.900.000 VND</span>
-                      </td>
-                    </tr>
-                    <tr className="border-b border-black/40">
-                      <td className="pt-[2px] pb-[1px] sm:pt-[4px] sm:pb-[1px] font-normal text-[20px] sm:text-[25.5px] lg:text-[30px] tracking-wide">
-                        <span className="relative inline-block translate-y-[2px] sm:translate-y-[3.5px] lg:translate-y-[4.5px]">HALF-BODY</span>
-                      </td>
-                      <td className="pt-[2px] pb-[1px] sm:pt-[4px] sm:pb-[1px] text-left font-normal text-[20px] sm:text-[25.5px] lg:text-[30px]">
-                        <span className="relative inline-block translate-y-[2px] sm:translate-y-[3.5px] lg:translate-y-[4.5px]">2.400.000 VND</span>
-                      </td>
-                    </tr>
-                    <tr className="border-b border-black/40">
-                      <td className="pt-[2px] pb-[1px] sm:pt-[4px] sm:pb-[1px] font-normal text-[20px] sm:text-[25.5px] lg:text-[30px] tracking-wide">
-                        <span className="relative inline-block translate-y-[2px] sm:translate-y-[3.5px] lg:translate-y-[4.5px]">THIGH-UP</span>
-                      </td>
-                      <td className="pt-[2px] pb-[1px] sm:pt-[4px] sm:pb-[1px] text-left font-normal text-[20px] sm:text-[25.5px] lg:text-[30px]">
-                        <span className="relative inline-block translate-y-[2px] sm:translate-y-[3.5px] lg:translate-y-[4.5px]">3.200.000 VND</span>
-                      </td>
-                    </tr>
-                    <tr className="border-b border-black/40">
-                      <td className="pt-[2px] pb-[1px] sm:pt-[4px] sm:pb-[1px] font-normal text-[20px] sm:text-[25.5px] lg:text-[30px] tracking-wide">
-                        <span className="relative inline-block translate-y-[2px] sm:translate-y-[3.5px] lg:translate-y-[4.5px]">FULL-BODY</span>
-                      </td>
-                      <td className="pt-[2px] pb-[1px] sm:pt-[4px] sm:pb-[1px] text-left font-normal text-[20px] sm:text-[25.5px] lg:text-[30px]">
-                        <span className="relative inline-block translate-y-[2px] sm:translate-y-[3.5px] lg:translate-y-[4.5px]">4.200.000 VND</span>
-                      </td>
-                    </tr>
+                    {prices.map((priceItem, index) => (
+                      <tr key={priceItem.id || index} className="border-b border-black/40">
+                        <td className="pt-[2px] pb-[1px] sm:pt-[4px] sm:pb-[1px] font-normal text-[20px] sm:text-[25.5px] lg:text-[30px] tracking-wide">
+                          <span className="relative inline-block translate-y-[2px] sm:translate-y-[3.5px] lg:translate-y-[4.5px]">{priceItem.type}</span>
+                        </td>
+                        <td className="pt-[2px] pb-[1px] sm:pt-[4px] sm:pb-[1px] text-left font-normal text-[20px] sm:text-[25.5px] lg:text-[30px]">
+                          <span className="relative inline-block translate-y-[2px] sm:translate-y-[3.5px] lg:translate-y-[4.5px]">{priceItem.price_vnd}</span>
+                        </td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </div>

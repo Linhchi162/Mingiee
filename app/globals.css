@@ -17,10 +17,20 @@ html {
   -moz-text-size-adjust: 100% !important;
   -ms-text-size-adjust: 100% !important;
   text-size-adjust: 100% !important;
+  background-image: url('/images/trang-chu-nau-v2.jpg') !important;
+  background-repeat: repeat !important;
+  background-position: top center !important;
+  background-size: 100% auto !important;
+  background-color: #5A504D !important;
 }
 
 body {
   font-size: 1rem !important;
+  background-image: url('/images/trang-chu-nau-v2.jpg') !important;
+  background-repeat: repeat !important;
+  background-position: top center !important;
+  background-size: 100% auto !important;
+  background-color: #5A504D !important;
 }
 
 * {
@@ -151,10 +161,20 @@ body {
   }
 
   body {
-    @apply bg-background text-foreground;
+    background-image: url('/images/trang-chu-nau-v2.jpg');
+    background-repeat: repeat;
+    background-position: top center;
+    background-size: 100% auto;
+    background-color: #5A504D;
+    @apply text-foreground;
   }
 
   html {
+    background-image: url('/images/trang-chu-nau-v2.jpg');
+    background-repeat: repeat;
+    background-position: top center;
+    background-size: 100% auto;
+    background-color: #5A504D;
     @apply font-sans;
   }
 }

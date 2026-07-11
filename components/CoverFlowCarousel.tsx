@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 
 interface SlideItem {
-  id: number;
+  id: number | string;
   src: string;
   title: string;
   author: string;
@@ -44,8 +44,9 @@ const SLIDES: SlideItem[] = [
   },
 ];
 
-export default function CoverFlowCarousel() {
-  const [activeIndex, setActiveIndex] = useState(2); // Default to center image (golden_deer)
+export default function CoverFlowCarousel({ slides = SLIDES }: { slides?: SlideItem[] }) {
+  const currentSlides = slides && slides.length > 0 ? slides : SLIDES;
+  const [activeIndex, setActiveIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [screenSize, setScreenSize] = useState<'mobile' | 'tablet' | 'desktop'>('desktop');
   const [leftBtnState, setLeftBtnState] = useState<'default' | 'hover' | 'active'>('default');
@@ -55,7 +56,14 @@ export default function CoverFlowCarousel() {
   const dragStartX = useRef<number | null>(null);
   const isDragging = useRef(false);
 
-  const totalSlides = SLIDES.length;
+  const totalSlides = currentSlides.length;
+
+  // Initialize active index to center
+  useEffect(() => {
+    if (currentSlides.length > 0) {
+      setActiveIndex(Math.floor(currentSlides.length / 2));
+    }
+  }, [currentSlides.length]);
 
   // Handle responsive design in client
   useEffect(() => {
@@ -234,7 +242,7 @@ export default function CoverFlowCarousel() {
         onMouseLeave={handleMouseUpOrLeave}
       >
         <div className="relative w-full h-full flex items-center justify-center overflow-visible" style={{ transformStyle: 'preserve-3d' }}>
-          {SLIDES.map((slide, index) => {
+          {currentSlides.map((slide, index) => {
             const offset = getOffset(index);
             const slideStyle = getSlideStyle(offset);
             const isActive = offset === 0;
