@@ -283,8 +283,8 @@ export default async function Home() {
 
           {/* Bottom rules & info lists */}
           {(() => {
-            const scopeItems = getContent('commission_scope_items', "1 NHÂN VẬT CÓ THIẾT KẾ ĐƠN GIẢN\nBACKGROUND ĐƠN GIẢN (MÀU, GRADIENT, HIỆU ỨNG NHẸ)\nCANVAS 3000 PIXELS TRỞ LÊN, 400DPI\nCANVAS DỌC / VUÔNG (1:1, 3:4, 4:5)").split(/\r?\n|\\n/).filter(Boolean);
-            const extraFeesItems = getContent('commission_extra_fees_items', "THIẾT KẾ NHÂN VẬT NHIỀU CHI TIẾT: 100.000VND UP TUỲ MỨC ĐỘ PHỨC TẠP\nCANVAS DÀI (16:9): +50% GIÁ CƠ BẢN\nTHÊM NHÂN VẬT: +100% GIÁ GỐC/CHAR\nBACKGROUND CHI TIẾT (KIẾN TRÚC, NỘI THẤT, PHONG CẢNH, NHIỀU VẬT THỂ...): THƯƠNG LƯỢNG RIÊNG\nPRIVATE COMMISSION (KHÔNG ĐĂNG TẢI CÔNG KHAI): +40%\nCOMMERCIAL USE: 200% GIÁ CƠ BẢN").split(/\r?\n|\\n/).filter(Boolean);
+            const scopeItems = getContent('commission_scope_items', "1 nhân vật có thiết kế đơn giản\nBackground đơn giản (màu, gradient, hiệu ứng nhẹ)\nCanvas 3000 pixels trở lên, 400DPI\nCanvas dọc / vuông (1:1, 3:4, 4:5)").split(/\r?\n|\\n/).filter(Boolean);
+            const extraFeesItems = getContent('commission_extra_fees_items', "Thiết kế nhân vật nhiều chi tiết: 100.000VND up tuỳ mức độ phức tạp\nCanvas dài (16:9): +50% giá cơ bản\nThêm nhân vật: +100% giá gốc/char\nBackground chi tiết (kiến trúc, nội thất, phong cảnh, nhiều vật thể...): Thương lượng riêng\nPrivate commission (không đăng tải công khai): +40%\nCommercial use: 200% giá cơ bản").split(/\r?\n|\\n/).filter(Boolean);
 
             return (
               <div className="w-full max-w-[1240px] grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-11 lg:gap-16 px-4 font-mono text-black">
@@ -298,7 +298,7 @@ export default async function Home() {
                     <ul className="mt-3 space-y-[2px] text-[21.5px] sm:text-[25px] lg:text-[16px] leading-[1.3] font-normal">
                       {scopeItems.map((item, i) => (
                         <li key={i}>
-                          <span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> {item}
+                           <span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> {item}
                         </li>
                       ))}
                     </ul>
@@ -320,7 +320,7 @@ export default async function Home() {
                     </ul>
                   </div>
                   <p className="mt-2.5 pl-3 sm:pl-4 lg:pl-5 text-[21.5px] sm:text-[25px] lg:text-[16px] font-normal text-black leading-[1.3] w-full">
-                    {getContent('commission_extra_fees_note', 'PHỤ PHÍ SẼ ĐƯỢC MÌNH BÁO VÀ THỐNG NHẤT SAU KHI HOÀN THIỆN BƯỚC SKETCH')}
+                    {getContent('commission_extra_fees_note', 'Phụ phí sẽ được mình báo và thống nhất sau khi hoàn thiện bước sketch')}
                   </p>
                 </div>
               </div>
@@ -391,10 +391,10 @@ export default async function Home() {
                 </span>
                 <div className="pl-6 sm:pl-8 lg:pl-10 w-full">
                   <ul className="space-y-[2px] text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal">
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> THANH TOÁN QUA CHUYỂN KHOẢN NGÂN HÀNG.</li>
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> THANH TOÁN TRƯỚC 50% KHI 2 BÊN ĐÃ THỐNG NHẤT GIÁ.</li>
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> SAU KHI DUYỆT BẢN NHÁP THÔ (ROUGH SKETCH), KHÁCH VUI LÒNG THANH TOÁN 100% ĐỂ MÌNH BẮT ĐẦU LINE VÀ RENDER.</li>
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> SAU 24 GIỜ KỂ TỪ KHI GỬI THÔNG TIN THANH TOÁN MÀ CHƯA NHẬN ĐƯỢC PHẢN HỒI, MÌNH CÓ QUYỀN HỦY SLOT.</li>
+                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Thanh toán qua chuyển khoản ngân hàng.</li>
+                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Thanh toán trước 50% khi 2 bên đã thống nhất giá.</li>
+                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Sau khi duyệt bản nháp thô (Rough sketch), khách vui lòng thanh toán 100% để mình bắt đầu line và render.</li>
+                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Sau 24 giờ kể từ khi gửi thông tin thanh toán mà chưa nhận được phản hồi, mình có quyền hủy slot.</li>
                   </ul>
                 </div>
               </div>
@@ -427,16 +427,16 @@ export default async function Home() {
                 </span>
                 <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal">
                   <p className="mb-3 font-normal tracking-wide text-black">
-                    BRIEF ➔ SKETCH ➔ THANH TOÁN ➔ LINEART ➔ RENDER ➔ FINAL
+                    Brief ➔ Sketch ➔ Thanh toán ➔ Lineart ➔ Render ➔ Final
                   </p>
-                  <p className="mb-2 font-normal text-black">KHI GỬI COMMISSION, CHUẨN BỊ:</p>
+                  <p className="mb-2 font-normal text-black">Khi gửi commission, chuẩn bị:</p>
                   <ul className="space-y-[2px] pl-4 mb-2">
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> REFERENCE NHÂN VẬT ĐẦY ĐỦ</li>
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> MÔ TẢ TÍNH CÁCH HOẶC BIỂU CẢM MONG MUỐN</li>
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> POSE HOẶC Ý TƯỞNG CỤ THỂ (NẾU CÓ)</li>
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> REFERENCE MÀU SẮC, ÁNH SÁNG, MOOD TRANH (NẾU CÓ)</li>
+                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Reference nhân vật đầy đủ</li>
+                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Mô tả tính cách hoặc biểu cảm mong muốn</li>
+                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Pose hoặc ý tưởng cụ thể (nếu có)</li>
+                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Reference màu sắc, ánh sáng, mood tranh (nếu có)</li>
                   </ul>
-                  <p className="text-black text-[16px] sm:text-[20px] lg:text-[16px]">REFERENCE CÀNG ĐẦY ĐỦ THÌ KẾT QUẢ CÀNG SÁT MONG MUỐN.</p>
+                  <p className="text-black text-[16px] sm:text-[20px] lg:text-[16px]">Reference càng đầy đủ thì kết quả càng sát mong muốn.</p>
                 </div>
               </div>
             </div>
@@ -448,21 +448,21 @@ export default async function Home() {
                   CHỈNH SỬA
                 </span>
                 <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.2] font-normal text-black space-y-1">
-                  <p>GIAI ĐOẠN SKETCH</p>
-                  <p className="pl-4"><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> ĐƯỢC SỬA MIỄN PHÍ TỐI ĐA 3 LẦN.</p>
-                  <p className="pl-4"><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> VUI LÒNG TỔNG HỢP CÁC CHỈNH SỬA TRONG CÙNG MỘT LẦN PHẢN HỒI.</p>
+                  <p>Giai đoạn Sketch</p>
+                  <p className="pl-4"><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Được sửa miễn phí tối đa 3 lần.</p>
+                  <p className="pl-4"><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Vui lòng tổng hợp các chỉnh sửa trong cùng một lần phản hồi.</p>
                   
-                  <p className="pt-2">SAU KHI DUYỆT SKETCH</p>
-                  <p className="pl-4"><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> CÁC THAY ĐỔI LỚN NHƯ:</p>
-                  <p className="pl-10"><span className="text-[1.1em] inline-block align-middle mr-2 -translate-y-[1px] leading-[0]">o</span> ĐỔI POSE</p>
-                  <p className="pl-10"><span className="text-[1.1em] inline-block align-middle mr-2 -translate-y-[1px] leading-[0]">o</span> ĐỔI OUTFIT</p>
-                  <p className="pl-10"><span className="text-[1.1em] inline-block align-middle mr-2 -translate-y-[1px] leading-[0]">o</span> ĐỔI HAIRSTYLE</p>
-                  <p className="pl-10"><span className="text-[1.1em] inline-block align-middle mr-2 -translate-y-[1px] leading-[0]">o</span> ĐỔI THIẾT KẾ NHÂN VẬT</p>
-                  <p className="text-black">SẼ PHÁT SINH PHỤ PHÍ.</p>
+                  <p className="pt-2">Sau khi duyệt Sketch</p>
+                  <p className="pl-4"><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Các thay đổi lớn như:</p>
+                  <p className="pl-10"><span className="text-[1.1em] inline-block align-middle mr-2 -translate-y-[1px] leading-[0]">o</span> Đổi pose</p>
+                  <p className="pl-10"><span className="text-[1.1em] inline-block align-middle mr-2 -translate-y-[1px] leading-[0]">o</span> Đổi outfit</p>
+                  <p className="pl-10"><span className="text-[1.1em] inline-block align-middle mr-2 -translate-y-[1px] leading-[0]">o</span> Đổi hairstyle</p>
+                  <p className="pl-10"><span className="text-[1.1em] inline-block align-middle mr-2 -translate-y-[1px] leading-[0]">o</span> Đổi thiết kế nhân vật</p>
+                  <p className="text-black">Sẽ phát sinh phụ phí.</p>
 
-                  <p className="pt-2">GIAI ĐOẠN RENDER</p>
-                  <p className="pl-4"><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> CHỈ HỖ TRỢ CHỈNH CÁC LỖI NHỎ.</p>
-                  <p className="pl-4"><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> KHÔNG NHẬN THAY ĐỔI LỚN SAU KHI ĐÃ BẮT ĐẦU RENDER.</p>
+                  <p className="pt-2">Giai đoạn Render</p>
+                  <p className="pl-4"><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Chỉ hỗ trợ chỉnh các lỗi nhỏ.</p>
+                  <p className="pl-4"><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Không nhận thay đổi lớn sau khi đã bắt đầu render.</p>
                 </div>
               </div>
               <div className="absolute right-[-20px] sm:right-[-150px] top-[10px] sm:top-[20px] w-[180px] sm:w-[460px] lg:w-[520px] aspect-[1/1] pointer-events-none select-none z-0">
@@ -481,13 +481,13 @@ export default async function Home() {
               <div className="hidden sm:block"></div>
               <div className="flex flex-col items-start w-full md:translate-x-[5%] z-10">
                 <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
-                  THỜI GIAN HOÀN THÀNH
+                  Thời gian hoàn thành
                 </span>
                 <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal text-black">
                   <ul className="space-y-[2px]">
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> THỜI GIAN HOÀN THÀNH DỰ KIẾN: 3-5 TUẦN TÙY ĐỘ PHỨC TẠP VÀ SỐ LƯỢNG ĐƠN ĐANG CHỜ.</li>
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> NẾU CÓ DEADLINE, VUI LÒNG BÁO TRƯỚC KHI ĐẶT COMMISSION.</li>
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> MÌNH SẼ CỐ GẮNG HOÀN THIỆN ĐÚNG THỜI HẠN NHƯNG KHÔNG NHẬN DEADLINE QUÁ GẤP.</li>
+                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Thời gian hoàn thành dự kiến: 3-5 tuần tùy độ phức tạp và số lượng đơn đang chờ.</li>
+                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Nếu có deadline, vui lòng báo trước khi đặt commission.</li>
+                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Mình sẽ cố gắng hoàn thiện đúng thời hạn nhưng không nhận deadline quá gấp.</li>
                   </ul>
                 </div>
               </div>
@@ -500,17 +500,17 @@ export default async function Home() {
                   KHÔNG NHẬN
                 </span>
                 <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal text-black">
-                  <p className="mb-2 font-normal text-black">MÌNH KHÔNG NHẬN NHỮNG ĐƠN CHỨA NỘI DUNG SAU:</p>
+                  <p className="mb-2 font-normal text-black">Mình không nhận những đơn chứa nội dung sau:</p>
                   <ul className="space-y-[2px] pl-4 mb-2">
                     <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> NSFW</li>
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> OLD MAN</li>
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> MECHA/GUNDAM PHỨC TẠP</li>
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> FURRY</li>
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> GORE NẶNG</li>
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> NỘI DUNG VI PHẠM PHÁP LUẬT HOẶC MANG TÍNH XÚC PHẠM</li>
+                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Old man</li>
+                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Mecha/Gundam phức tạp</li>
+                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Furry</li>
+                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Gore nặng</li>
+                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Nội dung vi phạm pháp luật hoặc mang tính xúc phạm</li>
                   </ul>
                   <p className="text-[16px] sm:text-[20px] lg:text-[16px] text-black/80 mt-2">
-                    (CÓ THỂ TỪ CHỐI COMMISSION NẾU CẢM THẤY KHÔNG PHÙ HỢP VỚI KHẢ NĂNG HOẶC PHONG CÁCH HIỆN TẠI.)
+                    (Có thể từ chối commission nếu cảm thấy không phù hợp với khả năng hoặc phong cách hiện tại.)
                   </p>
                 </div>
               </div>
@@ -542,17 +542,17 @@ export default async function Home() {
                   QUYỀN SỬ DỤNG
                 </span>
                 <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal text-black">
-                  <p className="mb-2 font-normal text-black">KHÁCH HÀNG ĐƯỢC PHÉP</p>
+                  <p className="mb-2 font-normal text-black">Khách hàng được phép</p>
                   <ul className="space-y-[2px] pl-4 mb-4">
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> SỬ DỤNG CHO MỤC ĐÍCH CÁ NHÂN.</li>
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> ĐĂNG TẢI LÊN MẠNG XÃ HỘI CÓ CREDIT.</li>
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> IN ẤN CÁ NHÂN VỚI SỐ LƯỢNG NHỎ.</li>
+                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Sử dụng cho mục đích cá nhân.</li>
+                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Đăng tải lên mạng xã hội có credit.</li>
+                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> In ấn cá nhân với số lượng nhỏ.</li>
                   </ul>
-                  <p className="mb-2 font-normal text-black">KHÁCH HÀNG KHÔNG ĐƯỢC PHÉP</p>
+                  <p className="mb-2 font-normal text-black">Khách hàng không được phép</p>
                   <ul className="space-y-[2px] pl-4">
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> CHỈNH SỬA ARTWORK KHI CHƯA CÓ SỰ ĐỒNG Ý.</li>
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> SỬ DỤNG CHO AI, NFT HOẶC CÁC MỤC ĐÍCH TƯƠNG TỰ.</li>
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> SỬ DỤNG CHO MỤC ĐÍCH THƯƠNG MẠI KHI CHƯA MUA QUYỀN COMMERCIAL USE.</li>
+                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Chỉnh sửa artwork khi chưa có sự đồng ý.</li>
+                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Sử dụng cho AI, NFT hoặc các mục đích tương tự.</li>
+                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Sử dụng cho mục đích thương mại khi chưa mua quyền Commercial use.</li>
                   </ul>
                 </div>
               </div>
@@ -566,9 +566,9 @@ export default async function Home() {
                 </span>
                 <div className="pl-6 sm:pl-8 lg:pl-10 w-full">
                   <ul className="space-y-[2px] text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal text-black font-mono">
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> MÌNH GIỮ BẢN QUYỀN ĐỐI VỚI ARTWORK DO MÌNH THỰC HIỆN.</li>
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> QUYỀN SỞ HỮU OC/NHÂN VẬT VẪN THUỘC VỀ KHÁCH HÀNG.</li>
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> MỌI HÌNH THỨC SỬ DỤNG THƯƠNG MẠI CẦN ĐƯỢC THỎA THUẬN RIÊNG.</li>
+                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Mình giữ bản quyền đối với artwork do mình thực hiện.</li>
+                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Quyền sở hữu OC/nhân vật vẫn thuộc về khách hàng.</li>
+                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Mọi hình thức sử dụng thương mại cần được thỏa thuận riêng.</li>
                   </ul>
                 </div>
               </div>
@@ -593,8 +593,8 @@ export default async function Home() {
                 </span>
                 <div className="pl-6 sm:pl-8 lg:pl-10 w-full">
                   <ul className="space-y-[2px] text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal text-black font-mono">
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> MÌNH CÓ QUYỀN SỬ DỤNG COMMISSION LÀM PORTFOLIO, SAMPLE HOẶC ĐĂNG TẢI TRÊN CÁC NỀN TẢNG MẠNG XÃ HỘI.</li>
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> NẾU KHÔNG MUỐN ARTWORK ĐƯỢC CÔNG KHAI, VUI LÒNG ĐĂNG KÝ PRIVATE COMMISSION (+40%).</li>
+                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Mình có quyền sử dụng commission làm portfolio, sample hoặc đăng tải trên các nền tảng mạng xã hội.</li>
+                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Nếu không muốn artwork được công khai, vui lòng đăng ký Private commission (+40%).</li>
                   </ul>
                 </div>
               </div>
@@ -607,15 +607,15 @@ export default async function Home() {
                   VỀ VIỆC HỦY COMMISSION
                 </span>
                 <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal text-black font-mono">
-                  <p className="mb-2 font-normal text-black">KHÁCH HÀNG HỦY:</p>
+                  <p className="mb-2 font-normal text-black">Khách hàng hủy:</p>
                   <ul className="space-y-[2px] pl-4 mb-4">
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> SAU KHI DUYỆT SKETCH: HOÀN LẠI 50% GIÁ TRỊ COMMISSION.</li>
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> SAU KHI ĐÃ BẮT ĐẦU LINE/RENDER: KHÔNG HOÀN TIỀN.</li>
+                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Sau khi duyệt sketch: hoàn lại 50% giá trị commission.</li>
+                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Sau khi đã bắt đầu line/render: không hoàn tiền.</li>
                   </ul>
                   
-                  <p className="mb-2 font-normal text-black">NẾU MÌNH HỦY:</p>
+                  <p className="mb-2 font-normal text-black">Nếu mình hủy:</p>
                   <ul className="space-y-[2px] pl-4 text-black font-mono">
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> HOÀN LẠI TOÀN BỘ HOẶC MỘT PHẦN CHI PHÍ TÙY THEO TIẾN ĐỘ ĐÃ THỰC HIỆN.</li>
+                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Hoàn lại toàn bộ hoặc một phần chi phí tùy theo tiến độ đã thực hiện.</li>
                   </ul>
                 </div>
               </div>
@@ -639,9 +639,9 @@ export default async function Home() {
                 </span>
                 <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-black font-mono">
                   <ul className="space-y-[2px] text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal">
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> VUI LÒNG CHỈ ĐẶT COMMISSION KHI BẠN CÓ THỂ CHỦ ĐỘNG THANH TOÁN VÀ PHẢN HỒI TRONG QUÁ TRÌNH LÀM VIỆC.</li>
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> MÌNH ƯU TIÊN NHỮNG KHÁCH HÀNG LỊCH SỰ, HỢP TÁC VÀ PHẢN HỒI RÕ RÀNG.</li>
-                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> KHI ĐẶT COMMISSION ĐỒNG NGHĨA VỚI VIỆC BẠN ĐÃ ĐỌC VÀ ĐỒNG Ý VỚI TOÀN BỘ ĐIỀU KHOẢN TRÊN.</li>
+                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Vui lòng chỉ đặt commission khi bạn có thể chủ động thanh toán và phản hồi trong quá trình làm việc.</li>
+                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Mình ưu tiên những khách hàng lịch sự, hợp tác và phản hồi rõ ràng.</li>
+                    <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> Khi đặt commission đồng nghĩa với việc bạn đã đọc và đồng ý với toàn bộ điều khoản trên.</li>
                   </ul>
                 </div>
               </div>
