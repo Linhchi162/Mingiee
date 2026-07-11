@@ -6,12 +6,14 @@ import { supabase } from '@/lib/supabase'
 
 export default function Navbar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const [isCommissionDropdownOpen, setIsCommissionDropdownOpen] = useState(false)
   const [dropdownItems, setDropdownItems] = useState([
     { label: 'FACEBOOK', url: '#' },
     { label: 'INSTAGRAM', url: '#' },
     { label: 'TWITTER', url: '#' },
   ])
   const dropdownRef = useRef<HTMLDivElement>(null)
+  const commissionDropdownRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     async function fetchLinks() {
@@ -38,6 +40,9 @@ export default function Navbar() {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsDropdownOpen(false)
       }
+      if (commissionDropdownRef.current && !commissionDropdownRef.current.contains(event.target as Node)) {
+        setIsCommissionDropdownOpen(false)
+      }
     }
     document.addEventListener('mousedown', handleClickOutside)
     return () => {
@@ -48,6 +53,17 @@ export default function Navbar() {
   const toggleDropdown = (e: React.MouseEvent) => {
     e.preventDefault()
     setIsDropdownOpen(prev => !prev)
+  }
+
+  const toggleCommissionDropdown = (e: React.MouseEvent) => {
+    e.preventDefault()
+    setIsCommissionDropdownOpen(prev => !prev)
+  }
+
+  const handleCommissionItemClick = (e: React.MouseEvent, sectionId: string) => {
+    e.preventDefault()
+    scrollToSection(sectionId)
+    setIsCommissionDropdownOpen(false)
   }
 
   const handleClick = (e: React.MouseEvent, url: string) => {
@@ -85,31 +101,56 @@ export default function Navbar() {
       className="w-full pt-3 sm:pt-[20px] lg:pt-[30px] pb-3 px-[2%] sm:px-[4%] lg:px-[5%] bg-transparent flex flex-nowrap items-center justify-between gap-1.5 sm:gap-4 lg:gap-0 select-none font-mono"
     >
       {/* COMMISSION BUTTON */}
-      <button 
-        type="button" 
-        onClick={() => scrollToSection('commission')}
-        className={`${defaultButtonClass} min-w-[58px] sm:min-w-[155px] lg:min-w-[188px]`}
-      >
-        <div className={iconLeftClass}>
-          <Image
-            src="/images/Button.png"
-            alt="button icon"
-            fill
-            className="object-contain"
-          />
-        </div>
-        <span className={textClass}>
-          (COMMISSION)
-        </span>
-        <div className={iconRightClass}>
-          <Image
-            src="/images/Button.png"
-            alt="button icon"
-            fill
-            className="object-contain"
-          />
-        </div>
-      </button>
+      <div ref={commissionDropdownRef} className="relative z-50">
+        <button 
+          type="button" 
+          onClick={toggleCommissionDropdown}
+          className={`${isCommissionDropdownOpen ? `${buttonBaseClass} bg-[#5A504D] border-[1.6px] sm:border-[2px] lg:border-[2.3px] border-[#5A504D] text-[#FAF6EE]` : defaultButtonClass} min-w-[58px] sm:min-w-[155px] lg:min-w-[188px]`}
+        >
+          <div className={`${iconLeftClass} ${isCommissionDropdownOpen ? 'opacity-0 scale-50' : ''}`}>
+            <Image
+              src="/images/Button.png"
+              alt="button icon"
+              fill
+              className="object-contain"
+            />
+          </div>
+          <span className={textClass}>
+            (COMMISSION)
+          </span>
+          <div className={`${iconRightClass} ${isCommissionDropdownOpen ? 'opacity-0 scale-50' : ''}`}>
+            <Image
+              src="/images/Button.png"
+              alt="button icon"
+              fill
+              className="object-contain"
+            />
+          </div>
+        </button>
+
+        {/* Dropdown Menu */}
+        {isCommissionDropdownOpen && (
+          <div 
+            className="absolute left-0 mt-[6.8px] sm:mt-[11px] lg:mt-[13.6px] p-[11px] sm:p-[19px] lg:p-[24.5px] bg-[#5A504D] rounded-[10px] sm:rounded-[13.5px] flex flex-col items-start gap-[2px] sm:gap-[16px] lg:gap-[21.8px] shadow-[0_5.4px_16.3px_rgba(0,0,0,0.18)] min-w-[110px] sm:min-w-[180px] lg:min-w-[210px] animate-in fade-in slide-in-from-top-2 duration-200"
+            style={{ transformOrigin: 'top left' }}
+          >
+            <button
+              type="button"
+              onClick={(e) => handleCommissionItemClick(e, 'commission')}
+              className="text-[#FAF6EE] text-[9px] sm:text-[19.5px] lg:text-[16px] tracking-wider font-semibold lg:font-normal hover:opacity-85 hover:translate-x-[2px] transition-all duration-200 cursor-pointer select-none text-left w-full bg-transparent border-none"
+            >
+              PRICE LIST
+            </button>
+            <button
+              type="button"
+              onClick={(e) => handleCommissionItemClick(e, 'terms')}
+              className="text-[#FAF6EE] text-[9px] sm:text-[19.5px] lg:text-[16px] tracking-wider font-semibold lg:font-normal hover:opacity-85 hover:translate-x-[2px] transition-all duration-200 cursor-pointer select-none text-left w-full bg-transparent border-none"
+            >
+              TERMS OF SERVICE
+            </button>
+          </div>
+        )}
+      </div>
 
       {/* GALLERY BUTTON */}
       <button 
