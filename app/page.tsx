@@ -18,6 +18,22 @@ export default async function Home() {
     .select('*')
     .order('display_order', { ascending: true })
 
+  // Fetch site content settings
+  const { data: dbContent } = await supabase
+    .from('site_content')
+    .select('key, value')
+
+  const contentMap: Record<string, string> = {}
+  if (dbContent) {
+    dbContent.forEach(item => {
+      contentMap[item.key] = item.value
+    })
+  }
+
+  const getContent = (key: string, fallback: string) => {
+    return contentMap[key] !== undefined ? contentMap[key] : fallback
+  }
+
   const defaultPrices = [
     { id: 1, type: 'BUST-UP', price_vnd: '1.900.000 VND' },
     { id: 2, type: 'HALF-BODY', price_vnd: '2.400.000 VND' },
@@ -98,10 +114,10 @@ export default async function Home() {
         {/* Bottom Left Greeting Text */}
         <div className="relative sm:absolute left-0 sm:left-[39px] md:left-[63px] bottom-0 sm:bottom-[64px] md:bottom-[88px] mt-1 sm:mt-0 pb-12 sm:pb-0 text-center sm:text-left font-mono text-[#4D4845] select-none z-10 w-full sm:w-auto px-4 sm:px-0">
           <p className="text-[clamp(23px,2.6vw,30px)] font-extrabold tracking-widest leading-[1.2]">
-            {"HI, I'M MINGIEE!"}
+            {getContent('welcome_line1', "HI, I'M MINGIEE!")}
           </p>
           <p className="text-[clamp(23px,2.6vw,30px)] font-extrabold tracking-widest leading-[1.2]">
-            {"WELCOME TO MY CREATIVE SPACE!"}
+            {getContent('welcome_line2', "WELCOME TO MY CREATIVE SPACE!")}
           </p>
         </div>
 
@@ -164,18 +180,6 @@ export default async function Home() {
           </div>
         </section>
       </div>
-
-      {/* SECTION 4: Transition Section */}
-      <div 
-        className="w-full relative aspect-[1708/160] -mt-8 sm:mt-0"
-        style={{
-          backgroundImage: "url('/images/chuy%E1%BB%83n%20trang.png')",
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center',
-          backgroundSize: '100% 100%',
-          filter: 'brightness(0.97)',
-        }}
-      />
 
       {/* Combined Next Blue Background Wrapper */}
       <div 
@@ -270,43 +274,50 @@ export default async function Home() {
           </div>
 
           {/* Bottom rules & info lists */}
-          <div className="w-full max-w-[1240px] grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-11 lg:gap-16 px-4 font-mono text-black">
-            
-            {/* Bottom Left Card: Scope info */}
-            <div className="flex flex-col items-start w-full max-w-[540px] justify-self-center md:justify-self-start">
-              <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[clamp(11px,3.2vw,28.5px)] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none whitespace-nowrap">
-                BẢNG GIÁ TRÊN ÁP DỤNG VỚI TRANH GỒM:
-              </span>
-              <div className="pl-6 sm:pl-8 lg:pl-10 w-full">
-                <ul className="mt-3 space-y-[2px] text-[21.5px] sm:text-[25px] lg:text-[28.5px] leading-[1.3] font-normal">
-                  <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> 1 NHÂN VẬT CÓ THIẾT KẾ ĐƠN GIẢN</li>
-                  <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> BACKGROUND ĐƠN GIẢN (MÀU, GRADIENT, HIỆU ỨNG NHẸ)</li>
-                  <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> CANVAS 3000 PIXELS TRỞ LÊN, 400DPI</li>
-                  <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> CANVAS DỌC / VUÔNG (1:1, 3:4, 4:5)</li>
-                </ul>
-              </div>
-            </div>
+          {(() => {
+            const scopeItems = getContent('commission_scope_items', "1 NHÂN VẬT CÓ THIẾT KẾ ĐƠN GIẢN\nBACKGROUND ĐƠN GIẢN (MÀU, GRADIENT, HIỆU ỨNG NHẸ)\nCANVAS 3000 PIXELS TRỞ LÊN, 400DPI\nCANVAS DỌC / VUÔNG (1:1, 3:4, 4:5)").split('\n').filter(Boolean);
+            const extraFeesItems = getContent('commission_extra_fees_items', "THIẾT KẾ NHÂN VẬT NHIỀU CHI TIẾT: 100.000VND UP TUỲ MỨC ĐỘ PHỨC TẠP\nCANVAS DÀI (16:9): +50% GIÁ CƠ BẢN\nTHÊM NHÂN VẬT: +100% GIÁ GỐC/CHAR\nBACKGROUND CHI TIẾT (KIẾN TRÚC, NỘI THẤT, PHONG CẢNH, NHIỀU VẬT THỂ...): THƯƠNG LƯỢNG RIÊNG\nPRIVATE COMMISSION (KHÔNG ĐĂNG TẢI CÔNG KHAI): +40%\nCOMMERCIAL USE: 200% GIÁ CƠ BẢN").split('\n').filter(Boolean);
 
-            {/* Bottom Right Card: Extra fees info */}
-            <div className="flex flex-col items-start w-full max-w-[540px] justify-self-center md:justify-self-end md:translate-x-[5%]">
-              <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[28.5px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none">
-                PHỤ PHÍ
-              </span>
-              <div className="pl-6 sm:pl-8 lg:pl-10 w-full">
-                <ul className="mt-3 space-y-[2px] text-[21.5px] sm:text-[25px] lg:text-[28.5px] leading-[1.3] font-normal">
-                  <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> THIẾT KẾ NHÂN VẬT NHIỀU CHI TIẾT: 100.000VND UP TUỲ MỨC ĐỘ PHỨC TẠP</li>
-                  <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> CANVAS DÀI (16:9): +50% GIÁ CƠ BẢN</li>
-                  <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> THÊM NHÂN VẬT: +100% GIÁ GỐC/CHAR</li>
-                  <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> BACKGROUND CHI TIẾT (KIẾN TRÚC, NỘI THẤT, PHONG CẢNH, NHIỀU VẬT THỂ...): THƯƠNG LƯỢNG RIÊNG</li>
-                  <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> PRIVATE COMMISSION (KHÔNG ĐĂNG TẢI CÔNG KHAI): +40%</li>
-                  <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> COMMERCIAL USE: 200% GIÁ CƠ BẢN</li>
-                </ul>
+            return (
+              <div className="w-full max-w-[1240px] grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-11 lg:gap-16 px-4 font-mono text-black">
+                
+                {/* Bottom Left Card: Scope info */}
+                <div className="flex flex-col items-start w-full max-w-[540px] justify-self-center md:justify-self-start">
+                  <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[clamp(11px,3.2vw,28.5px)] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none whitespace-nowrap">
+                    {getContent('commission_scope_title', 'BẢNG GIÁ TRÊN ÁP DỤNG VỚI TRANH GỒM:')}
+                  </span>
+                  <div className="pl-6 sm:pl-8 lg:pl-10 w-full">
+                    <ul className="mt-3 space-y-[2px] text-[21.5px] sm:text-[25px] lg:text-[28.5px] leading-[1.3] font-normal">
+                      {scopeItems.map((item, i) => (
+                        <li key={i}>
+                          <span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Bottom Right Card: Extra fees info */}
+                <div className="flex flex-col items-start w-full max-w-[540px] justify-self-center md:justify-self-end md:translate-x-[5%]">
+                  <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[28.5px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none">
+                    {getContent('commission_extra_fees_title', 'PHỤ PHÍ')}
+                  </span>
+                  <div className="pl-6 sm:pl-8 lg:pl-10 w-full">
+                    <ul className="mt-3 space-y-[2px] text-[21.5px] sm:text-[25px] lg:text-[28.5px] leading-[1.3] font-normal">
+                      {extraFeesItems.map((item, i) => (
+                        <li key={i}>
+                          <span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <p className="mt-2.5 pl-3 sm:pl-4 lg:pl-5 text-[21.5px] sm:text-[25px] lg:text-[28.5px] font-normal text-black leading-[1.3] w-full">
+                    {getContent('commission_extra_fees_note', 'PHỤ PHÍ SẼ ĐƯỢC MÌNH BÁO VÀ THỐNG NHẤT SAU KHI HOÀN THIỆN BƯỚC SKETCH')}
+                  </p>
+                </div>
               </div>
-              <p className="mt-2.5 pl-3 sm:pl-4 lg:pl-5 text-[21.5px] sm:text-[25px] lg:text-[28.5px] font-normal text-black leading-[1.3] w-full">
-                PHỤ PHÍ SẼ ĐƯỢC MÌNH BÁO VÀ THỐNG NHẤT SAU KHI HOÀN THIỆN BƯỚC SKETCH
-              </p>
-            </div>
-          </div>
+            );
+          })()}
         </section>
       </div>
 
@@ -384,7 +395,7 @@ export default async function Home() {
                   THANH TOÁN
                 </span>
                 <div className="pl-6 sm:pl-8 lg:pl-10 w-full">
-                  <ul className="space-y-[2px] text-[18px] sm:text-[22px] lg:text-[25px] leading-[1.3] font-normal">
+                  <ul className="space-y-[2px] text-[18px] sm:text-[22px] lg:text-[30px] leading-[1.3] font-normal">
                     <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> THANH TOÁN QUA CHUYỂN KHOẢN NGÂN HÀNG.</li>
                     <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> THANH TOÁN TRƯỚC 50% KHI 2 BÊN ĐÃ THỐNG NHẤT GIÁ.</li>
                     <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> SAU KHI DUYỆT BẢN NHÁP THÔ (ROUGH SKETCH), KHÁCH VUI LÒNG THANH TOÁN 100% ĐỂ MÌNH BẮT ĐẦU LINE VÀ RENDER.</li>
@@ -419,7 +430,7 @@ export default async function Home() {
                 <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[28.5px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
                   QUY TRÌNH LÀM VIỆC
                 </span>
-                <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-[18px] sm:text-[22px] lg:text-[25px] leading-[1.3] font-normal">
+                <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-[18px] sm:text-[22px] lg:text-[30px] leading-[1.3] font-normal">
                   <p className="mb-3 font-normal tracking-wide text-black">
                     BRIEF ➔ SKETCH ➔ THANH TOÁN ➔ LINEART ➔ RENDER ➔ FINAL
                   </p>
@@ -430,7 +441,7 @@ export default async function Home() {
                     <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> POSE HOẶC Ý TƯỞNG CỤ THỂ (NẾU CÓ)</li>
                     <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> REFERENCE MÀU SẮC, ÁNH SÁNG, MOOD TRANH (NẾU CÓ)</li>
                   </ul>
-                  <p className="text-black text-[16px] sm:text-[20px] lg:text-[23px]">REFERENCE CÀNG ĐẦY ĐỦ THÌ KẾT QUẢ CÀNG SÁT MONG MUỐN.</p>
+                  <p className="text-black text-[16px] sm:text-[20px] lg:text-[28px]">REFERENCE CÀNG ĐẦY ĐỦ THÌ KẾT QUẢ CÀNG SÁT MONG MUỐN.</p>
                 </div>
               </div>
             </div>
@@ -441,7 +452,7 @@ export default async function Home() {
                 <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[28.5px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
                   CHỈNH SỬA
                 </span>
-                <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-[18px] sm:text-[22px] lg:text-[25px] leading-[1.2] font-normal text-black space-y-1">
+                <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-[18px] sm:text-[22px] lg:text-[30px] leading-[1.2] font-normal text-black space-y-1">
                   <p>GIAI ĐOẠN SKETCH</p>
                   <p className="pl-4"><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> ĐƯỢC SỬA MIỄN PHÍ TỐI ĐA 3 LẦN.</p>
                   <p className="pl-4"><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> VUI LÒNG TỔNG HỢP CÁC CHỈNH SỬA TRONG CÙNG MỘT LẦN PHẢN HỒI.</p>
@@ -477,7 +488,7 @@ export default async function Home() {
                 <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[28.5px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
                   THỜI GIAN HOÀN THÀNH
                 </span>
-                <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-[18px] sm:text-[22px] lg:text-[25px] leading-[1.3] font-normal text-black">
+                <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-[18px] sm:text-[22px] lg:text-[30px] leading-[1.3] font-normal text-black">
                   <ul className="space-y-[2px]">
                     <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> THỜI GIAN HOÀN THÀNH DỰ KIẾN: 3-5 TUẦN TÙY ĐỘ PHỨC TẠP VÀ SỐ LƯỢNG ĐƠN ĐANG CHỜ.</li>
                     <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> NẾU CÓ DEADLINE, VUI LÒNG BÁO TRƯỚC KHI ĐẶT COMMISSION.</li>
@@ -493,7 +504,7 @@ export default async function Home() {
                 <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[28.5px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
                   KHÔNG NHẬN
                 </span>
-                <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-[18px] sm:text-[22px] lg:text-[25px] leading-[1.3] font-normal text-black">
+                <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-[18px] sm:text-[22px] lg:text-[30px] leading-[1.3] font-normal text-black">
                   <p className="mb-2 font-normal text-black">MÌNH KHÔNG NHẬN NHỮNG ĐƠN CHỨA NỘI DUNG SAU:</p>
                   <ul className="space-y-[2px] pl-4 mb-2">
                     <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> NSFW</li>
@@ -503,7 +514,7 @@ export default async function Home() {
                     <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> GORE NẶNG</li>
                     <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> NỘI DUNG VI PHẠM PHÁP LUẬT HOẶC MANG TÍNH XÚC PHẠM</li>
                   </ul>
-                  <p className="text-[16px] sm:text-[20px] lg:text-[23px] text-black/80 mt-2">
+                  <p className="text-[16px] sm:text-[20px] lg:text-[28px] text-black/80 mt-2">
                     (CÓ THỂ TỪ CHỐI COMMISSION NẾU CẢM THẤY KHÔNG PHÙ HỢP VỚI KHẢ NĂNG HOẶC PHONG CÁCH HIỆN TẠI.)
                   </p>
                 </div>
@@ -535,7 +546,7 @@ export default async function Home() {
                 <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[28.5px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
                   QUYỀN SỬ DỤNG
                 </span>
-                <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-[18px] sm:text-[22px] lg:text-[25px] leading-[1.3] font-normal text-black">
+                <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-[18px] sm:text-[22px] lg:text-[30px] leading-[1.3] font-normal text-black">
                   <p className="mb-2 font-normal text-black">KHÁCH HÀNG ĐƯỢC PHÉP</p>
                   <ul className="space-y-[2px] pl-4 mb-4">
                     <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> SỬ DỤNG CHO MỤC ĐÍCH CÁ NHÂN.</li>
@@ -559,7 +570,7 @@ export default async function Home() {
                   BẢN QUYỀN
                 </span>
                 <div className="pl-6 sm:pl-8 lg:pl-10 w-full">
-                  <ul className="space-y-[2px] text-[18px] sm:text-[22px] lg:text-[25px] leading-[1.3] font-normal text-black font-mono">
+                  <ul className="space-y-[2px] text-[18px] sm:text-[22px] lg:text-[30px] leading-[1.3] font-normal text-black font-mono">
                     <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> MÌNH GIỮ BẢN QUYỀN ĐỐI VỚI ARTWORK DO MÌNH THỰC HIỆN.</li>
                     <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> QUYỀN SỞ HỮU OC/NHÂN VẬT VẪN THUỘC VỀ KHÁCH HÀNG.</li>
                     <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> MỌI HÌNH THỨC SỬ DỤNG THƯƠNG MẠI CẦN ĐƯỢC THỎA THUẬN RIÊNG.</li>
@@ -594,7 +605,7 @@ export default async function Home() {
                   QUYỀN ĐĂNG TRANH
                 </span>
                 <div className="pl-6 sm:pl-8 lg:pl-10 w-full">
-                  <ul className="space-y-[2px] text-[18px] sm:text-[22px] lg:text-[25px] leading-[1.3] font-normal text-black font-mono">
+                  <ul className="space-y-[2px] text-[18px] sm:text-[22px] lg:text-[30px] leading-[1.3] font-normal text-black font-mono">
                     <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> MÌNH CÓ QUYỀN SỬ DỤNG COMMISSION LÀM PORTFOLIO, SAMPLE HOẶC ĐĂNG TẢI TRÊN CÁC NỀN TẢNG MẠNG XÃ HỘI.</li>
                     <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> NẾU KHÔNG MUỐN ARTWORK ĐƯỢC CÔNG KHAI, VUI LÒNG ĐĂNG KÝ PRIVATE COMMISSION (+40%).</li>
                   </ul>
@@ -606,9 +617,9 @@ export default async function Home() {
             <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-8 relative">
               <div className="flex flex-col items-start w-full z-10">
                 <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[28.5px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
-                  TIỀN HÀNG HỦY
+                  VỀ VIỆC HỦY COMMISSION
                 </span>
-                <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-[18px] sm:text-[22px] lg:text-[25px] leading-[1.3] font-normal text-black font-mono">
+                <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-[18px] sm:text-[22px] lg:text-[30px] leading-[1.3] font-normal text-black font-mono">
                   <p className="mb-2 font-normal text-black">KHÁCH HÀNG HỦY:</p>
                   <ul className="space-y-[2px] pl-4 mb-4">
                     <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> SAU KHI DUYỆT SKETCH: HOÀN LẠI 50% GIÁ TRỊ COMMISSION.</li>
@@ -640,7 +651,7 @@ export default async function Home() {
                   LƯU Ý
                 </span>
                 <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-black font-mono">
-                  <ul className="space-y-[2px] text-[18px] sm:text-[22px] lg:text-[25px] leading-[1.3] font-normal">
+                  <ul className="space-y-[2px] text-[18px] sm:text-[22px] lg:text-[30px] leading-[1.3] font-normal">
                     <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> VUI LÒNG CHỈ ĐẶT COMMISSION KHI BẠN CÓ THỂ CHỦ ĐỘNG THANH TOÁN VÀ PHẢN HỒI TRONG QUÁ TRÌNH LÀM VIỆC.</li>
                     <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> MÌNH ƯU TIÊN NHỮNG KHÁCH HÀNG LỊCH SỰ, HỢP TÁC VÀ PHẢN HỒI RÕ RÀNG.</li>
                     <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> KHI ĐẶT COMMISSION ĐỒNG NGHĨA VỚI VIỆC BẠN ĐÃ ĐỌC VÀ ĐỒNG Ý VỚI TOÀN BỘ ĐIỀU KHOẢN TRÊN.</li>
@@ -654,16 +665,6 @@ export default async function Home() {
 
       </div>
 
-      {/* White transition strip */}
-      <div 
-        className="w-full h-15 relative z-40 shadow-[0_-8px_20px_rgba(0,0,0,0.25)]"
-        style={{
-          backgroundImage: "url('/images/b%C3%ACa%20tr%E1%BA%AFng.png')",
-          backgroundRepeat: 'repeat',
-          backgroundPosition: 'bottom center',
-          backgroundSize: '100% auto',
-        }}
-      />
 
       {/* Footer Section */}
       <footer 
