@@ -223,7 +223,7 @@ export default async function Home() {
             
             {/* Left Column: Pricing Table inside Lace Card */}
             <div 
-              className="relative w-full max-w-[468px] sm:max-w-[588px] lg:max-w-[702px] aspect-[831/611] flex items-center justify-center justify-self-center md:justify-self-start"
+              className="relative w-full max-w-[468px] sm:max-w-[588px] lg:max-w-[702px] aspect-[950/611] flex items-center justify-center justify-self-center md:justify-self-start"
               style={{
                 backgroundImage: "url('/images/lace2.svg')",
                 backgroundSize: 'contain',
@@ -232,14 +232,14 @@ export default async function Home() {
               }}
             >
               {/* Inner content wrapper, padded to fit inside the plain center box of the lace card */}
-              <div className="w-[74%] h-[68%] flex flex-col justify-center text-black font-mono px-2 sm:px-4">
+              <div className="w-[74%] h-[68%] flex flex-col justify-center text-black font-mono px-2 sm:px-4 lg:translate-x-[0px]">
                 <table className="w-full text-left border-collapse">
                   <thead>
                     <tr className="border-b-2 border-black">
-                      <th className="pt-[4px] pb-[1px] sm:pt-[6px] sm:pb-[1px] font-normal text-[18.5px] sm:text-[25px] lg:text-[16px] tracking-wider w-[55%]">
+                      <th className="pt-[4px] pb-[1px] sm:pt-[6px] sm:pb-[1px] lg:pt-[8px] lg:pb-[8px] font-normal text-[18.5px] sm:text-[25px] lg:text-[20px] tracking-wider w-[50%]">
                         <span className="relative inline-block translate-y-[2px] sm:translate-y-[3.5px] lg:translate-y-[4.5px]">(TYPE)</span>
                       </th>
-                      <th className="pt-[4px] pb-[1px] sm:pt-[6px] sm:pb-[1px] text-left font-normal text-[18.5px] sm:text-[25px] lg:text-[16px] tracking-wider">
+                      <th className="pt-[4px] pb-[1px] sm:pt-[6px] sm:pb-[1px] lg:pt-[8px] lg:pb-[8px] text-right font-normal text-[18.5px] sm:text-[25px] lg:text-[20px] tracking-wider">
                         <span className="relative inline-block translate-y-[2px] sm:translate-y-[3.5px] lg:translate-y-[4.5px]">(PRICE)</span>
                       </th>
                     </tr>
@@ -247,10 +247,10 @@ export default async function Home() {
                   <tbody>
                     {prices.map((priceItem, index) => (
                       <tr key={priceItem.id || index} className="border-b border-black/40">
-                        <td className="pt-[2px] pb-[1px] sm:pt-[4px] sm:pb-[1px] font-normal text-[20px] sm:text-[25.5px] lg:text-[16px] tracking-wide">
+                        <td className="pt-[2px] pb-[1px] sm:pt-[4px] sm:pb-[1px] lg:pt-[10px] lg:pb-[6px] font-normal text-[20px] sm:text-[25.5px] lg:text-[20px] tracking-wide">
                           <span className="relative inline-block translate-y-[2px] sm:translate-y-[3.5px] lg:translate-y-[4.5px]">{priceItem.type}</span>
                         </td>
-                        <td className="pt-[2px] pb-[1px] sm:pt-[4px] sm:pb-[1px] text-left font-normal text-[20px] sm:text-[25.5px] lg:text-[16px]">
+                        <td className="pt-[2px] pb-[1px] sm:pt-[4px] sm:pb-[1px] lg:pt-[10px] lg:pb-[6px] text-right font-normal text-[20px] sm:text-[25.5px] lg:text-[20px]">
                           <span className="relative inline-block translate-y-[2px] sm:translate-y-[3.5px] lg:translate-y-[4.5px]">{priceItem.price_vnd}</span>
                         </td>
                       </tr>
@@ -275,8 +275,8 @@ export default async function Home() {
 
           {/* Bottom rules & info lists */}
           {(() => {
-            const scopeItems = getContent('commission_scope_items', "1 NHÂN VẬT CÓ THIẾT KẾ ĐƠN GIẢN\nBACKGROUND ĐƠN GIẢN (MÀU, GRADIENT, HIỆU ỨNG NHẸ)\nCANVAS 3000 PIXELS TRỞ LÊN, 400DPI\nCANVAS DỌC / VUÔNG (1:1, 3:4, 4:5)").split('\n').filter(Boolean);
-            const extraFeesItems = getContent('commission_extra_fees_items', "THIẾT KẾ NHÂN VẬT NHIỀU CHI TIẾT: 100.000VND UP TUỲ MỨC ĐỘ PHỨC TẠP\nCANVAS DÀI (16:9): +50% GIÁ CƠ BẢN\nTHÊM NHÂN VẬT: +100% GIÁ GỐC/CHAR\nBACKGROUND CHI TIẾT (KIẾN TRÚC, NỘI THẤT, PHONG CẢNH, NHIỀU VẬT THỂ...): THƯƠNG LƯỢNG RIÊNG\nPRIVATE COMMISSION (KHÔNG ĐĂNG TẢI CÔNG KHAI): +40%\nCOMMERCIAL USE: 200% GIÁ CƠ BẢN").split('\n').filter(Boolean);
+            const scopeItems = getContent('commission_scope_items', "1 NHÂN VẬT CÓ THIẾT KẾ ĐƠN GIẢN\nBACKGROUND ĐƠN GIẢN (MÀU, GRADIENT, HIỆU ỨNG NHẸ)\nCANVAS 3000 PIXELS TRỞ LÊN, 400DPI\nCANVAS DỌC / VUÔNG (1:1, 3:4, 4:5)").split(/\r?\n|\\n/).filter(Boolean);
+            const extraFeesItems = getContent('commission_extra_fees_items', "THIẾT KẾ NHÂN VẬT NHIỀU CHI TIẾT: 100.000VND UP TUỲ MỨC ĐỘ PHỨC TẠP\nCANVAS DÀI (16:9): +50% GIÁ CƠ BẢN\nTHÊM NHÂN VẬT: +100% GIÁ GỐC/CHAR\nBACKGROUND CHI TIẾT (KIẾN TRÚC, NỘI THẤT, PHONG CẢNH, NHIỀU VẬT THỂ...): THƯƠNG LƯỢNG RIÊNG\nPRIVATE COMMISSION (KHÔNG ĐĂNG TẢI CÔNG KHAI): +40%\nCOMMERCIAL USE: 200% GIÁ CƠ BẢN").split(/\r?\n|\\n/).filter(Boolean);
 
             return (
               <div className="w-full max-w-[1240px] grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-11 lg:gap-16 px-4 font-mono text-black">
@@ -506,7 +506,7 @@ export default async function Home() {
                   </p>
                 </div>
               </div>
-              <div className="absolute right-[-30px] sm:right-[-245px] top-[10px] w-[200px] sm:w-[580px] lg:w-[660px] aspect-[1029/531] pointer-events-none select-none z-0">
+              <div className="absolute right-[-30px] sm:right-[-195px] top-[10px] w-[200px] sm:w-[580px] lg:w-[660px] aspect-[1029/531] pointer-events-none select-none z-0">
                 <Image
                   src="/images/button4.png"
                   alt="Decorative Button Group 4"
@@ -519,7 +519,7 @@ export default async function Home() {
 
             {/* Row 6: QUYỀN SỬ DỤNG (Right) */}
             <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-8 relative">
-              <div className="absolute left-[-30px] sm:left-[-170px] top-[10px] sm:top-[20px] w-[180px] sm:w-[580px] lg:w-[540px] aspect-[834/671] pointer-events-none select-none z-0">
+              <div className="absolute left-[-30px] sm:left-[-170px] top-[30px] sm:top-[-50px] w-[180px] sm:w-[480px] lg:w-[440px] aspect-[834/671] pointer-events-none select-none z-0">
                 <Image
                   src="/images/button5.png"
                   alt="Decorative Button Group 5"
@@ -577,15 +577,7 @@ export default async function Home() {
 
             {/* Row 8: QUYỀN ĐĂNG TRANH (Right) */}
             <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-8 relative">
-              <div className="absolute left-[-20px] sm:left-[-150px] top-[15px] sm:top-[50px] w-[130px] sm:w-[250px] lg:w-[320px] aspect-[879/513] pointer-events-none select-none z-0">
-                <Image
-                  src="/images/button1.png"
-                  alt="Decorative Button Group 1 duplicated"
-                  fill
-                  className="object-contain"
-                  priority
-                />
-              </div>
+              
               <div className="hidden sm:block"></div>
               <div className="flex flex-col items-start w-full md:translate-x-[5%] z-10">
                 <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
@@ -619,7 +611,7 @@ export default async function Home() {
                   </ul>
                 </div>
               </div>
-              <div className="absolute left-[-20px] sm:left-[80px] bottom-[-50px] sm:bottom-[-500px] w-[80px] sm:w-[180px] lg:w-[290px] aspect-[1/1] pointer-events-none select-none z-0">
+              <div className="absolute left-[-20px] sm:left-[80px] bottom-[-50px] sm:bottom-[-470px] w-[80px] sm:w-[180px] lg:w-[290px] aspect-[1/1] pointer-events-none select-none z-0">
                 <Image
                   src="/images/button7.png"
                   alt="Decorative Button Group 7"
