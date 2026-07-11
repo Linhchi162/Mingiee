@@ -58,20 +58,20 @@ export default function Navbar() {
 
   // Responsive layout classes: mobile, tablet (iPad), and desktop sizes
   const buttonBaseClass = "group relative flex items-center justify-center " +
-    "py-[2.7px] px-[5.4px] sm:py-[5.4px] sm:px-[13.6px] lg:py-[5.4px] lg:px-[21.8px] " +
+    "py-[3.5px] px-[6px] sm:py-[7px] sm:px-[15px] lg:py-[8px] lg:px-[24px] " +
     "rounded-[7px] transition-all duration-300 shadow-[0_1.4px_2.7px_rgba(0,0,0,0.05),0_0.7px_0.7px_rgba(0,0,0,0.05)] cursor-pointer"
 
-  const defaultButtonClass = `${buttonBaseClass} bg-[#FAF6EE] border-[1.4px] sm:border-[1.7px] border-dashed border-[#4A4542] text-[#4A4542] hover:bg-[#5A504D] hover:border-[#5A504D] hover:text-[#FAF6EE] active:bg-[#4E4542] active:border-[#4E4542] active:text-[#FAF6EE] active:scale-95`
+  const defaultButtonClass = `${buttonBaseClass} bg-[#FAF6EE] border-[1.6px] sm:border-[2px] lg:border-[2.3px] border-dashed border-[#4A4542] text-[#4A4542] hover:bg-[#5A504D] hover:border-[#5A504D] hover:text-[#FAF6EE] active:bg-[#4E4542] active:border-[#4E4542] active:text-[#FAF6EE] active:scale-95`
   
-  const iconLeftClass = "absolute left-[13.4px] sm:left-[15.4px] lg:left-[19.5px] top-1/2 -translate-y-1/2 " +
+  const iconLeftClass = "absolute left-[13.4px] sm:left-[11.4px] lg:left-[5.5px] top-1/2 -translate-y-1/2 " +
     "w-[9.2px] h-[9.2px] sm:w-[15px] sm:h-[15px] lg:w-[19px] lg:h-[19px] hidden sm:flex items-center justify-center " +
     "transition-all duration-300 group-hover:opacity-0 group-hover:scale-50 group-active:opacity-0 group-active:scale-50 pointer-events-none"
     
-  const iconRightClass = "absolute right-[13.4px] sm:right-[15.4px] lg:right-[19.5px] top-1/2 -translate-y-1/2 " +
+  const iconRightClass = "absolute right-[13.4px] sm:right-[11.4px] lg:right-[5.5px] top-1/2 -translate-y-1/2 " +
     "w-[9.2px] h-[9.2px] sm:w-[15px] sm:h-[15px] lg:w-[19px] lg:h-[19px] hidden sm:flex items-center justify-center " +
     "transition-all duration-300 group-hover:opacity-0 group-hover:scale-50 group-active:opacity-0 group-active:scale-50 pointer-events-none"
     
-  const textClass = "font-semibold text-[9px] sm:text-[19.5px] lg:text-[21px] tracking-wider transition-colors duration-300 relative translate-x-[-0.7px] translate-y-[1.3px] sm:translate-x-[1.4px] sm:translate-y-[1px] lg:translate-x-[2.7px] lg:translate-y-[0.6px]"
+  const textClass = "font-semibold lg:font-normal text-[9px] sm:text-[19.5px] lg:text-[16px] tracking-wider transition-colors duration-300 relative translate-x-[0.7px] translate-y-[1.3px] sm:translate-x-[1.4px] sm:translate-y-[1px] lg:translate-x-[2.7px] lg:translate-y-[0.6px]"
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -143,7 +143,7 @@ export default function Navbar() {
         <button 
           type="button" 
           onClick={toggleDropdown}
-          className={`${isDropdownOpen ? `${buttonBaseClass} bg-[#5A504D] border-[1.4px] sm:border-[1.7px] border-[#5A504D] text-[#FAF6EE]` : defaultButtonClass} min-w-[52px] sm:min-w-[139px] lg:min-w-[167px]`}
+          className={`${isDropdownOpen ? `${buttonBaseClass} bg-[#5A504D] border-[1.6px] sm:border-[2px] lg:border-[2.3px] border-[#5A504D] text-[#FAF6EE]` : defaultButtonClass} min-w-[52px] sm:min-w-[139px] lg:min-w-[167px]`}
         >
           <div className={`${iconLeftClass} ${isDropdownOpen ? 'opacity-0 scale-50' : ''}`}>
             <Image
@@ -179,7 +179,7 @@ export default function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => handleClick(e, item.url)}
-                className="text-[#FAF6EE] text-[10px] sm:text-[19.5px] lg:text-[19.5px] tracking-wider font-semibold hover:opacity-85 hover:translate-x-[2px] transition-all duration-200 cursor-pointer select-none"
+                className="text-[#FAF6EE] text-[10px] sm:text-[19.5px] lg:text-[16px] tracking-wider font-semibold lg:font-normal hover:opacity-85 hover:translate-x-[2px] transition-all duration-200 cursor-pointer select-none"
               >
                 {item.label}
               </a>

@@ -113,10 +113,10 @@ export default async function Home() {
 
         {/* Bottom Left Greeting Text */}
         <div className="relative sm:absolute left-0 sm:left-[39px] md:left-[63px] bottom-0 sm:bottom-[64px] md:bottom-[88px] mt-1 sm:mt-0 pb-12 sm:pb-0 text-center sm:text-left font-mono text-[#4D4845] select-none z-10 w-full sm:w-auto px-4 sm:px-0">
-          <p className="text-[clamp(23px,2.6vw,30px)] font-extrabold tracking-widest leading-[1.2]">
+          <p className="text-[clamp(23px,2.6vw,30px)] lg:text-[18px] font-extrabold tracking-widest leading-[1.2]">
             {getContent('welcome_line1', "HI, I'M MINGIEE!")}
           </p>
-          <p className="text-[clamp(23px,2.6vw,30px)] font-extrabold tracking-widest leading-[1.2]">
+          <p className="text-[clamp(23px,2.6vw,30px)] lg:text-[18px] font-extrabold tracking-widest leading-[1.2]">
             {getContent('welcome_line2', "WELCOME TO MY CREATIVE SPACE!")}
           </p>
         </div>
@@ -161,7 +161,7 @@ export default async function Home() {
                   className="object-contain"
                 />
               </div>
-              <span className="font-extrabold text-[27px] sm:text-[38px] lg:text-[46px] tracking-widest font-mono relative translate-x-[3px]">
+              <span className="font-extrabold text-[27px] sm:text-[38px] lg:text-[30px] tracking-widest font-mono relative translate-x-[3px]">
                 (GALLERY)
               </span>
               <div className="absolute right-2.5 sm:right-4 lg:right-5 top-1/2 -translate-y-1/2 w-[16px] h-[16px] sm:w-[28px] sm:h-[28px] lg:w-[37px] lg:h-[37px] flex items-center justify-center">
@@ -205,7 +205,7 @@ export default async function Home() {
                 className="object-contain"
               />
             </div>
-            <span className="font-extrabold text-[27px] sm:text-[38px] lg:text-[46px] tracking-widest font-mono relative translate-x-[3px]">
+            <span className="font-extrabold text-[27px] sm:text-[38px] lg:text-[30px] tracking-widest font-mono relative translate-x-[3px]">
               (PRICE LIST)
             </span>
             <div className="absolute right-2.5 sm:right-4 lg:right-5 top-1/2 -translate-y-1/2 w-[16px] h-[16px] sm:w-[28px] sm:h-[28px] lg:w-[37px] lg:h-[37px] flex items-center justify-center">
@@ -223,7 +223,7 @@ export default async function Home() {
             
             {/* Left Column: Pricing Table inside Lace Card */}
             <div 
-              className="relative w-full max-w-[390px] sm:max-w-[490px] lg:max-w-[585px] aspect-[831/611] flex items-center justify-center justify-self-center md:justify-self-start"
+              className="relative w-full max-w-[468px] sm:max-w-[588px] lg:max-w-[702px] aspect-[831/611] flex items-center justify-center justify-self-center md:justify-self-start"
               style={{
                 backgroundImage: "url('/images/lace2.svg')",
                 backgroundSize: 'contain',
@@ -236,10 +236,10 @@ export default async function Home() {
                 <table className="w-full text-left border-collapse">
                   <thead>
                     <tr className="border-b-2 border-black">
-                      <th className="pt-[4px] pb-[1px] sm:pt-[6px] sm:pb-[1px] font-normal text-[18.5px] sm:text-[25px] lg:text-[30px] tracking-wider w-[55%]">
+                      <th className="pt-[4px] pb-[1px] sm:pt-[6px] sm:pb-[1px] font-normal text-[18.5px] sm:text-[25px] lg:text-[16px] tracking-wider w-[55%]">
                         <span className="relative inline-block translate-y-[2px] sm:translate-y-[3.5px] lg:translate-y-[4.5px]">(TYPE)</span>
                       </th>
-                      <th className="pt-[4px] pb-[1px] sm:pt-[6px] sm:pb-[1px] text-left font-normal text-[18.5px] sm:text-[25px] lg:text-[30px] tracking-wider">
+                      <th className="pt-[4px] pb-[1px] sm:pt-[6px] sm:pb-[1px] text-left font-normal text-[18.5px] sm:text-[25px] lg:text-[16px] tracking-wider">
                         <span className="relative inline-block translate-y-[2px] sm:translate-y-[3.5px] lg:translate-y-[4.5px]">(PRICE)</span>
                       </th>
                     </tr>
@@ -247,10 +247,10 @@ export default async function Home() {
                   <tbody>
                     {prices.map((priceItem, index) => (
                       <tr key={priceItem.id || index} className="border-b border-black/40">
-                        <td className="pt-[2px] pb-[1px] sm:pt-[4px] sm:pb-[1px] font-normal text-[20px] sm:text-[25.5px] lg:text-[30px] tracking-wide">
+                        <td className="pt-[2px] pb-[1px] sm:pt-[4px] sm:pb-[1px] font-normal text-[20px] sm:text-[25.5px] lg:text-[16px] tracking-wide">
                           <span className="relative inline-block translate-y-[2px] sm:translate-y-[3.5px] lg:translate-y-[4.5px]">{priceItem.type}</span>
                         </td>
-                        <td className="pt-[2px] pb-[1px] sm:pt-[4px] sm:pb-[1px] text-left font-normal text-[20px] sm:text-[25.5px] lg:text-[30px]">
+                        <td className="pt-[2px] pb-[1px] sm:pt-[4px] sm:pb-[1px] text-left font-normal text-[20px] sm:text-[25.5px] lg:text-[16px]">
                           <span className="relative inline-block translate-y-[2px] sm:translate-y-[3.5px] lg:translate-y-[4.5px]">{priceItem.price_vnd}</span>
                         </td>
                       </tr>
@@ -283,11 +283,11 @@ export default async function Home() {
                 
                 {/* Bottom Left Card: Scope info */}
                 <div className="flex flex-col items-start w-full max-w-[540px] justify-self-center md:justify-self-start">
-                  <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[clamp(11px,3.2vw,28.5px)] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none whitespace-nowrap">
+                  <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[clamp(11px,3.2vw,28.5px)] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none whitespace-nowrap">
                     {getContent('commission_scope_title', 'BẢNG GIÁ TRÊN ÁP DỤNG VỚI TRANH GỒM:')}
                   </span>
                   <div className="pl-6 sm:pl-8 lg:pl-10 w-full">
-                    <ul className="mt-3 space-y-[2px] text-[21.5px] sm:text-[25px] lg:text-[28.5px] leading-[1.3] font-normal">
+                    <ul className="mt-3 space-y-[2px] text-[21.5px] sm:text-[25px] lg:text-[16px] leading-[1.3] font-normal">
                       {scopeItems.map((item, i) => (
                         <li key={i}>
                           <span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> {item}
@@ -299,11 +299,11 @@ export default async function Home() {
 
                 {/* Bottom Right Card: Extra fees info */}
                 <div className="flex flex-col items-start w-full max-w-[540px] justify-self-center md:justify-self-end md:translate-x-[5%]">
-                  <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[28.5px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none">
+                  <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none">
                     {getContent('commission_extra_fees_title', 'PHỤ PHÍ')}
                   </span>
                   <div className="pl-6 sm:pl-8 lg:pl-10 w-full">
-                    <ul className="mt-3 space-y-[2px] text-[21.5px] sm:text-[25px] lg:text-[28.5px] leading-[1.3] font-normal">
+                    <ul className="mt-3 space-y-[2px] text-[21.5px] sm:text-[25px] lg:text-[16px] leading-[1.3] font-normal">
                       {extraFeesItems.map((item, i) => (
                         <li key={i}>
                           <span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> {item}
@@ -311,7 +311,7 @@ export default async function Home() {
                       ))}
                     </ul>
                   </div>
-                  <p className="mt-2.5 pl-3 sm:pl-4 lg:pl-5 text-[21.5px] sm:text-[25px] lg:text-[28.5px] font-normal text-black leading-[1.3] w-full">
+                  <p className="mt-2.5 pl-3 sm:pl-4 lg:pl-5 text-[21.5px] sm:text-[25px] lg:text-[16px] font-normal text-black leading-[1.3] w-full">
                     {getContent('commission_extra_fees_note', 'PHỤ PHÍ SẼ ĐƯỢC MÌNH BÁO VÀ THỐNG NHẤT SAU KHI HOÀN THIỆN BƯỚC SKETCH')}
                   </p>
                 </div>
@@ -359,7 +359,7 @@ export default async function Home() {
                 className="object-contain"
               />
             </div>
-            <span className="font-extrabold text-[27px] sm:text-[38px] lg:text-[46px] tracking-widest font-mono relative translate-x-[3px]">
+            <span className="font-extrabold text-[27px] sm:text-[38px] lg:text-[30px] tracking-widest font-mono relative translate-x-[3px]">
               (TERMS OF SERVICE)
             </span>
             <div className="absolute right-2.5 sm:right-4 lg:right-5 top-1/2 -translate-y-1/2 w-[16px] h-[16px] sm:w-[28px] sm:h-[28px] lg:w-[37px] lg:h-[37px] flex items-center justify-center">
@@ -378,11 +378,11 @@ export default async function Home() {
             {/* Row 1: THANH TOÁN (Left) */}
             <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-8 relative">
               <div className="flex flex-col items-start w-full z-10">
-                <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[28.5px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
+                <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
                   THANH TOÁN
                 </span>
                 <div className="pl-6 sm:pl-8 lg:pl-10 w-full">
-                  <ul className="space-y-[2px] text-[18px] sm:text-[22px] lg:text-[30px] leading-[1.3] font-normal">
+                  <ul className="space-y-[2px] text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal">
                     <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> THANH TOÁN QUA CHUYỂN KHOẢN NGÂN HÀNG.</li>
                     <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> THANH TOÁN TRƯỚC 50% KHI 2 BÊN ĐÃ THỐNG NHẤT GIÁ.</li>
                     <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> SAU KHI DUYỆT BẢN NHÁP THÔ (ROUGH SKETCH), KHÁCH VUI LÒNG THANH TOÁN 100% ĐỂ MÌNH BẮT ĐẦU LINE VÀ RENDER.</li>
@@ -414,10 +414,10 @@ export default async function Home() {
               </div>
               <div className="hidden sm:block"></div>
               <div className="flex flex-col items-start w-full md:translate-x-[5%] z-10">
-                <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[28.5px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
+                <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
                   QUY TRÌNH LÀM VIỆC
                 </span>
-                <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-[18px] sm:text-[22px] lg:text-[30px] leading-[1.3] font-normal">
+                <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal">
                   <p className="mb-3 font-normal tracking-wide text-black">
                     BRIEF ➔ SKETCH ➔ THANH TOÁN ➔ LINEART ➔ RENDER ➔ FINAL
                   </p>
@@ -428,7 +428,7 @@ export default async function Home() {
                     <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> POSE HOẶC Ý TƯỞNG CỤ THỂ (NẾU CÓ)</li>
                     <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> REFERENCE MÀU SẮC, ÁNH SÁNG, MOOD TRANH (NẾU CÓ)</li>
                   </ul>
-                  <p className="text-black text-[16px] sm:text-[20px] lg:text-[28px]">REFERENCE CÀNG ĐẦY ĐỦ THÌ KẾT QUẢ CÀNG SÁT MONG MUỐN.</p>
+                  <p className="text-black text-[16px] sm:text-[20px] lg:text-[16px]">REFERENCE CÀNG ĐẦY ĐỦ THÌ KẾT QUẢ CÀNG SÁT MONG MUỐN.</p>
                 </div>
               </div>
             </div>
@@ -436,10 +436,10 @@ export default async function Home() {
             {/* Row 3: CHỈNH SỬA (Left) */}
             <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-8 relative">
               <div className="flex flex-col items-start w-full z-10">
-                <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[28.5px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
+                <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
                   CHỈNH SỬA
                 </span>
-                <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-[18px] sm:text-[22px] lg:text-[30px] leading-[1.2] font-normal text-black space-y-1">
+                <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.2] font-normal text-black space-y-1">
                   <p>GIAI ĐOẠN SKETCH</p>
                   <p className="pl-4"><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> ĐƯỢC SỬA MIỄN PHÍ TỐI ĐA 3 LẦN.</p>
                   <p className="pl-4"><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> VUI LÒNG TỔNG HỢP CÁC CHỈNH SỬA TRONG CÙNG MỘT LẦN PHẢN HỒI.</p>
@@ -472,10 +472,10 @@ export default async function Home() {
             <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-8 relative">
               <div className="hidden sm:block"></div>
               <div className="flex flex-col items-start w-full md:translate-x-[5%] z-10">
-                <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[28.5px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
+                <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
                   THỜI GIAN HOÀN THÀNH
                 </span>
-                <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-[18px] sm:text-[22px] lg:text-[30px] leading-[1.3] font-normal text-black">
+                <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal text-black">
                   <ul className="space-y-[2px]">
                     <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> THỜI GIAN HOÀN THÀNH DỰ KIẾN: 3-5 TUẦN TÙY ĐỘ PHỨC TẠP VÀ SỐ LƯỢNG ĐƠN ĐANG CHỜ.</li>
                     <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> NẾU CÓ DEADLINE, VUI LÒNG BÁO TRƯỚC KHI ĐẶT COMMISSION.</li>
@@ -488,10 +488,10 @@ export default async function Home() {
             {/* Row 5: KHÔNG NHẬN (Left) */}
             <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-8 relative">
               <div className="flex flex-col items-start w-full z-10">
-                <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[28.5px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
+                <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
                   KHÔNG NHẬN
                 </span>
-                <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-[18px] sm:text-[22px] lg:text-[30px] leading-[1.3] font-normal text-black">
+                <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal text-black">
                   <p className="mb-2 font-normal text-black">MÌNH KHÔNG NHẬN NHỮNG ĐƠN CHỨA NỘI DUNG SAU:</p>
                   <ul className="space-y-[2px] pl-4 mb-2">
                     <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> NSFW</li>
@@ -501,7 +501,7 @@ export default async function Home() {
                     <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> GORE NẶNG</li>
                     <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> NỘI DUNG VI PHẠM PHÁP LUẬT HOẶC MANG TÍNH XÚC PHẠM</li>
                   </ul>
-                  <p className="text-[16px] sm:text-[20px] lg:text-[28px] text-black/80 mt-2">
+                  <p className="text-[16px] sm:text-[20px] lg:text-[16px] text-black/80 mt-2">
                     (CÓ THỂ TỪ CHỐI COMMISSION NẾU CẢM THẤY KHÔNG PHÙ HỢP VỚI KHẢ NĂNG HOẶC PHONG CÁCH HIỆN TẠI.)
                   </p>
                 </div>
@@ -530,10 +530,10 @@ export default async function Home() {
               </div>
               <div className="hidden sm:block"></div>
               <div className="flex flex-col items-start w-full md:translate-x-[5%] z-10">
-                <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[28.5px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
+                <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
                   QUYỀN SỬ DỤNG
                 </span>
-                <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-[18px] sm:text-[22px] lg:text-[30px] leading-[1.3] font-normal text-black">
+                <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal text-black">
                   <p className="mb-2 font-normal text-black">KHÁCH HÀNG ĐƯỢC PHÉP</p>
                   <ul className="space-y-[2px] pl-4 mb-4">
                     <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> SỬ DỤNG CHO MỤC ĐÍCH CÁ NHÂN.</li>
@@ -553,11 +553,11 @@ export default async function Home() {
             {/* Row 7: BẢN QUYỀN (Left) */}
             <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-8 relative">
               <div className="flex flex-col items-start w-full z-10">
-                <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[28.5px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
+                <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
                   BẢN QUYỀN
                 </span>
                 <div className="pl-6 sm:pl-8 lg:pl-10 w-full">
-                  <ul className="space-y-[2px] text-[18px] sm:text-[22px] lg:text-[30px] leading-[1.3] font-normal text-black font-mono">
+                  <ul className="space-y-[2px] text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal text-black font-mono">
                     <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> MÌNH GIỮ BẢN QUYỀN ĐỐI VỚI ARTWORK DO MÌNH THỰC HIỆN.</li>
                     <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> QUYỀN SỞ HỮU OC/NHÂN VẬT VẪN THUỘC VỀ KHÁCH HÀNG.</li>
                     <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> MỌI HÌNH THỨC SỬ DỤNG THƯƠNG MẠI CẦN ĐƯỢC THỎA THUẬN RIÊNG.</li>
@@ -588,11 +588,11 @@ export default async function Home() {
               </div>
               <div className="hidden sm:block"></div>
               <div className="flex flex-col items-start w-full md:translate-x-[5%] z-10">
-                <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[28.5px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
+                <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
                   QUYỀN ĐĂNG TRANH
                 </span>
                 <div className="pl-6 sm:pl-8 lg:pl-10 w-full">
-                  <ul className="space-y-[2px] text-[18px] sm:text-[22px] lg:text-[30px] leading-[1.3] font-normal text-black font-mono">
+                  <ul className="space-y-[2px] text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal text-black font-mono">
                     <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> MÌNH CÓ QUYỀN SỬ DỤNG COMMISSION LÀM PORTFOLIO, SAMPLE HOẶC ĐĂNG TẢI TRÊN CÁC NỀN TẢNG MẠNG XÃ HỘI.</li>
                     <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> NẾU KHÔNG MUỐN ARTWORK ĐƯỢC CÔNG KHAI, VUI LÒNG ĐĂNG KÝ PRIVATE COMMISSION (+40%).</li>
                   </ul>
@@ -603,10 +603,10 @@ export default async function Home() {
             {/* Row 9: TIỀN HÀNG HỦY (Left) */}
             <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-8 relative">
               <div className="flex flex-col items-start w-full z-10">
-                <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[28.5px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
+                <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
                   VỀ VIỆC HỦY COMMISSION
                 </span>
-                <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-[18px] sm:text-[22px] lg:text-[30px] leading-[1.3] font-normal text-black font-mono">
+                <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal text-black font-mono">
                   <p className="mb-2 font-normal text-black">KHÁCH HÀNG HỦY:</p>
                   <ul className="space-y-[2px] pl-4 mb-4">
                     <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> SAU KHI DUYỆT SKETCH: HOÀN LẠI 50% GIÁ TRỊ COMMISSION.</li>
@@ -634,11 +634,11 @@ export default async function Home() {
             <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-8 relative">
               <div className="hidden sm:block"></div>
               <div className="flex flex-col items-start w-full md:translate-x-[5%] z-10">
-                <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[28.5px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
+                <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
                   LƯU Ý
                 </span>
                 <div className="pl-6 sm:pl-8 lg:pl-10 w-full text-black font-mono">
-                  <ul className="space-y-[2px] text-[18px] sm:text-[22px] lg:text-[30px] leading-[1.3] font-normal">
+                  <ul className="space-y-[2px] text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal">
                     <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> VUI LÒNG CHỈ ĐẶT COMMISSION KHI BẠN CÓ THỂ CHỦ ĐỘNG THANH TOÁN VÀ PHẢN HỒI TRONG QUÁ TRÌNH LÀM VIỆC.</li>
                     <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> MÌNH ƯU TIÊN NHỮNG KHÁCH HÀNG LỊCH SỰ, HỢP TÁC VÀ PHẢN HỒI RÕ RÀNG.</li>
                     <li><span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> KHI ĐẶT COMMISSION ĐỒNG NGHĨA VỚI VIỆC BẠN ĐÃ ĐỌC VÀ ĐỒNG Ý VỚI TOÀN BỘ ĐIỀU KHOẢN TRÊN.</li>
