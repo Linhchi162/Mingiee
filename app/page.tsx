@@ -219,11 +219,11 @@ export default async function Home() {
           </div>
 
           {/* Core pricing details: Table (Lace Card) & Diagram */}
-          <div className="w-full max-w-[1240px] grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-11 lg:gap-16 items-center justify-items-center mb-12 sm:mb-16">
+          <div className="w-full max-w-[1360px] grid grid-cols-1 sm:grid-cols-[1.4fr_1fr] lg:grid-cols-[1.7fr_1fr] gap-6 md:gap-11 lg:gap-16 items-center justify-items-center mb-12 sm:mb-16">
             
             {/* Left Column: Pricing Table inside Lace Card */}
             <div 
-              className="relative w-full max-w-[468px] sm:max-w-[588px] lg:max-w-[702px] aspect-[950/611] flex items-center justify-center justify-self-center md:justify-self-start"
+              className="relative w-full max-w-[387px] sm:max-w-[517px] lg:max-w-[619px] aspect-[950/611] flex items-center justify-center justify-self-center md:justify-self-start lg:translate-x-[10%]"
               style={{
                 backgroundImage: "url('/images/lace2.svg')",
                 backgroundSize: 'contain',
@@ -236,10 +236,10 @@ export default async function Home() {
                 <table className="w-full text-left border-collapse">
                   <thead>
                     <tr className="border-b-2 border-black">
-                      <th className="pt-[4px] pb-[1px] sm:pt-[6px] sm:pb-[1px] lg:pt-[8px] lg:pb-[8px] font-normal text-[18.5px] sm:text-[25px] lg:text-[20px] tracking-wider w-[50%]">
+                      <th className="pt-[4px] pb-[1px] sm:pt-[6px] sm:pb-[1px] lg:pt-[8px] lg:pb-[8px] font-normal text-[14px] sm:text-[15.5px] lg:text-[16.8px] tracking-wider w-[50%]">
                         <span className="relative inline-block translate-y-[2px] sm:translate-y-[3.5px] lg:translate-y-[4.5px]">(TYPE)</span>
                       </th>
-                      <th className="pt-[4px] pb-[1px] sm:pt-[6px] sm:pb-[1px] lg:pt-[8px] lg:pb-[8px] text-right font-normal text-[18.5px] sm:text-[25px] lg:text-[20px] tracking-wider">
+                      <th className="pt-[4px] pb-[1px] sm:pt-[6px] sm:pb-[1px] lg:pt-[8px] lg:pb-[8px] text-right font-normal text-[14px] sm:text-[15.5px] lg:text-[16.8px] tracking-wider">
                         <span className="relative inline-block translate-y-[2px] sm:translate-y-[3.5px] lg:translate-y-[4.5px]">(PRICE)</span>
                       </th>
                     </tr>
@@ -247,11 +247,11 @@ export default async function Home() {
                   <tbody>
                     {prices.map((priceItem, index) => (
                       <tr key={priceItem.id || index} className="border-b border-black/40">
-                        <td className="pt-[2px] pb-[1px] sm:pt-[4px] sm:pb-[1px] lg:pt-[10px] lg:pb-[6px] font-normal text-[20px] sm:text-[25.5px] lg:text-[20px] tracking-wide">
-                          <span className="relative inline-block translate-y-[2px] sm:translate-y-[3.5px] lg:translate-y-[4.5px]">{priceItem.type}</span>
+                        <td className="pt-[2px] pb-[1px] sm:pt-[4px] sm:pb-[1px] lg:pt-[6px] lg:pb-[2px] font-normal text-[14px] sm:text-[15.5px] lg:text-[16.8px] tracking-wide">
+                          <span className="relative inline-block translate-y-[-1px] sm:translate-y-[0.5px] lg:translate-y-[1.5px]">{priceItem.type}</span>
                         </td>
-                        <td className="pt-[2px] pb-[1px] sm:pt-[4px] sm:pb-[1px] lg:pt-[10px] lg:pb-[6px] text-right font-normal text-[20px] sm:text-[25.5px] lg:text-[20px]">
-                          <span className="relative inline-block translate-y-[2px] sm:translate-y-[3.5px] lg:translate-y-[4.5px]">{priceItem.price_vnd}</span>
+                        <td className="pt-[2px] pb-[1px] sm:pt-[4px] sm:pb-[1px] lg:pt-[6px] lg:pb-[2px] text-right font-normal text-[14px] sm:text-[15.5px] lg:text-[16.8px]">
+                          <span className="relative inline-block translate-y-[-1px] sm:translate-y-[0.5px] lg:translate-y-[1.5px]">{priceItem.price_vnd}</span>
                         </td>
                       </tr>
                     ))}
