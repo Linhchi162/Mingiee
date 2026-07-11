@@ -321,31 +321,6 @@ export default async function Home() {
         </section>
       </div>
 
-      {/* Transition Section 2: Blue to White */}
-      <div 
-        className="w-full relative aspect-[1708/160] -mt-12 sm:-mt-16 z-20"
-        style={{
-          backgroundImage: "url('/images/chuy%E1%BB%83n%20trang%202.png')",
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center',
-          backgroundSize: '100% 100%',
-          filter: 'brightness(0.97)',
-        }}
-      >
-        {/* Scallop Edge Divider (ria_transparent.png) standing ON TOP of the transition page section */}
-        <div 
-          className="absolute top-[-12px] lg:top-[-11px] left-0 right-0 z-30 w-full h-[150px] pointer-events-none"
-          style={{
-            backgroundImage: "url('/images/ria_transparent.png')",
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'top center',
-            backgroundSize: '100% auto',
-            filter: 'brightness(1.03)',
-            clipPath: 'inset(3px 0px 0px 0px)',
-          }}
-        />
-      </div>
-
       {/* Combined White Background Wrapper */}
       <div 
         className="relative w-full flex flex-col -mt-4 sm:-mt-[1.5px] lg:-mt-[26.5px]"
