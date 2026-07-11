@@ -165,8 +165,14 @@ export default function CoverFlowCarousel({ slides = SLIDES }: { slides?: SlideI
     // Z index and Opacity
     let zIndex = 30 - absOffset * 10;
     let opacity = 1;
+    let pointerEvents: 'auto' | 'none' = 'auto';
+
     if (absOffset === 1) opacity = 0.88;
     if (absOffset === 2) opacity = 0.7;
+    if (absOffset > 2) {
+      opacity = 0;
+      pointerEvents = 'none';
+    }
 
     // Depth push (Z translation)
     let translateZ = 0;
@@ -178,6 +184,7 @@ export default function CoverFlowCarousel({ slides = SLIDES }: { slides?: SlideI
       transform: `translate3d(calc(-50% + ${translateX}px), calc(-50% + ${translateY}px), ${translateZ}px) scale(${scale}) rotateY(${rotateY}deg)`,
       zIndex,
       opacity,
+      pointerEvents,
       willChange: 'transform, opacity',
     };
   };
