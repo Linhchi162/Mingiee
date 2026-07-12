@@ -248,7 +248,7 @@ export default function CoverFlowCarousel({ slides = SLIDES }: { slides?: SlideI
         onMouseUp={handleMouseUpOrLeave}
         onMouseLeave={handleMouseUpOrLeave}
       >
-        <div className="relative w-full h-full flex items-center justify-center overflow-visible translate-y-[20px] sm:translate-y-0" style={{ transformStyle: 'preserve-3d' }}>
+        <div className="relative w-full h-full flex items-center justify-center overflow-visible" style={{ transformStyle: 'preserve-3d' }}>
           {currentSlides.map((slide, index) => {
             const offset = getOffset(index);
             const slideStyle = getSlideStyle(offset);
@@ -290,7 +290,7 @@ export default function CoverFlowCarousel({ slides = SLIDES }: { slides?: SlideI
       </div>
 
       {/* Navigation Buttons */}
-      <div className="flex items-center gap-4 sm:gap-6 mt-[50px] sm:mt-[60px] lg:mt-[100px]">
+      <div className="flex items-center gap-4 sm:gap-6 mt-[10px] sm:mt-[60px] lg:mt-[100px]">
         <button
           onClick={prevSlide}
           disabled={isTransitioning}

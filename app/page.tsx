@@ -281,7 +281,7 @@ Nếu mình hủy:
           />
           
           {/* Content */}
-          <div className="relative z-20 flex flex-col items-center justify-start w-full px-4 pt-16 sm:pt-28 lg:pt-36">
+          <div className="relative z-20 flex flex-col items-center justify-start w-full px-4 pt-11 sm:pt-28 lg:pt-36">
             {/* GALLERY Title Header (Static div, non-clickable) */}
             <div 
               className="group relative flex items-center justify-center py-1 px-[26px] sm:px-10 lg:px-12 bg-[#FAF6EE] border-[1.6px] sm:border-[2px] lg:border-[2.3px] border-dashed border-[#4A4542] rounded-[7px] text-[#4A4542] min-w-[110px] sm:min-w-[180px] lg:min-w-[220px] shadow-[0_3px_6px_rgba(0,0,0,0.05)] cursor-default select-none mb-5 sm:mb-8 lg:mb-14"
@@ -307,7 +307,7 @@ Nếu mình hủy:
               </div>
             </div>
             {/* GALLERY CAROUSEL CONTAINER */}
-            <div className="w-full max-w-4xl relative -mt-2 sm:-mt-12 md:-mt-16">
+            <div className="w-full max-w-4xl relative -mt-[28px] sm:-mt-12 md:-mt-16">
               <CoverFlowCarousel slides={slides} />
             </div>
           </div>
