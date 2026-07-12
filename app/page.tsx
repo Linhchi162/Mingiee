@@ -325,7 +325,7 @@ Nếu mình hủy:
         }}
       >
         {/* SECTION 5: Next Blue Background Section 1 (Price List) */}
-        <section id="commission" className="relative z-10 w-full min-h-screen flex flex-col items-center justify-start overflow-hidden pt-14 lg:pt-18 pb-[214px] px-2 sm:px-4 md:px-6">
+        <section id="commission" className="relative z-10 w-full min-h-screen flex flex-col items-center justify-start overflow-hidden pt-11 sm:pt-14 lg:pt-18 pb-[214px] px-2 sm:px-4 md:px-6">
           {/* PRICE LIST Title Header */}
           <div 
             className="group relative flex items-center justify-center py-1 px-[26px] sm:px-10 lg:px-12 bg-[#FAF6EE] border-[1.6px] sm:border-[2px] lg:border-[2.3px] border-dashed border-[#4A4542] rounded-[7px] text-[#4A4542] min-w-[110px] sm:min-w-[180px] lg:min-w-[220px] shadow-[0_3px_6px_rgba(0,0,0,0.05)] cursor-default select-none mb-5 sm:mb-8 lg:mb-14"
@@ -374,7 +374,7 @@ Nếu mình hủy:
                       </th>
                       <th className="pt-[4px] pb-[1px] sm:pt-[6px] sm:pb-[1px] lg:pt-[8px] lg:pb-[8px] font-extrabold text-[13px] sm:text-[15.5px] lg:text-[16.5px] tracking-wider whitespace-nowrap">
                         <div className="w-full flex justify-end">
-                          <div className="w-[144px] lg:w-[158px] text-left whitespace-nowrap translate-x-[12px]">
+                          <div className="w-[144px] lg:w-[158px] text-left whitespace-nowrap translate-x-[37px] sm:translate-x-[12px]">
                             <span className="relative inline-block translate-y-[2px] sm:translate-y-[3.5px] lg:translate-y-[4.5px]">(PRICE)</span>
                           </div>
                         </div>
@@ -389,7 +389,7 @@ Nếu mình hủy:
                         </td>
                         <td className={`pt-[2px] pb-[1px] sm:pt-[4px] sm:pb-[1px] lg:pb-[2px] font-normal text-[13px] sm:text-[15.5px] lg:text-[16.5px] whitespace-nowrap ${index === 0 ? 'lg:pt-[36px]' : 'lg:pt-[6px]'}`}>
                           <div className="w-full flex justify-end">
-                            <div className="w-[144px] lg:w-[158px] text-left whitespace-nowrap translate-x-[12px]">
+                            <div className="w-[144px] lg:w-[158px] text-left whitespace-nowrap translate-x-[37px] sm:translate-x-[12px]">
                               <span className="relative inline-block translate-y-[-1px] sm:translate-y-[0.5px] lg:translate-y-[1.5px]">{priceItem.price_vnd}</span>
                             </div>
                           </div>
@@ -490,7 +490,7 @@ Nếu mình hủy:
 
 
         {/* SECTION 8: White Background Section 2 (Terms of Service) */}
-        <section id="terms" className="relative z-10 w-full min-h-screen flex flex-col items-center justify-start overflow-hidden pt-6 sm:pt-16 lg:pt-22 pb-16 px-4">
+        <section id="terms" className="relative z-10 w-full min-h-screen flex flex-col items-center justify-start overflow-hidden pt-11 sm:pt-16 lg:pt-22 pb-16 px-4">
           {/* TERMS OF SERVICE Title Header */}
           <div 
             className="group relative z-20 flex items-center justify-center py-1 px-[26px] sm:px-10 lg:px-12 bg-[#FAF6EE] border-[1.6px] sm:border-[2px] lg:border-[2.3px] border-dashed border-[#4A4542] rounded-[7px] text-[#4A4542] min-w-[110px] sm:min-w-[180px] lg:min-w-[220px] shadow-[0_3px_6px_rgba(0,0,0,0.05)] cursor-default select-none mb-10 sm:mb-14 lg:mb-16"
