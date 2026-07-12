@@ -284,9 +284,9 @@ Nếu mình hủy:
           <div className="relative z-20 flex flex-col items-center justify-start w-full px-4 pt-11 sm:pt-28 lg:pt-36">
             {/* GALLERY Title Header (Static div, non-clickable) */}
             <div 
-              className="group relative flex items-center justify-center py-1 px-[14px] sm:px-[22px] lg:px-[28px] bg-[#FAF6EE] border-[1.6px] sm:border-[2px] lg:border-[2.3px] border-dashed border-[#4A4542] rounded-[7px] text-[#4A4542] min-w-[114px] sm:min-w-[171px] lg:min-w-[209px] shadow-[0_3px_6px_rgba(0,0,0,0.05)] cursor-default select-none mb-5 sm:mb-8 lg:mb-14"
+              className="group relative flex items-center justify-center py-1 px-[26px] sm:px-10 lg:px-12 bg-[#FAF6EE] border-[1.6px] sm:border-[2px] lg:border-[2.3px] border-dashed border-[#4A4542] rounded-[7px] text-[#4A4542] min-w-[110px] sm:min-w-[180px] lg:min-w-[220px] shadow-[0_3px_6px_rgba(0,0,0,0.05)] cursor-default select-none mb-5 sm:mb-8 lg:mb-14"
             >
-              <div className="absolute left-[8px] sm:left-[12px] lg:left-[15px] top-1/2 -translate-y-1/2 w-[11px] h-[11px] sm:w-[15px] sm:h-[15px] lg:w-[19px] lg:h-[19px] flex items-center justify-center">
+              <div className="absolute left-[13px] sm:left-3 lg:left-4 top-1/2 -translate-y-1/2 w-[11px] h-[11px] sm:w-[15px] sm:h-[15px] lg:w-[19px] lg:h-[19px] flex items-center justify-center">
                 <Image
                   src="/images/sao.svg"
                   alt="star icon"
@@ -297,7 +297,7 @@ Nếu mình hủy:
               <span className="font-extrabold text-[10px] sm:text-[19.5px] lg:text-[16px] tracking-widest font-mono relative translate-x-[3px]">
                 (GALLERY)
               </span>
-              <div className="absolute right-[8px] sm:right-[12px] lg:right-[15px] top-1/2 -translate-y-1/2 w-[11px] h-[11px] sm:w-[15px] sm:h-[15px] lg:w-[19px] lg:h-[19px] flex items-center justify-center">
+              <div className="absolute right-[9px] sm:right-3 lg:right-4 top-1/2 -translate-y-1/2 w-[11px] h-[11px] sm:w-[15px] sm:h-[15px] lg:w-[19px] lg:h-[19px] flex items-center justify-center">
                 <Image
                   src="/images/sao.svg"
                   alt="star icon"
@@ -328,9 +328,9 @@ Nếu mình hủy:
         <section id="commission" className="relative z-10 w-full min-h-screen flex flex-col items-center justify-start overflow-hidden pt-14 lg:pt-18 pb-[214px] px-2 sm:px-4 md:px-6">
           {/* PRICE LIST Title Header */}
           <div 
-            className="group relative flex items-center justify-center py-1 px-[14px] sm:px-[22px] lg:px-[28px] bg-[#FAF6EE] border-[1.6px] sm:border-[2px] lg:border-[2.3px] border-dashed border-[#4A4542] rounded-[7px] text-[#4A4542] min-w-[114px] sm:min-w-[171px] lg:min-w-[209px] shadow-[0_3px_6px_rgba(0,0,0,0.05)] cursor-default select-none mb-5 sm:mb-8 lg:mb-14"
+            className="group relative flex items-center justify-center py-1 px-[26px] sm:px-10 lg:px-12 bg-[#FAF6EE] border-[1.6px] sm:border-[2px] lg:border-[2.3px] border-dashed border-[#4A4542] rounded-[7px] text-[#4A4542] min-w-[110px] sm:min-w-[180px] lg:min-w-[220px] shadow-[0_3px_6px_rgba(0,0,0,0.05)] cursor-default select-none mb-5 sm:mb-8 lg:mb-14"
           >
-            <div className="absolute left-[8px] sm:left-[12px] lg:left-[15px] top-1/2 -translate-y-1/2 w-[11px] h-[11px] sm:w-[15px] sm:h-[15px] lg:w-[19px] lg:h-[19px] flex items-center justify-center">
+            <div className="absolute left-[13px] sm:left-3 lg:left-4 top-1/2 -translate-y-1/2 w-[11px] h-[11px] sm:w-[15px] sm:h-[15px] lg:w-[19px] lg:h-[19px] flex items-center justify-center">
               <Image
                 src="/images/sao.svg"
                 alt="star icon"
@@ -341,7 +341,7 @@ Nếu mình hủy:
             <span className="font-extrabold text-[10px] sm:text-[19.5px] lg:text-[16px] tracking-widest font-mono relative translate-x-[3px]">
               (PRICE LIST)
             </span>
-            <div className="absolute right-[8px] sm:right-[12px] lg:right-[15px] top-1/2 -translate-y-1/2 w-[11px] h-[11px] sm:w-[15px] sm:h-[15px] lg:w-[19px] lg:h-[19px] flex items-center justify-center">
+            <div className="absolute right-[9px] sm:right-3 lg:right-4 top-1/2 -translate-y-1/2 w-[11px] h-[11px] sm:w-[15px] sm:h-[15px] lg:w-[19px] lg:h-[19px] flex items-center justify-center">
               <Image
                 src="/images/sao.svg"
                 alt="star icon"
@@ -493,9 +493,9 @@ Nếu mình hủy:
         <section id="terms" className="relative z-10 w-full min-h-screen flex flex-col items-center justify-start overflow-hidden pt-6 sm:pt-16 lg:pt-22 pb-16 px-4">
           {/* TERMS OF SERVICE Title Header */}
           <div 
-            className="group relative z-20 flex items-center justify-center py-1 px-[14px] sm:px-[22px] lg:px-[28px] bg-[#FAF6EE] border-[1.6px] sm:border-[2px] lg:border-[2.3px] border-dashed border-[#4A4542] rounded-[7px] text-[#4A4542] min-w-[114px] sm:min-w-[171px] lg:min-w-[209px] shadow-[0_3px_6px_rgba(0,0,0,0.05)] cursor-default select-none mb-10 sm:mb-14 lg:mb-16"
+            className="group relative z-20 flex items-center justify-center py-1 px-[26px] sm:px-10 lg:px-12 bg-[#FAF6EE] border-[1.6px] sm:border-[2px] lg:border-[2.3px] border-dashed border-[#4A4542] rounded-[7px] text-[#4A4542] min-w-[110px] sm:min-w-[180px] lg:min-w-[220px] shadow-[0_3px_6px_rgba(0,0,0,0.05)] cursor-default select-none mb-10 sm:mb-14 lg:mb-16"
           >
-            <div className="absolute left-[8px] sm:left-[12px] lg:left-[15px] top-1/2 -translate-y-1/2 w-[11px] h-[11px] sm:w-[15px] sm:h-[15px] lg:w-[19px] lg:h-[19px] flex items-center justify-center">
+            <div className="absolute left-[13px] sm:left-3 lg:left-4 top-1/2 -translate-y-1/2 w-[11px] h-[11px] sm:w-[15px] sm:h-[15px] lg:w-[19px] lg:h-[19px] flex items-center justify-center">
               <Image
                 src="/images/sao.svg"
                 alt="star icon"
@@ -506,7 +506,7 @@ Nếu mình hủy:
             <span className="font-extrabold text-[10px] sm:text-[19.5px] lg:text-[16px] tracking-widest font-mono relative translate-x-[3px]">
               (TERMS OF SERVICE)
             </span>
-            <div className="absolute right-[8px] sm:right-[12px] lg:right-[15px] top-1/2 -translate-y-1/2 w-[11px] h-[11px] sm:w-[15px] sm:h-[15px] lg:w-[19px] lg:h-[19px] flex items-center justify-center">
+            <div className="absolute right-[9px] sm:right-3 lg:right-4 top-1/2 -translate-y-1/2 w-[11px] h-[11px] sm:w-[15px] sm:h-[15px] lg:w-[19px] lg:h-[19px] flex items-center justify-center">
               <Image
                 src="/images/sao.svg"
                 alt="star icon"
