@@ -365,17 +365,17 @@ Nếu mình hủy:
               }}
             >
               {/* Inner content wrapper, padded to fit inside the plain center box of the lace card */}
-              <div className="w-[66%] h-[68%] flex flex-col justify-center text-black font-mono px-2 sm:px-4 lg:translate-x-[0px]">
+              <div className="w-[66%] h-[68%] flex flex-col justify-center text-[#4A4542] font-mono px-2 sm:px-4 lg:translate-x-[0px]">
                 <table className="w-full text-left border-collapse">
                   <thead>
-                    <tr className="border-b-2 border-black">
+                    <tr className="border-b-2 border-[#4A4542]">
                       <th className="pt-[4px] pb-[1px] sm:pt-[6px] sm:pb-[1px] lg:pt-[8px] lg:pb-[8px] font-extrabold text-[13px] sm:text-[15.5px] lg:text-[16.5px] tracking-wider w-[50%] whitespace-nowrap">
-                        <span className="relative inline-block translate-y-[2px] sm:translate-y-[3.5px] lg:translate-y-[4.5px]">(TYPE)</span>
+                        <span className="relative inline-block translate-y-[4px] sm:translate-y-[3.5px] lg:translate-y-[4.5px]">(TYPE)</span>
                       </th>
                       <th className="pt-[4px] pb-[1px] sm:pt-[6px] sm:pb-[1px] lg:pt-[8px] lg:pb-[8px] font-extrabold text-[13px] sm:text-[15.5px] lg:text-[16.5px] tracking-wider whitespace-nowrap">
                         <div className="w-full flex justify-end">
                           <div className="w-[144px] lg:w-[158px] text-left whitespace-nowrap translate-x-[37px] sm:translate-x-[12px]">
-                            <span className="relative inline-block translate-y-[2px] sm:translate-y-[3.5px] lg:translate-y-[4.5px]">(PRICE)</span>
+                            <span className="relative inline-block translate-y-[4px] sm:translate-y-[3.5px] lg:translate-y-[4.5px]">(PRICE)</span>
                           </div>
                         </div>
                       </th>
@@ -383,14 +383,14 @@ Nếu mình hủy:
                   </thead>
                   <tbody>
                     {prices.map((priceItem, index) => (
-                      <tr key={priceItem.id || index} className="border-b border-black/40">
-                        <td className={`pt-[2px] pb-[1px] sm:pt-[4px] sm:pb-[1px] lg:pb-[2px] font-normal text-[13px] sm:text-[15.5px] lg:text-[16.5px] tracking-wide whitespace-nowrap ${index === 0 ? 'lg:pt-[36px]' : 'lg:pt-[6px]'}`}>
-                          <span className="relative inline-block translate-y-[-1px] sm:translate-y-[0.5px] lg:translate-y-[1.5px]">{priceItem.type}</span>
+                      <tr key={priceItem.id || index} className="border-b border-[#4A4542]/40">
+                        <td className={`pb-[1px] sm:pb-[1px] lg:pb-[2px] font-normal text-[13px] sm:text-[15.5px] lg:text-[16.5px] tracking-wide whitespace-nowrap ${index === 0 ? 'pt-[9px] sm:pt-[4px] lg:pt-[36px]' : 'pt-[2px] sm:pt-[4px] lg:pt-[6px]'}`}>
+                          <span className="relative inline-block translate-y-[1px] sm:translate-y-[0.5px] lg:translate-y-[1.5px]">{priceItem.type}</span>
                         </td>
-                        <td className={`pt-[2px] pb-[1px] sm:pt-[4px] sm:pb-[1px] lg:pb-[2px] font-normal text-[13px] sm:text-[15.5px] lg:text-[16.5px] whitespace-nowrap ${index === 0 ? 'lg:pt-[36px]' : 'lg:pt-[6px]'}`}>
+                        <td className={`pb-[1px] sm:pb-[1px] lg:pb-[2px] font-normal text-[13px] sm:text-[15.5px] lg:text-[16.5px] whitespace-nowrap ${index === 0 ? 'pt-[9px] sm:pt-[4px] lg:pt-[36px]' : 'pt-[2px] sm:pt-[4px] lg:pt-[6px]'}`}>
                           <div className="w-full flex justify-end">
                             <div className="w-[144px] lg:w-[158px] text-left whitespace-nowrap translate-x-[37px] sm:translate-x-[12px]">
-                              <span className="relative inline-block translate-y-[-1px] sm:translate-y-[0.5px] lg:translate-y-[1.5px]">{priceItem.price_vnd}</span>
+                              <span className="relative inline-block translate-y-[1px] sm:translate-y-[0.5px] lg:translate-y-[1.5px]">{priceItem.price_vnd}</span>
                             </div>
                           </div>
                         </td>
