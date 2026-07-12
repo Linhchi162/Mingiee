@@ -152,14 +152,14 @@ export default function CoverFlowCarousel({ slides = SLIDES }: { slides?: SlideI
       if (absOffset === 2) translateY = -8;
     } else {
       // Mobile spacing (designed to support wider cards flowing off-screen)
-      if (offset === 1) translateX = 95;
-      if (offset === -1) translateX = -95;
-      if (offset === 2) translateX = 185;
-      if (offset === -2) translateX = -185;
+      if (offset === 1) translateX = 76;
+      if (offset === -1) translateX = -76;
+      if (offset === 2) translateX = 148;
+      if (offset === -2) translateX = -148;
 
-      if (offset === 0) translateY = 25;
-      if (absOffset === 1) translateY = 7;
-      if (absOffset === 2) translateY = -4;
+      if (offset === 0) translateY = 20;
+      if (absOffset === 1) translateY = 5;
+      if (absOffset === 2) translateY = -3;
     }
 
     // Z index and Opacity
@@ -248,7 +248,7 @@ export default function CoverFlowCarousel({ slides = SLIDES }: { slides?: SlideI
         onMouseUp={handleMouseUpOrLeave}
         onMouseLeave={handleMouseUpOrLeave}
       >
-        <div className="relative w-full h-full flex items-center justify-center overflow-visible" style={{ transformStyle: 'preserve-3d' }}>
+        <div className="relative w-full h-full flex items-center justify-center overflow-visible translate-y-[20px] sm:translate-y-0" style={{ transformStyle: 'preserve-3d' }}>
           {currentSlides.map((slide, index) => {
             const offset = getOffset(index);
             const slideStyle = getSlideStyle(offset);
@@ -262,7 +262,7 @@ export default function CoverFlowCarousel({ slides = SLIDES }: { slides?: SlideI
                     setActiveIndex(index);
                   }
                 }}
-                className={`absolute left-1/2 top-1/2 w-[120px] sm:w-[170px] lg:w-[280px] aspect-[5/8] rounded-[14px] sm:rounded-[20px] overflow-hidden shadow-[0_12px_36px_rgba(0,0,0,0.18)] transition-all duration-500 ease-out origin-center cursor-pointer`}
+                className={`absolute left-1/2 top-1/2 w-[96px] sm:w-[170px] lg:w-[280px] aspect-[5/8] rounded-[14px] sm:rounded-[20px] overflow-hidden shadow-[0_12px_36px_rgba(0,0,0,0.18)] transition-all duration-500 ease-out origin-center cursor-pointer`}
                 style={{
                   ...slideStyle,
                   transitionProperty: 'transform, opacity, z-index',
@@ -274,7 +274,7 @@ export default function CoverFlowCarousel({ slides = SLIDES }: { slides?: SlideI
                     src={slide.src}
                     alt={slide.title}
                     fill
-                    sizes="(max-width: 640px) 85px, (max-width: 1024px) 170px, 280px"
+                    sizes="(max-width: 640px) 96px, (max-width: 1024px) 170px, 280px"
                     className={`object-cover pointer-events-none transition-all duration-500 ${isActive ? 'grayscale-0' : 'grayscale'}`}
                     priority={isActive}
                   />
@@ -290,7 +290,7 @@ export default function CoverFlowCarousel({ slides = SLIDES }: { slides?: SlideI
       </div>
 
       {/* Navigation Buttons */}
-      <div className="flex items-center gap-4 sm:gap-6 mt-[30px] sm:mt-[60px] lg:mt-[100px]">
+      <div className="flex items-center gap-4 sm:gap-6 mt-[50px] sm:mt-[60px] lg:mt-[100px]">
         <button
           onClick={prevSlide}
           disabled={isTransitioning}
@@ -301,14 +301,14 @@ export default function CoverFlowCarousel({ slides = SLIDES }: { slides?: SlideI
           style={{
             backgroundColor: leftBtnState === 'active' ? '#B3D6EE' : leftBtnState === 'hover' ? '#CBE3F3' : '#FAF6EE'
           }}
-          className="w-[54px] h-[36px] sm:w-[80px] sm:h-[52px] lg:w-[100px] lg:h-[64px] rounded-[10px] border-2 sm:border-[2.5px] lg:border-[3px] border-dashed border-[#4A4542] flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer disabled:opacity-50"
+          className="w-[43px] h-[29px] sm:w-[80px] sm:h-[52px] lg:w-[100px] lg:h-[64px] rounded-[10px] border-2 sm:border-[2.5px] lg:border-[3px] border-dashed border-[#4A4542] flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer disabled:opacity-50"
           aria-label="Previous slide"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/left-arrow.png"
             alt="Previous"
-            className="w-[14px] h-[14px] sm:w-[22px] sm:h-[22px] lg:w-8 lg:h-8 object-contain pointer-events-none select-none"
+            className="w-[11px] h-[11px] sm:w-[22px] sm:h-[22px] lg:w-8 lg:h-8 object-contain pointer-events-none select-none"
           />
         </button>
         <button
@@ -321,14 +321,14 @@ export default function CoverFlowCarousel({ slides = SLIDES }: { slides?: SlideI
           style={{
             backgroundColor: rightBtnState === 'active' ? '#B3D6EE' : rightBtnState === 'hover' ? '#CBE3F3' : '#FAF6EE'
           }}
-          className="w-[54px] h-[36px] sm:w-[80px] sm:h-[52px] lg:w-[100px] lg:h-[64px] rounded-[10px] border-2 sm:border-[2.5px] lg:border-[3px] border-dashed border-[#4A4542] flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer disabled:opacity-50"
+          className="w-[43px] h-[29px] sm:w-[80px] sm:h-[52px] lg:w-[100px] lg:h-[64px] rounded-[10px] border-2 sm:border-[2.5px] lg:border-[3px] border-dashed border-[#4A4542] flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer disabled:opacity-50"
           aria-label="Next slide"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/right-arrow.png"
             alt="Next"
-            className="w-[14px] h-[14px] sm:w-[22px] sm:h-[22px] lg:w-8 lg:h-8 object-contain pointer-events-none select-none"
+            className="w-[11px] h-[11px] sm:w-[22px] sm:h-[22px] lg:w-8 lg:h-8 object-contain pointer-events-none select-none"
           />
         </button>
       </div>
