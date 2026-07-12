@@ -74,20 +74,20 @@ export default function Navbar() {
 
   // Responsive layout classes: mobile, tablet (iPad), and desktop sizes
   const buttonBaseClass = "group relative flex items-center justify-center " +
-    "py-[4px] px-[7px] sm:py-[7px] sm:px-[15px] lg:py-[8px] lg:px-[24px] " +
+    "py-[4px] px-[7px] sm:py-[6px] sm:px-[14px] lg:py-[8px] lg:px-[24px] " +
     "rounded-[7px] transition-all duration-300 shadow-[0_1.4px_2.7px_rgba(0,0,0,0.05),0_0.7px_0.7px_rgba(0,0,0,0.05)] cursor-pointer"
 
   const defaultButtonClass = `${buttonBaseClass} bg-[#FAF6EE] border-[1.6px] sm:border-[2px] lg:border-[2.3px] border-dashed border-[#4A4542] text-[#4A4542] hover:bg-[#5A504D] hover:border-[#5A504D] hover:text-[#FAF6EE] active:bg-[#4E4542] active:border-[#4E4542] active:text-[#FAF6EE] active:scale-95`
   
-  const iconLeftClass = "absolute left-[13.4px] sm:left-[11.4px] lg:left-[5.5px] top-1/2 -translate-y-1/2 " +
-    "w-[9.2px] h-[9.2px] sm:w-[15px] sm:h-[15px] lg:w-[19px] lg:h-[19px] hidden sm:flex items-center justify-center " +
+  const iconLeftClass = "absolute left-[5px] sm:left-[11.4px] lg:left-[5.5px] top-1/2 -translate-y-1/2 " +
+    "w-[9.2px] h-[9.2px] sm:w-[15px] sm:h-[15px] lg:w-[19px] lg:h-[19px] flex items-center justify-center " +
     "transition-all duration-300 group-hover:opacity-0 group-hover:scale-50 group-active:opacity-0 group-active:scale-50 pointer-events-none"
     
-  const iconRightClass = "absolute right-[13.4px] sm:right-[11.4px] lg:right-[5.5px] top-1/2 -translate-y-1/2 " +
-    "w-[9.2px] h-[9.2px] sm:w-[15px] sm:h-[15px] lg:w-[19px] lg:h-[19px] hidden sm:flex items-center justify-center " +
+  const iconRightClass = "absolute right-[5px] sm:right-[11.4px] lg:right-[5.5px] top-1/2 -translate-y-1/2 " +
+    "w-[9.2px] h-[9.2px] sm:w-[15px] sm:h-[15px] lg:w-[19px] lg:h-[19px] flex items-center justify-center " +
     "transition-all duration-300 group-hover:opacity-0 group-hover:scale-50 group-active:opacity-0 group-active:scale-50 pointer-events-none"
     
-  const textClass = "font-semibold lg:font-normal text-[10px] sm:text-[19.5px] lg:text-[16px] tracking-wider transition-colors duration-300 relative translate-x-[0.7px] translate-y-[1.3px] sm:translate-x-[1.4px] sm:translate-y-[1px] lg:translate-x-[2.7px] lg:translate-y-[0.6px]"
+  const textClass = "font-semibold lg:font-normal text-[10px] sm:text-[15px] lg:text-[16px] tracking-wider transition-colors duration-300 relative translate-x-[0.7px] translate-y-[1.3px] sm:translate-x-[1.4px] sm:translate-y-[1px] lg:translate-x-[2.7px] lg:translate-y-[0.6px] px-[12px] sm:px-[16px] lg:px-0"
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -98,14 +98,14 @@ export default function Navbar() {
 
   return (
     <header 
-      className="w-full pt-3 sm:pt-[20px] lg:pt-[30px] pb-3 px-[6%] sm:px-[4%] lg:px-[5%] bg-transparent flex flex-nowrap items-center justify-between gap-1.5 sm:gap-4 lg:gap-0 select-none font-mono"
+      className="w-full pt-3 sm:pt-[20px] lg:pt-[30px] pb-3 px-[6%] sm:px-[4%] lg:px-[5%] bg-transparent flex flex-nowrap items-center justify-between gap-1.5 sm:gap-[6px] lg:gap-0 select-none font-mono"
     >
       {/* COMMISSION BUTTON */}
       <div ref={commissionDropdownRef} className="relative z-50">
         <button 
           type="button" 
           onClick={toggleCommissionDropdown}
-          className={`${isCommissionDropdownOpen ? `${buttonBaseClass} bg-[#5A504D] border-[1.6px] sm:border-[2px] lg:border-[2.3px] border-[#5A504D] text-[#FAF6EE]` : defaultButtonClass} min-w-[64px] sm:min-w-[155px] lg:min-w-[188px]`}
+          className={`${isCommissionDropdownOpen ? `${buttonBaseClass} bg-[#5A504D] border-[1.6px] sm:border-[2px] lg:border-[2.3px] border-[#5A504D] text-[#FAF6EE]` : defaultButtonClass} min-w-[64px] sm:min-w-[143px] lg:min-w-[188px]`}
         >
           <div className={`${iconLeftClass} ${isCommissionDropdownOpen ? 'opacity-0 scale-50' : ''}`}>
             <Image
@@ -137,14 +137,14 @@ export default function Navbar() {
             <button
               type="button"
               onClick={(e) => handleCommissionItemClick(e, 'commission')}
-              className="text-[#FAF6EE] text-[10px] sm:text-[19.5px] lg:text-[16px] tracking-wider font-semibold lg:font-normal hover:opacity-85 hover:translate-x-[2px] transition-all duration-200 cursor-pointer select-none text-left w-full bg-transparent border-none"
+              className="text-[#FAF6EE] text-[10px] sm:text-[15px] lg:text-[16px] tracking-wider font-semibold lg:font-normal hover:opacity-85 hover:translate-x-[2px] transition-all duration-200 cursor-pointer select-none text-left w-full bg-transparent border-none"
             >
               PRICE LIST
             </button>
             <button
               type="button"
               onClick={(e) => handleCommissionItemClick(e, 'terms')}
-              className="text-[#FAF6EE] text-[10px] sm:text-[19.5px] lg:text-[16px] tracking-wider font-semibold lg:font-normal hover:opacity-85 hover:translate-x-[2px] transition-all duration-200 cursor-pointer select-none text-left w-full bg-transparent border-none"
+              className="text-[#FAF6EE] text-[10px] sm:text-[15px] lg:text-[16px] tracking-wider font-semibold lg:font-normal hover:opacity-85 hover:translate-x-[2px] transition-all duration-200 cursor-pointer select-none text-left w-full bg-transparent border-none"
             >
               TERMS OF SERVICE
             </button>
@@ -156,7 +156,7 @@ export default function Navbar() {
       <button 
         type="button" 
         onClick={() => scrollToSection('gallery')}
-        className={`${defaultButtonClass} relative left-0 sm:left-0 lg:-left-[7px] min-w-[53px] sm:min-w-[131px] lg:min-w-[159px]`}
+        className={`${defaultButtonClass} relative left-0 sm:left-0 lg:-left-[7px] min-w-[53px] sm:min-w-[120px] lg:min-w-[159px]`}
       >
         <div className={iconLeftClass}>
           <Image
@@ -184,7 +184,7 @@ export default function Navbar() {
         <button 
           type="button" 
           onClick={toggleDropdown}
-          className={`${isDropdownOpen ? `${buttonBaseClass} bg-[#5A504D] border-[1.6px] sm:border-[2px] lg:border-[2.3px] border-[#5A504D] text-[#FAF6EE]` : defaultButtonClass} min-w-[57px] sm:min-w-[139px] lg:min-w-[167px]`}
+          className={`${isDropdownOpen ? `${buttonBaseClass} bg-[#5A504D] border-[1.6px] sm:border-[2px] lg:border-[2.3px] border-[#5A504D] text-[#FAF6EE]` : defaultButtonClass} min-w-[57px] sm:min-w-[128px] lg:min-w-[167px]`}
         >
           <div className={`${iconLeftClass} ${isDropdownOpen ? 'opacity-0 scale-50' : ''}`}>
             <Image

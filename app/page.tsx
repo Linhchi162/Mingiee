@@ -215,7 +215,7 @@ Nếu mình hủy:
         {/* Content */}
         <main className="relative z-10 flex-1 flex flex-col items-center justify-center text-center px-4 py-8">
           {/* Decorative Lace & GIF Container */}
-          <div className="relative mt-5 sm:-mt-16 md:-mt-20 flex items-center justify-center w-full max-w-[235px] sm:max-w-[420px] md:max-w-[540px] aspect-square mb-2 sm:mb-6 select-none">
+          <div className="relative mt-5 sm:-mt-16 md:-mt-20 flex items-center justify-center w-full max-w-[clamp(235px,56vw,580px)] aspect-square mb-2 sm:mb-6 select-none">
             {/* Lace PNG background */}
             <div className="absolute inset-0 flex items-center justify-center">
               <Image
@@ -246,10 +246,10 @@ Nếu mình hủy:
 
         {/* Bottom Left Greeting Text */}
         <div className="relative sm:absolute left-0 sm:left-[39px] md:left-[63px] bottom-0 sm:bottom-[64px] md:bottom-[88px] mt-1 sm:mt-0 pb-12 sm:pb-0 text-center sm:text-left font-mono text-[#4D4845] select-none z-10 w-full sm:w-auto px-4 sm:px-0">
-          <p className="text-[13px] sm:text-[clamp(23px,2.6vw,30px)] lg:text-[18px] font-extrabold tracking-widest leading-[1.2]">
+          <p className="text-[13px] sm:text-[16px] lg:text-[18px] font-extrabold tracking-widest leading-[1.2]">
             {getContent('welcome_line1', "HI, I'M MINGIEE!")}
           </p>
-          <p className="text-[13px] sm:text-[clamp(23px,2.6vw,30px)] lg:text-[18px] font-extrabold tracking-widest leading-[1.2]">
+          <p className="text-[13px] sm:text-[16px] lg:text-[18px] font-extrabold tracking-widest leading-[1.2]">
             {getContent('welcome_line2', "WELCOME TO MY CREATIVE SPACE!")}
           </p>
         </div>
@@ -284,7 +284,7 @@ Nếu mình hủy:
           <div className="relative z-20 flex flex-col items-center justify-start w-full px-4 pt-11 sm:pt-28 lg:pt-8">
             {/* GALLERY Title Header (Static div, non-clickable) */}
             <div
-              className="group relative flex items-center justify-center py-1 px-[26px] sm:px-10 lg:px-12 bg-[#FAF6EE] border-[1.6px] sm:border-[2px] lg:border-[2.3px] border-dashed border-[#4A4542] rounded-[7px] text-[#4A4542] min-w-[110px] sm:min-w-[180px] lg:min-w-[220px] shadow-[0_3px_6px_rgba(0,0,0,0.05)] cursor-default select-none mb-5 sm:mb-8 lg:mb-14"
+              className="group relative flex items-center justify-center py-1 px-[26px] sm:px-10 lg:px-12 bg-[#FAF6EE] border-[1.6px] sm:border-[2px] lg:border-[2.3px] border-dashed border-[#4A4542] rounded-[7px] text-[#4A4542] min-w-[110px] sm:min-w-[180px] lg:min-w-[220px] shadow-[0_3px_6px_rgba(0,0,0,0.05)] cursor-default select-none mb-5 sm:mb-8 lg:mb-14 sm:-translate-y-[30px] lg:translate-y-0"
             >
               <div className="absolute left-[13px] sm:left-3 lg:left-4 top-1/2 -translate-y-1/2 w-[11px] h-[11px] sm:w-[15px] sm:h-[15px] lg:w-[19px] lg:h-[19px] flex items-center justify-center">
                 <Image
@@ -294,7 +294,7 @@ Nếu mình hủy:
                   className="object-contain"
                 />
               </div>
-              <span className="font-semibold lg:font-normal text-[10px] sm:text-[19.5px] lg:text-[16px] tracking-wider font-mono relative translate-x-[3px]">
+              <span className="font-semibold lg:font-normal text-[10px] sm:text-[15px] lg:text-[16px] tracking-wider font-mono relative translate-x-[3px]">
                 (GALLERY)
               </span>
               <div className="absolute right-[9px] sm:right-3 lg:right-4 top-1/2 -translate-y-1/2 w-[11px] h-[11px] sm:w-[15px] sm:h-[15px] lg:w-[19px] lg:h-[19px] flex items-center justify-center">
@@ -325,7 +325,7 @@ Nếu mình hủy:
         }}
       >
         {/* SECTION 5: Next Blue Background Section 1 (Price List) */}
-        <section id="commission" className="relative z-10 w-full min-h-screen flex flex-col items-center justify-start overflow-hidden pt-11 sm:pt-14 lg:pt-18 pb-[214px] px-2 sm:px-4 md:px-6">
+        <section id="commission" className="relative z-10 w-full min-h-screen sm:min-h-0 xl:min-h-screen flex flex-col items-center justify-start overflow-hidden pt-11 sm:pt-14 lg:pt-18 pb-[100px] sm:pb-[100px] lg:pb-[120px] xl:pb-[214px] px-2 sm:px-4 md:px-6">
           {/* PRICE LIST Title Header */}
           <div
             className="group relative flex items-center justify-center py-1 px-[26px] sm:px-10 lg:px-12 bg-[#FAF6EE] border-[1.6px] sm:border-[2px] lg:border-[2.3px] border-dashed border-[#4A4542] rounded-[7px] text-[#4A4542] min-w-[110px] sm:min-w-[180px] lg:min-w-[220px] shadow-[0_3px_6px_rgba(0,0,0,0.05)] cursor-default select-none mb-5 sm:mb-8 lg:mb-14"
@@ -338,7 +338,7 @@ Nếu mình hủy:
                 className="object-contain"
               />
             </div>
-            <span className="font-semibold lg:font-normal text-[10px] sm:text-[19.5px] lg:text-[16px] tracking-wider font-mono relative translate-x-[3px]">
+            <span className="font-semibold lg:font-normal text-[10px] sm:text-[15px] lg:text-[16px] tracking-wider font-mono relative translate-x-[3px]">
               (PRICE LIST)
             </span>
             <div className="absolute right-[9px] sm:right-3 lg:right-4 top-1/2 -translate-y-1/2 w-[11px] h-[11px] sm:w-[15px] sm:h-[15px] lg:w-[19px] lg:h-[19px] flex items-center justify-center">
@@ -369,10 +369,10 @@ Nếu mình hủy:
                 <table className="w-full text-left border-collapse">
                   <thead>
                     <tr className="border-b-2 border-[#4A4542]">
-                      <th className="pt-[4px] pb-[1px] sm:pt-[6px] sm:pb-[1px] lg:pt-[8px] lg:pb-[8px] font-extrabold text-[13px] sm:text-[15.5px] lg:text-[16.5px] tracking-wider w-[50%] whitespace-nowrap">
+                      <th className="pt-[4px] pb-[1px] sm:pt-[6px] sm:pb-[1px] lg:pt-[8px] lg:pb-[8px] font-extrabold text-[13px] sm:text-[14px] lg:text-[16.5px] tracking-wider w-[50%] whitespace-nowrap">
                         <span className="relative inline-block translate-y-[4px] sm:translate-y-[3.5px] lg:translate-y-[4.5px]">(TYPE)</span>
                       </th>
-                      <th className="pt-[4px] pb-[1px] sm:pt-[6px] sm:pb-[1px] lg:pt-[8px] lg:pb-[8px] font-extrabold text-[13px] sm:text-[15.5px] lg:text-[16.5px] tracking-wider whitespace-nowrap">
+                      <th className="pt-[4px] pb-[1px] sm:pt-[6px] sm:pb-[1px] lg:pt-[8px] lg:pb-[8px] font-extrabold text-[13px] sm:text-[14px] lg:text-[16.5px] tracking-wider whitespace-nowrap">
                         <div className="w-full flex justify-end">
                           <div className="w-[144px] lg:w-[158px] text-left whitespace-nowrap translate-x-[37px] sm:translate-x-[12px]">
                             <span className="relative inline-block translate-y-[4px] sm:translate-y-[3.5px] lg:translate-y-[4.5px]">(PRICE)</span>
@@ -384,10 +384,10 @@ Nếu mình hủy:
                   <tbody>
                     {prices.map((priceItem, index) => (
                       <tr key={priceItem.id || index} className="border-b border-[#4A4542]/40">
-                        <td className={`pb-[1px] sm:pb-[1px] lg:pb-[2px] font-normal text-[13px] sm:text-[15.5px] lg:text-[16.5px] tracking-wide whitespace-nowrap ${index === 0 ? 'pt-[9px] sm:pt-[4px] lg:pt-[36px]' : 'pt-[2px] sm:pt-[4px] lg:pt-[6px]'}`}>
+                        <td className={`pb-[1px] sm:pb-[1px] lg:pb-[2px] font-normal text-[13px] sm:text-[14px] lg:text-[16.5px] tracking-wide whitespace-nowrap ${index === 0 ? 'pt-[9px] sm:pt-[4px] lg:pt-[36px]' : 'pt-[2px] sm:pt-[4px] lg:pt-[6px]'}`}>
                           <span className="relative inline-block translate-y-[1px] sm:translate-y-[0.5px] lg:translate-y-[1.5px]">{priceItem.type}</span>
                         </td>
-                        <td className={`pb-[1px] sm:pb-[1px] lg:pb-[2px] font-normal text-[13px] sm:text-[15.5px] lg:text-[16.5px] whitespace-nowrap ${index === 0 ? 'pt-[9px] sm:pt-[4px] lg:pt-[36px]' : 'pt-[2px] sm:pt-[4px] lg:pt-[6px]'}`}>
+                        <td className={`pb-[1px] sm:pb-[1px] lg:pb-[2px] font-normal text-[13px] sm:text-[14px] lg:text-[16.5px] whitespace-nowrap ${index === 0 ? 'pt-[9px] sm:pt-[4px] lg:pt-[36px]' : 'pt-[2px] sm:pt-[4px] lg:pt-[6px]'}`}>
                           <div className="w-full flex justify-end">
                             <div className="w-[144px] lg:w-[158px] text-left whitespace-nowrap translate-x-[37px] sm:translate-x-[12px]">
                               <span className="relative inline-block translate-y-[1px] sm:translate-y-[0.5px] lg:translate-y-[1.5px]">{priceItem.price_vnd}</span>
@@ -418,20 +418,19 @@ Nếu mình hủy:
           {(() => {
             const rawScope = getContent('commission_scope_items', "1 nhân vật có thiết kế đơn giản\nBackground đơn giản (màu, gradient, hiệu ứng nhẹ)\nCanvas 3000 pixels trở lên, 400DPI\nCanvas dọc / vuông (1:1, 3:4, 4:5)");
             const scopeItems = formatSentenceCase(rawScope).split('\n').filter(Boolean);
-
             const rawExtraFees = getContent('commission_extra_fees_items', "Thiết kế nhân vật nhiều chi tiết: 100.000VND up tuỳ mức độ phức tạp\nCanvas dài (16:9): +50% giá cơ bản\nThêm nhân vật: +100% giá gốc/char\nBackground chi tiết (kiến trúc, nội thất, phong cảnh, nhiều vật thể...): Thương lượng riêng\nPrivate commission (không đăng tải công khai): +40%\nCommercial use: 200% giá cơ bản");
             const extraFeesItems = formatSentenceCase(rawExtraFees).split('\n').filter(Boolean);
 
             return (
-              <div className="w-full max-w-[1240px] grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-11 lg:gap-16 px-4 font-mono text-black">
+              <div className="w-full max-w-[1240px] grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-4 lg:gap-16 px-4 font-mono text-black">
 
                 {/* Bottom Left Card: Scope info */}
-                <div className="flex flex-col items-start w-full max-w-[540px] justify-self-center md:justify-self-start lg:pl-[38px]">
-                  <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[13px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none whitespace-nowrap">
+                <div className="flex flex-col items-start w-full max-w-[540px] justify-self-center md:justify-self-start lg:pl-[clamp(38px,6vw,68px)] xl:pl-[38px]">
+                  <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[13px] sm:text-[14px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none whitespace-nowrap">
                     {getContent('commission_scope_title', 'BẢNG GIÁ TRÊN ÁP DỤNG VỚI TRANH GỒM:')}
                   </span>
                   <div className="pl-[10px] sm:pl-[14px] lg:pl-[17px] w-full">
-                    <ul className="mt-3 space-y-[2px] text-[13px] sm:text-[25px] lg:text-[16px] leading-[1.3] font-normal">
+                    <ul className="mt-3 space-y-[2px] text-[13px] sm:text-[14px] lg:text-[16px] leading-[1.3] font-normal">
                       {scopeItems.map((item, i) => (
                         <li key={i}>
                           <span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> {item}
@@ -443,11 +442,11 @@ Nếu mình hủy:
 
                 {/* Bottom Right Card: Extra fees info */}
                 <div className="flex flex-col items-start w-full max-w-[540px] justify-self-center md:justify-self-end md:translate-x-[5%] lg:max-w-[440px] lg:translate-x-[13px]">
-                  <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[13px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none">
+                  <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[13px] sm:text-[15px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none">
                     {getContent('commission_extra_fees_title', 'PHỤ PHÍ')}
                   </span>
                   <div className="pl-[10px] sm:pl-[14px] lg:pl-[17px] w-full">
-                    <ul className="mt-3 space-y-[2px] text-[13px] sm:text-[25px] lg:text-[16px] leading-[1.3] font-normal">
+                    <ul className="mt-3 space-y-[2px] text-[13px] sm:text-[14px] lg:text-[16px] leading-[1.3] font-normal">
                       {extraFeesItems.map((item, i) => (
                         <li key={i}>
                           <span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> {item}
@@ -455,7 +454,7 @@ Nếu mình hủy:
                       ))}
                     </ul>
                   </div>
-                  <p className="mt-2.5 pl-[8px] sm:pl-[10px] lg:pl-[12px] text-[13px] sm:text-[25px] lg:text-[16px] font-normal text-black leading-[1.3] w-full">
+                  <p className="mt-2.5 pl-[8px] sm:pl-[10px] lg:pl-[12px] text-[13px] sm:text-[14px] lg:text-[16px] font-normal text-black leading-[1.3] w-full">
                     {formatSentenceCase(getContent('commission_extra_fees_note', 'Phụ phí sẽ được mình báo và thống nhất sau khi hoàn thiện bước sketch'))}
                   </p>
                 </div>
@@ -503,7 +502,7 @@ Nếu mình hủy:
                 className="object-contain"
               />
             </div>
-            <span className="font-semibold lg:font-normal text-[10px] sm:text-[19.5px] lg:text-[16px] tracking-wider font-mono relative translate-x-[3px]">
+            <span className="font-semibold lg:font-normal text-[10px] sm:text-[15px] lg:text-[16px] tracking-wider font-mono relative translate-x-[3px]">
               (TERMS OF SERVICE)
             </span>
             <div className="absolute right-[9px] sm:right-3 lg:right-4 top-1/2 -translate-y-1/2 w-[11px] h-[11px] sm:w-[15px] sm:h-[15px] lg:w-[19px] lg:h-[19px] flex items-center justify-center">
@@ -563,11 +562,11 @@ Nếu mình hủy:
                   {!isEven && <div className="hidden sm:block"></div>}
 
                   {/* Content Container */}
-                  <div className={`flex flex-col items-start w-full z-10 ${!isEven ? 'sm:translate-x-[70px] lg:translate-x-[80px] lg:max-w-[420px]' : 'lg:pl-[38px] lg:max-w-[460px]'}`}>
-                    <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[13px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
+                  <div className={`flex flex-col items-start w-full z-10 ${!isEven ? 'sm:-translate-x-[10px] lg:translate-x-[clamp(15px,calc(38.46vw-374px),80px)] lg:max-w-[420px]' : 'sm:translate-x-[25px] lg:translate-x-0 lg:pl-[38px] lg:max-w-[460px]'}`}>
+                    <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[13px] sm:text-[15px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
                       {term.title}
                     </span>
-                    <div className="pl-[10px] sm:pl-[14px] lg:pl-[17px] w-full space-y-1 text-[13px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal text-black font-mono">
+                    <div className="pl-[10px] sm:pl-[14px] lg:pl-[17px] w-full space-y-1 text-[13px] sm:text-[14px] lg:text-[16px] leading-[1.3] font-normal text-black font-mono">
                       {lines.map((line: string, lineIdx: number) => {
                         const trimmed = line.trim();
                         if (!trimmed) return <div key={lineIdx} className="h-2" />;

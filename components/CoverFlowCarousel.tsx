@@ -50,6 +50,7 @@ export default function CoverFlowCarousel({ slides = SLIDES }: { slides?: SlideI
   const [activeIndex, setActiveIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [screenSize, setScreenSize] = useState<'mobile' | 'tablet' | 'desktop' | 'desktop-small'>('desktop');
+  const [windowWidth, setWindowWidth] = useState(1200);
   const [leftBtnState, setLeftBtnState] = useState<'default' | 'hover' | 'active'>('default');
   const [rightBtnState, setRightBtnState] = useState<'default' | 'hover' | 'active'>('default');
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
@@ -77,6 +78,7 @@ export default function CoverFlowCarousel({ slides = SLIDES }: { slides?: SlideI
   // Handle responsive design in client
   useEffect(() => {
     const handleResize = () => {
+      setWindowWidth(window.innerWidth);
       if (window.innerWidth < 640) {
         setScreenSize('mobile');
       } else if (window.innerWidth < 1024) {
@@ -140,50 +142,65 @@ export default function CoverFlowCarousel({ slides = SLIDES }: { slides?: SlideI
     // Translation calculations (X: spacing, Y: arch shape)
     let translateX = 0;
     let translateY = 0;
-
-    const cardWidth = screenSize === 'mobile' ? 96 : screenSize === 'tablet' ? 170 : screenSize === 'desktop-small' ? 250 : 280;
-    const spacing = screenSize === 'desktop' ? 270 : screenSize === 'desktop-small' ? 235 : screenSize === 'tablet' ? 150 : 70;
-
-    translateX = offset * spacing;
-
+ 
+    let cardWidth = screenSize === 'mobile' ? 106 : screenSize === 'tablet' ? 187 : screenSize === 'desktop-small' ? 250 : 280;
+    let spacing = screenSize === 'desktop' ? 270 : screenSize === 'desktop-small' ? 235 : screenSize === 'tablet' ? 160 : 70;
+ 
+    if (screenSize === 'desktop-small') {
+      const ratio = (windowWidth - 768) / (1280 - 768);
+      const clampedRatio = Math.max(0, Math.min(1, ratio));
+      cardWidth = Math.round(187 + clampedRatio * (250 - 187));
+      spacing = Math.round(160 + clampedRatio * (235 - 160));
+    }
+ 
+    // Adjust spacing for outer cards (offset = 2) to make spacing more even
+    if (screenSize === 'tablet' && absOffset === 2) {
+      translateX = offset * 143;
+    } else {
+      translateX = offset * spacing;
+    }
+ 
     if (screenSize === 'desktop') {
       if (offset === 0) translateY = 80;
       if (absOffset === 1) translateY = 22;
       if (absOffset === 2) translateY = -12;
     } else if (screenSize === 'desktop-small') {
-      if (offset === 0) translateY = 68;
-      if (absOffset === 1) translateY = 20;
-      if (absOffset === 2) translateY = -10;
+      const ratio = (windowWidth - 768) / (1280 - 768);
+      const clampedRatio = Math.max(0, Math.min(1, ratio));
+      if (offset === 0) translateY = Math.round(55 + clampedRatio * (68 - 55));
+      if (absOffset === 1) translateY = Math.round(15 + clampedRatio * (20 - 15));
+      if (absOffset === 2) translateY = Math.round(-9 + clampedRatio * (-10 - (-9)));
     } else if (screenSize === 'tablet') {
-      if (offset === 0) translateY = 50;
-      if (absOffset === 1) translateY = 14;
-      if (absOffset === 2) translateY = -8;
+      if (offset === 0) translateY = 55;
+      if (absOffset === 1) translateY = 15;
+      if (absOffset === 2) translateY = -9;
     } else {
       if (offset === 0) translateY = 20;
       if (absOffset === 1) translateY = 5;
       if (absOffset === 2) translateY = -3;
     }
-
+ 
     // Z index and Opacity
     let zIndex = 30 - absOffset * 10;
     let opacity = 1;
     let pointerEvents: 'auto' | 'none' = 'auto';
-
+ 
     if (absOffset === 1) opacity = 0.88;
     if (absOffset === 2) opacity = 0.7;
     if (absOffset > 2) {
       opacity = 0;
       pointerEvents = 'none';
     }
-
+ 
     // Depth push (Z translation)
     let translateZ = 0;
     if (absOffset === 0) translateZ = 60;
     if (absOffset === 1) translateZ = 0;
     if (absOffset === 2) translateZ = -60;
-
+ 
     return {
       transform: `translate3d(calc(-50% + ${translateX}px), calc(-50% + ${translateY}px), ${translateZ}px) scale(${scale}) rotateY(${rotateY}deg)`,
+      width: cardWidth,
       zIndex,
       opacity,
       pointerEvents,
@@ -267,7 +284,7 @@ export default function CoverFlowCarousel({ slides = SLIDES }: { slides?: SlideI
                     setActiveIndex(index);
                   }
                 }}
-                className={`absolute left-1/2 top-1/2 w-[96px] sm:w-[170px] lg:w-[250px] 2xl:w-[280px] aspect-[5/8] rounded-[14px] sm:rounded-[20px] overflow-hidden shadow-[0_12px_36px_rgba(0,0,0,0.18)] transition-all duration-500 ease-out origin-center cursor-pointer`}
+                className={`absolute left-1/2 top-1/2 w-[106px] sm:w-[187px] lg:w-[250px] 2xl:w-[280px] aspect-[5/8] rounded-[14px] sm:rounded-[20px] overflow-hidden shadow-[0_12px_36px_rgba(0,0,0,0.18)] transition-all duration-500 ease-out origin-center cursor-pointer`}
                 style={{
                   ...slideStyle,
                   transitionProperty: 'transform, opacity, z-index',
@@ -279,7 +296,7 @@ export default function CoverFlowCarousel({ slides = SLIDES }: { slides?: SlideI
                     src={slide.src}
                     alt={slide.title}
                     fill
-                    sizes="(max-width: 640px) 96px, (max-width: 1024px) 170px, (max-width: 1536px) 250px, 280px"
+                    sizes="(max-width: 640px) 106px, (max-width: 1024px) 187px, (max-width: 1536px) 250px, 280px"
                     className={`object-cover pointer-events-none transition-all duration-500 ${isActive ? 'grayscale-0' : 'grayscale'}`}
                     priority={isActive}
                   />
@@ -295,7 +312,7 @@ export default function CoverFlowCarousel({ slides = SLIDES }: { slides?: SlideI
       </div>
 
       {/* Navigation Buttons */}
-      <div className="flex items-center gap-4 sm:gap-6 mt-[10px] sm:mt-[60px] lg:mt-[100px]">
+      <div className="flex items-center gap-4 sm:gap-6 mt-[10px] sm:mt-[60px] lg:mt-[100px] sm:translate-y-[35px] lg:translate-y-0">
         <button
           onClick={prevSlide}
           disabled={isTransitioning}
@@ -341,33 +358,45 @@ export default function CoverFlowCarousel({ slides = SLIDES }: { slides?: SlideI
       {/* Lightbox Modal */}
       {mounted && isLightboxOpen && lightboxSlide && createPortal(
         <div
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/90 backdrop-blur-sm animate-in fade-in duration-200 w-screen h-screen top-0 left-0"
+          className="fixed inset-0 z-[9999] overflow-y-auto bg-black/90 backdrop-blur-sm animate-in fade-in duration-200 flex flex-col items-center py-6 px-4 w-screen h-screen top-0 left-0"
           onClick={() => setIsLightboxOpen(false)}
         >
+          {/* Fixed Close Button always visible at top-right of screen */}
+          <button
+            onClick={() => setIsLightboxOpen(false)}
+            className="fixed top-6 right-6 w-10 h-10 bg-[#5A504D] border-[3px] border-dashed border-[#5A504D] rounded-full flex items-center justify-center text-[#FAF6EE] hover:bg-[#4A4542] hover:text-[#FAF6EE] hover:border-[#4A4542] transition-all duration-300 cursor-pointer z-[10000] font-bold text-lg shadow-lg"
+          >
+            ✕
+          </button>
+          
           <div
-            className="relative max-w-[90vw] max-h-[90vh] animate-in zoom-in-95 duration-200"
+            className="relative my-auto animate-in zoom-in-95 duration-200"
             onClick={(e) => e.stopPropagation()}
           >
-            <button
-              onClick={() => setIsLightboxOpen(false)}
-              className="absolute -top-4 -right-4 w-8 h-8 bg-[#5A504D] border-[3px] border-dashed border-[#5A504D] rounded-full flex items-center justify-center text-[#FAF6EE] hover:bg-[#4A4542] hover:text-[#FAF6EE] hover:border-[#4A4542] transition-all duration-300 cursor-pointer z-10 font-bold"
-            >
-              ✕
-            </button>
-            <div className="relative w-full h-full">
-              <Image
-                src={lightboxSlide.src}
-                alt={lightboxSlide.title}
-                width={800}
-                height={1280}
-                className="object-contain rounded-[14px] shadow-2xl"
-                priority
-              />
-            </div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={lightboxSlide.src}
+              alt={lightboxSlide.title}
+              className="w-full max-w-[92vw] sm:max-w-[480px] lg:max-w-[560px] h-auto rounded-[14px] shadow-2xl block"
+            />
           </div>
         </div>,
         document.body
       )}
+
+      {/* Preload all images for lightbox */}
+      <div className="hidden">
+        {currentSlides.map((slide) => (
+          <Image
+            key={`preload-${slide.id}`}
+            src={slide.src}
+            alt={slide.title}
+            width={800}
+            height={1280}
+            priority
+          />
+        ))}
+      </div>
     </div>
   );
 }
