@@ -308,7 +308,7 @@ export default function CoverFlowCarousel({ slides = SLIDES }: { slides?: SlideI
           <img
             src="/images/left-arrow.png"
             alt="Previous"
-            className="w-[18px] h-[18px] sm:w-7 sm:h-7 lg:w-10 lg:h-10 object-contain pointer-events-none select-none"
+            className="w-[14px] h-[14px] sm:w-[22px] sm:h-[22px] lg:w-8 lg:h-8 object-contain pointer-events-none select-none"
           />
         </button>
         <button
@@ -328,7 +328,7 @@ export default function CoverFlowCarousel({ slides = SLIDES }: { slides?: SlideI
           <img
             src="/images/right-arrow.png"
             alt="Next"
-            className="w-[18px] h-[18px] sm:w-7 sm:h-7 lg:w-10 lg:h-10 object-contain pointer-events-none select-none"
+            className="w-[14px] h-[14px] sm:w-[22px] sm:h-[22px] lg:w-8 lg:h-8 object-contain pointer-events-none select-none"
           />
         </button>
       </div>
