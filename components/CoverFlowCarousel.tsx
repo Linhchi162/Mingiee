@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
+import { createPortal } from 'react-dom';
 
 
 interface SlideItem {
@@ -51,6 +52,9 @@ export default function CoverFlowCarousel({ slides = SLIDES }: { slides?: SlideI
   const [screenSize, setScreenSize] = useState<'mobile' | 'tablet' | 'desktop' | 'desktop-small'>('desktop');
   const [leftBtnState, setLeftBtnState] = useState<'default' | 'hover' | 'active'>('default');
   const [rightBtnState, setRightBtnState] = useState<'default' | 'hover' | 'active'>('default');
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const [lightboxSlide, setLightboxSlide] = useState<SlideItem | null>(null);
+  const [mounted, setMounted] = useState(false);
 
   // Ref for handling swipe/drag
   const dragStartX = useRef<number | null>(null);
@@ -64,6 +68,11 @@ export default function CoverFlowCarousel({ slides = SLIDES }: { slides?: SlideI
       setActiveIndex(Math.floor(currentSlides.length / 2));
     }
   }, [currentSlides.length]);
+
+  // Set mounted state for portal
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Handle responsive design in client
   useEffect(() => {
@@ -133,7 +142,7 @@ export default function CoverFlowCarousel({ slides = SLIDES }: { slides?: SlideI
     let translateY = 0;
 
     const cardWidth = screenSize === 'mobile' ? 96 : screenSize === 'tablet' ? 170 : screenSize === 'desktop-small' ? 250 : 280;
-    const spacing = screenSize === 'desktop' ? 270 : screenSize === 'desktop-small' ? 235 : screenSize === 'tablet' ? 150 : 80;
+    const spacing = screenSize === 'desktop' ? 270 : screenSize === 'desktop-small' ? 235 : screenSize === 'tablet' ? 150 : 70;
 
     translateX = offset * spacing;
 
@@ -251,7 +260,10 @@ export default function CoverFlowCarousel({ slides = SLIDES }: { slides?: SlideI
               <div
                 key={slide.id}
                 onClick={() => {
-                  if (!isActive && !isTransitioning) {
+                  if (isActive && !isTransitioning) {
+                    setLightboxSlide(slide);
+                    setIsLightboxOpen(true);
+                  } else if (!isActive && !isTransitioning) {
                     setActiveIndex(index);
                   }
                 }}
@@ -325,6 +337,37 @@ export default function CoverFlowCarousel({ slides = SLIDES }: { slides?: SlideI
           />
         </button>
       </div>
+
+      {/* Lightbox Modal */}
+      {mounted && isLightboxOpen && lightboxSlide && createPortal(
+        <div
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/90 backdrop-blur-sm animate-in fade-in duration-200 w-screen h-screen top-0 left-0"
+          onClick={() => setIsLightboxOpen(false)}
+        >
+          <div
+            className="relative max-w-[90vw] max-h-[90vh] animate-in zoom-in-95 duration-200"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setIsLightboxOpen(false)}
+              className="absolute -top-4 -right-4 w-8 h-8 bg-[#5A504D] border-[3px] border-dashed border-[#5A504D] rounded-full flex items-center justify-center text-[#FAF6EE] hover:bg-[#4A4542] hover:text-[#FAF6EE] hover:border-[#4A4542] transition-all duration-300 cursor-pointer z-10 font-bold"
+            >
+              ✕
+            </button>
+            <div className="relative w-full h-full">
+              <Image
+                src={lightboxSlide.src}
+                alt={lightboxSlide.title}
+                width={800}
+                height={1280}
+                className="object-contain rounded-[14px] shadow-2xl"
+                priority
+              />
+            </div>
+          </div>
+        </div>,
+        document.body
+      )}
     </div>
   );
 }
