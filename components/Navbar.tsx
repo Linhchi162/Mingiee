@@ -79,11 +79,11 @@ export default function Navbar() {
 
   const defaultButtonClass = `${buttonBaseClass} bg-[#FAF6EE] border-[1.6px] sm:border-[2px] lg:border-[2.3px] border-dashed border-[#4A4542] text-[#4A4542] hover:bg-[#5A504D] hover:border-[#5A504D] hover:text-[#FAF6EE] active:bg-[#4E4542] active:border-[#4E4542] active:text-[#FAF6EE] active:scale-95`
   
-  const iconLeftClass = "lg:absolute lg:left-[5.5px] lg:top-1/2 lg:-translate-y-1/2 " +
+  const iconLeftClass = "relative lg:absolute lg:left-[5.5px] lg:top-1/2 lg:-translate-y-1/2 " +
     "w-[9.2px] h-[9.2px] sm:w-[15px] sm:h-[15px] lg:w-[19px] lg:h-[19px] flex items-center justify-center " +
     "transition-all duration-300 group-hover:opacity-0 group-hover:scale-50 group-active:opacity-0 group-active:scale-50 pointer-events-none"
     
-  const iconRightClass = "lg:absolute lg:right-[5.5px] lg:top-1/2 lg:-translate-y-1/2 " +
+  const iconRightClass = "relative lg:absolute lg:right-[5.5px] lg:top-1/2 lg:-translate-y-1/2 " +
     "w-[9.2px] h-[9.2px] sm:w-[15px] sm:h-[15px] lg:w-[19px] lg:h-[19px] flex items-center justify-center " +
     "transition-all duration-300 group-hover:opacity-0 group-hover:scale-50 group-active:opacity-0 group-active:scale-50 pointer-events-none"
     
