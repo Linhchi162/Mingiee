@@ -526,7 +526,7 @@ Nếu mình hủy:
               
               const buttonStyles: Record<string, { className: string, aspect: string, src: string }> = {
                 button1: { className: 'right-[-20px] sm:right-[-150px] top-[10%] sm:top-[-50px] w-[180px] sm:w-[450px] lg:w-[520px]', aspect: 'aspect-[879/513]', src: '/images/button1.png' },
-                button2: { className: 'left-[-20px] sm:left-[-150px] top-[-10px] w-[130px] sm:w-[340px] lg:w-[450px]', aspect: 'aspect-[567/479]', src: '/images/button2.png' },
+                button2: { className: 'left-[-20px] sm:left-[-150px] top-[30px] sm:top-[-10px] w-[130px] sm:w-[340px] lg:w-[450px]', aspect: 'aspect-[567/479]', src: '/images/button2.png' },
                 button3: { className: 'right-[-20px] sm:right-[-150px] top-[10px] sm:top-[20px] w-[180px] sm:w-[460px] lg:w-[520px]', aspect: 'aspect-[1/1]', src: '/images/button3.png' },
                 button4: { className: 'right-[-30px] sm:right-[-195px] top-[10px] w-[200px] sm:w-[580px] lg:w-[660px]', aspect: 'aspect-[1029/531]', src: '/images/button4.png' },
                 button5: { className: 'left-[-30px] sm:left-[-170px] top-[30px] sm:top-[-50px] w-[180px] sm:w-[480px] lg:w-[440px]', aspect: 'aspect-[834/671]', src: '/images/button5.png' },
