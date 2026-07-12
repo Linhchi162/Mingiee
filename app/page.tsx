@@ -185,7 +185,7 @@ Nếu mình hủy:
   return (
     <div className="w-full relative flex flex-col overflow-x-hidden">
       {/* Fixed background wrapper for rubber-band overscroll */}
-      <div 
+      <div
         className="fixed -inset-y-[50vh] inset-x-0 z-0 pointer-events-none"
         style={{
           backgroundImage: "url('/images/trang-chu-nau-v2.jpg')",
@@ -197,7 +197,7 @@ Nếu mình hủy:
       {/* SECTION 1: Blue Grid Background Section */}
       <section className="relative z-10 w-full min-h-[65vh] sm:min-h-screen flex flex-col overflow-hidden">
         {/* Background Image */}
-        <div 
+        <div
           className="absolute inset-0 z-0 pointer-events-none"
           style={{
             backgroundImage: "url('/images/trang-chu.jpg')",
@@ -206,12 +206,12 @@ Nếu mình hủy:
             backgroundSize: '100% auto',
           }}
         />
-        
+
         {/* Navbar */}
         <div className="relative z-20">
           <Navbar />
         </div>
-        
+
         {/* Content */}
         <main className="relative z-10 flex-1 flex flex-col items-center justify-center text-center px-4 py-8">
           {/* Decorative Lace & GIF Container */}
@@ -227,7 +227,7 @@ Nếu mình hủy:
                 priority
               />
             </div>
-            
+
             {/* Moving Mingiee GIF foreground */}
             <div className="absolute inset-0 flex items-center justify-center">
               <Image
@@ -257,7 +257,7 @@ Nếu mình hủy:
       </section>
 
       {/* Combined Brown Background Wrapper */}
-      <div 
+      <div
         className="relative w-full flex flex-col"
         style={{
           backgroundImage: 'url("/images/trang-chu-nau-v2.jpg")',
@@ -268,9 +268,9 @@ Nếu mình hủy:
       >
 
         {/* SECTION 2: Brown Textures Background Section */}
-        <section id="gallery" className="relative z-10 w-full min-h-[40vh] sm:min-h-[50vh] xl:min-h-screen flex flex-col items-center justify-start overflow-hidden pb-2 sm:pb-16">
+        <section id="gallery" className="relative z-10 w-full min-h-[40vh] sm:min-h-[50vh] xl:min-h-screen flex flex-col items-center justify-start overflow-hidden pb-2 sm:pb-16 lg:pt-14">
           {/* Scallop Edge Divider (ria_transparent.png) */}
-          <div 
+          <div
             className="absolute top-[-4px] lg:top-[-3px] left-0 right-0 z-20 w-full h-[150px] pointer-events-none"
             style={{
               backgroundImage: "url('/images/ria_transparent.png')",
@@ -279,11 +279,11 @@ Nếu mình hủy:
               backgroundSize: '100% auto',
             }}
           />
-          
+
           {/* Content */}
-          <div className="relative z-20 flex flex-col items-center justify-start w-full px-4 pt-11 sm:pt-28 lg:pt-36">
+          <div className="relative z-20 flex flex-col items-center justify-start w-full px-4 pt-11 sm:pt-28 lg:pt-8">
             {/* GALLERY Title Header (Static div, non-clickable) */}
-            <div 
+            <div
               className="group relative flex items-center justify-center py-1 px-[26px] sm:px-10 lg:px-12 bg-[#FAF6EE] border-[1.6px] sm:border-[2px] lg:border-[2.3px] border-dashed border-[#4A4542] rounded-[7px] text-[#4A4542] min-w-[110px] sm:min-w-[180px] lg:min-w-[220px] shadow-[0_3px_6px_rgba(0,0,0,0.05)] cursor-default select-none mb-5 sm:mb-8 lg:mb-14"
             >
               <div className="absolute left-[13px] sm:left-3 lg:left-4 top-1/2 -translate-y-1/2 w-[11px] h-[11px] sm:w-[15px] sm:h-[15px] lg:w-[19px] lg:h-[19px] flex items-center justify-center">
@@ -294,7 +294,7 @@ Nếu mình hủy:
                   className="object-contain"
                 />
               </div>
-              <span className="font-extrabold text-[10px] sm:text-[19.5px] lg:text-[16px] tracking-widest font-mono relative translate-x-[3px]">
+              <span className="font-semibold lg:font-normal text-[10px] sm:text-[19.5px] lg:text-[16px] tracking-wider font-mono relative translate-x-[3px]">
                 (GALLERY)
               </span>
               <div className="absolute right-[9px] sm:right-3 lg:right-4 top-1/2 -translate-y-1/2 w-[11px] h-[11px] sm:w-[15px] sm:h-[15px] lg:w-[19px] lg:h-[19px] flex items-center justify-center">
@@ -315,7 +315,7 @@ Nếu mình hủy:
       </div>
 
       {/* Combined Next Blue Background Wrapper */}
-      <div 
+      <div
         className="relative w-full flex flex-col -mt-4 sm:-mt-[1.5px] lg:-mt-[26.5px]"
         style={{
           backgroundImage: "url('/images/trang-chu.jpg')",
@@ -327,7 +327,7 @@ Nếu mình hủy:
         {/* SECTION 5: Next Blue Background Section 1 (Price List) */}
         <section id="commission" className="relative z-10 w-full min-h-screen flex flex-col items-center justify-start overflow-hidden pt-11 sm:pt-14 lg:pt-18 pb-[214px] px-2 sm:px-4 md:px-6">
           {/* PRICE LIST Title Header */}
-          <div 
+          <div
             className="group relative flex items-center justify-center py-1 px-[26px] sm:px-10 lg:px-12 bg-[#FAF6EE] border-[1.6px] sm:border-[2px] lg:border-[2.3px] border-dashed border-[#4A4542] rounded-[7px] text-[#4A4542] min-w-[110px] sm:min-w-[180px] lg:min-w-[220px] shadow-[0_3px_6px_rgba(0,0,0,0.05)] cursor-default select-none mb-5 sm:mb-8 lg:mb-14"
           >
             <div className="absolute left-[13px] sm:left-3 lg:left-4 top-1/2 -translate-y-1/2 w-[11px] h-[11px] sm:w-[15px] sm:h-[15px] lg:w-[19px] lg:h-[19px] flex items-center justify-center">
@@ -338,7 +338,7 @@ Nếu mình hủy:
                 className="object-contain"
               />
             </div>
-            <span className="font-extrabold text-[10px] sm:text-[19.5px] lg:text-[16px] tracking-widest font-mono relative translate-x-[3px]">
+            <span className="font-semibold lg:font-normal text-[10px] sm:text-[19.5px] lg:text-[16px] tracking-wider font-mono relative translate-x-[3px]">
               (PRICE LIST)
             </span>
             <div className="absolute right-[9px] sm:right-3 lg:right-4 top-1/2 -translate-y-1/2 w-[11px] h-[11px] sm:w-[15px] sm:h-[15px] lg:w-[19px] lg:h-[19px] flex items-center justify-center">
@@ -352,11 +352,11 @@ Nếu mình hủy:
           </div>
 
           {/* Core pricing details: Table (Lace Card) & Diagram */}
-          <div className="w-full max-w-[1360px] grid grid-cols-1 sm:grid-cols-[1.4fr_1fr] lg:grid-cols-[1.7fr_1fr] gap-6 md:gap-11 lg:gap-16 items-center justify-items-center mb-12 sm:mb-16">
-            
+          <div className="w-full max-w-[1360px] grid grid-cols-1 sm:grid-cols-[1.3fr_1fr] lg:grid-cols-[1.6fr_1fr] gap-6 md:gap-14 lg:gap-20 items-center justify-items-center mb-12 sm:mb-16">
+
             {/* Left Column: Pricing Table inside Lace Card */}
-            <div 
-              className="relative w-full max-w-[372px] sm:max-w-[497px] lg:max-w-[594px] aspect-[950/611] flex items-center justify-center justify-self-center md:justify-self-start lg:translate-x-[10%]"
+            <div
+              className="relative w-full max-w-[372px] sm:max-w-[497px] lg:max-w-[594px] aspect-[950/611] flex items-center justify-center justify-self-center md:justify-self-start lg:translate-x-[8px]"
               style={{
                 backgroundImage: "url('/images/lace2.svg')",
                 backgroundSize: 'contain',
@@ -402,7 +402,7 @@ Nếu mình hủy:
             </div>
 
             {/* Right Column: Silhouette Diagram */}
-            <div className="relative w-full max-w-[377px] sm:max-w-[442px] lg:max-w-[533px] aspect-[651/970] justify-self-center md:justify-self-end md:-translate-x-12 lg:-translate-x-20">
+            <div className="relative w-full max-w-[377px] sm:max-w-[520px] md:max-w-[720px] lg:max-w-[936px] aspect-[651/970] justify-self-center md:justify-self-end md:-translate-x-6 lg:-translate-x-10">
               <Image
                 src="/images/ana.png"
                 alt="Crop limits diagram"
@@ -424,9 +424,9 @@ Nếu mình hủy:
 
             return (
               <div className="w-full max-w-[1240px] grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-11 lg:gap-16 px-4 font-mono text-black">
-                
+
                 {/* Bottom Left Card: Scope info */}
-                <div className="flex flex-col items-start w-full max-w-[540px] justify-self-center md:justify-self-start">
+                <div className="flex flex-col items-start w-full max-w-[540px] justify-self-center md:justify-self-start lg:pl-[38px]">
                   <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[13px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none whitespace-nowrap">
                     {getContent('commission_scope_title', 'BẢNG GIÁ TRÊN ÁP DỤNG VỚI TRANH GỒM:')}
                   </span>
@@ -434,7 +434,7 @@ Nếu mình hủy:
                     <ul className="mt-3 space-y-[2px] text-[13px] sm:text-[25px] lg:text-[16px] leading-[1.3] font-normal">
                       {scopeItems.map((item, i) => (
                         <li key={i}>
-                           <span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> {item}
+                          <span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span> {item}
                         </li>
                       ))}
                     </ul>
@@ -442,7 +442,7 @@ Nếu mình hủy:
                 </div>
 
                 {/* Bottom Right Card: Extra fees info */}
-                <div className="flex flex-col items-start w-full max-w-[540px] justify-self-center md:justify-self-end md:translate-x-[5%]">
+                <div className="flex flex-col items-start w-full max-w-[540px] justify-self-center md:justify-self-end md:translate-x-[5%] lg:max-w-[440px] lg:translate-x-[13px]">
                   <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[13px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none">
                     {getContent('commission_extra_fees_title', 'PHỤ PHÍ')}
                   </span>
@@ -466,7 +466,7 @@ Nếu mình hủy:
       </div>
 
       {/* Combined White Background Wrapper */}
-      <div 
+      <div
         className="relative w-full flex flex-col -mt-4 sm:-mt-[1.5px] lg:-mt-[26.5px]"
         style={{
           backgroundImage: "url('/images/b%C3%ACa%20tr%E1%BA%AFng.png')",
@@ -476,7 +476,7 @@ Nếu mình hủy:
         }}
       >
         {/* Scallop Edge Divider (ria_transparent.png) */}
-        <div 
+        <div
           className="absolute top-[-12px] lg:top-[-11px] left-0 right-0 z-30 w-full h-[150px] pointer-events-none"
           style={{
             backgroundImage: "url('/images/ria_transparent.png')",
@@ -490,9 +490,9 @@ Nếu mình hủy:
 
 
         {/* SECTION 8: White Background Section 2 (Terms of Service) */}
-        <section id="terms" className="relative z-10 w-full min-h-screen flex flex-col items-center justify-start overflow-hidden pt-11 sm:pt-16 lg:pt-22 pb-16 px-4">
+        <section id="terms" className="relative z-10 w-full min-h-screen flex flex-col items-center justify-start overflow-hidden pt-11 sm:pt-16 lg:pt-18 pb-16 px-4">
           {/* TERMS OF SERVICE Title Header */}
-          <div 
+          <div
             className="group relative z-20 flex items-center justify-center py-1 px-[26px] sm:px-10 lg:px-12 bg-[#FAF6EE] border-[1.6px] sm:border-[2px] lg:border-[2.3px] border-dashed border-[#4A4542] rounded-[7px] text-[#4A4542] min-w-[110px] sm:min-w-[180px] lg:min-w-[220px] shadow-[0_3px_6px_rgba(0,0,0,0.05)] cursor-default select-none mb-10 sm:mb-14 lg:mb-16"
           >
             <div className="absolute left-[13px] sm:left-3 lg:left-4 top-1/2 -translate-y-1/2 w-[11px] h-[11px] sm:w-[15px] sm:h-[15px] lg:w-[19px] lg:h-[19px] flex items-center justify-center">
@@ -503,7 +503,7 @@ Nếu mình hủy:
                 className="object-contain"
               />
             </div>
-            <span className="font-extrabold text-[10px] sm:text-[19.5px] lg:text-[16px] tracking-widest font-mono relative translate-x-[3px]">
+            <span className="font-semibold lg:font-normal text-[10px] sm:text-[19.5px] lg:text-[16px] tracking-wider font-mono relative translate-x-[3px]">
               (TERMS OF SERVICE)
             </span>
             <div className="absolute right-[9px] sm:right-3 lg:right-4 top-1/2 -translate-y-1/2 w-[11px] h-[11px] sm:w-[15px] sm:h-[15px] lg:w-[19px] lg:h-[19px] flex items-center justify-center">
@@ -520,10 +520,10 @@ Nếu mình hủy:
           <div className="w-full max-w-[1240px] flex flex-col space-y-7 sm:space-y-12 lg:space-y-16 px-4 font-mono text-black mt-4">
             {terms.map((term, index) => {
               const isEven = index % 2 === 0;
-              
+
               // Helper to parse content with custom bullet styling
               const lines = term.content.split(/\n/);
-              
+
               const buttonStyles: Record<string, { className: string, aspect: string, src: string }> = {
                 button1: { className: 'right-[-20px] sm:right-[-150px] top-[10%] sm:top-[-50px] w-[180px] sm:w-[450px] lg:w-[520px]', aspect: 'aspect-[879/513]', src: '/images/button1.png' },
                 button2: { className: 'left-[-20px] sm:left-[-150px] top-[30px] sm:top-[-10px] w-[130px] sm:w-[340px] lg:w-[450px]', aspect: 'aspect-[567/479]', src: '/images/button2.png' },
@@ -533,7 +533,7 @@ Nếu mình hủy:
                 button6: { className: 'right-[20px] sm:right-[150px] top-[5px] sm:top-[10px] w-[80px] sm:w-[120px] lg:w-[160px]', aspect: 'aspect-[307/316]', src: '/images/button6.png' },
                 button7: { className: 'left-[-20px] sm:left-[80px] bottom-[-50px] sm:bottom-[-470px] w-[80px] sm:w-[180px] lg:w-[290px]', aspect: 'aspect-[1/1]', src: '/images/button7.png' }
               };
-              
+
               let decorationImage = 'none';
               if ((term as any).image_name !== undefined && (term as any).image_name !== null) {
                 decorationImage = (term as any).image_name;
@@ -553,17 +553,17 @@ Nếu mình hủy:
                 };
                 decorationImage = originalMap[index] || 'none';
               }
-              
+
               const btnStyle = buttonStyles[decorationImage];
 
               return (
                 <div key={term.id || index} className="w-full grid grid-cols-1 sm:grid-cols-2 gap-8 relative">
-                  
+
                   {/* Left Column for Even, Spacer for Odd */}
                   {!isEven && <div className="hidden sm:block"></div>}
-                  
+
                   {/* Content Container */}
-                  <div className={`flex flex-col items-start w-full z-10 ${!isEven ? 'sm:translate-x-[70px]' : ''}`}>
+                  <div className={`flex flex-col items-start w-full z-10 ${!isEven ? 'sm:translate-x-[70px] lg:translate-x-[80px] lg:max-w-[420px]' : 'lg:pl-[38px] lg:max-w-[460px]'}`}>
                     <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[13px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
                       {term.title}
                     </span>
@@ -571,7 +571,7 @@ Nếu mình hủy:
                       {lines.map((line: string, lineIdx: number) => {
                         const trimmed = line.trim();
                         if (!trimmed) return <div key={lineIdx} className="h-2" />;
-                        
+
                         // Sub-bullet Check: starts with "-- " or "  - " or " - " or "- " inside nested indent
                         if (line.startsWith('  -') || line.startsWith(' -') || line.startsWith('--')) {
                           const text = line.replace(/^(\s*-\s*|\s*--\s*)/, '');
@@ -582,7 +582,7 @@ Nếu mình hủy:
                             </div>
                           );
                         }
-                        
+
                         // Main Bullet Check: starts with "- " or "* "
                         if (trimmed.startsWith('-') || trimmed.startsWith('*')) {
                           const text = trimmed.replace(/^[-*]\s*/, '');
@@ -593,7 +593,7 @@ Nếu mình hủy:
                             </li>
                           );
                         }
-                        
+
                         // Default Plain Text / Header
                         return (
                           <p key={lineIdx} className="font-normal text-black">
@@ -626,12 +626,12 @@ Nếu mình hủy:
 
 
       {/* Footer Section */}
-      <footer 
+      <footer
         className="relative w-full py-8 md:py-12 px-4 sm:px-12 md:px-16 flex flex-row items-center justify-between gap-4 overflow-hidden z-30"
         style={{
           backgroundImage: "url('/images/trang-chu-nau-v2.jpg')",
           backgroundColor: '#4D4845',
-        
+
           backgroundRepeat: 'repeat',
           backgroundPosition: 'top center',
           backgroundSize: '100% auto',

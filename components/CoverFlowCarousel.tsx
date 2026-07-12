@@ -51,7 +51,7 @@ export default function CoverFlowCarousel({ slides = SLIDES }: { slides?: SlideI
   const [screenSize, setScreenSize] = useState<'mobile' | 'tablet' | 'desktop' | 'desktop-small'>('desktop');
   const [leftBtnState, setLeftBtnState] = useState<'default' | 'hover' | 'active'>('default');
   const [rightBtnState, setRightBtnState] = useState<'default' | 'hover' | 'active'>('default');
-  
+
   // Ref for handling swipe/drag
   const dragStartX = useRef<number | null>(null);
   const isDragging = useRef(false);
@@ -72,13 +72,13 @@ export default function CoverFlowCarousel({ slides = SLIDES }: { slides?: SlideI
         setScreenSize('mobile');
       } else if (window.innerWidth < 1024) {
         setScreenSize('tablet');
-      } else if (window.innerWidth < 1280) {
+      } else if (window.innerWidth < 1536) {
         setScreenSize('desktop-small');
       } else {
         setScreenSize('desktop');
       }
     };
-    
+
     handleResize(); // Initial check
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
@@ -114,12 +114,12 @@ export default function CoverFlowCarousel({ slides = SLIDES }: { slides?: SlideI
   // Get style properties for a slide based on its offset and screen size
   const getSlideStyle = (offset: number) => {
     const absOffset = Math.abs(offset);
-    
+
     // Scale factor (center card is 0.9, neighbors 0.82, outer cards 0.61)
     let scale = 0.9;
     if (absOffset === 1) scale = 0.82;
     if (absOffset === 2) scale = 0.61;
-    
+
     // Rotate factor (degrees)
     let rotateY = 0;
     if (offset > 0) rotateY = -24;
@@ -132,43 +132,24 @@ export default function CoverFlowCarousel({ slides = SLIDES }: { slides?: SlideI
     let translateX = 0;
     let translateY = 0;
 
-    if (screenSize === 'desktop') {
-      // Desktop spacing (constant 275px/510px, 10% larger than 250px/460px)
-      if (offset === 1) translateX = 275;
-      if (offset === -1) translateX = -275;
-      if (offset === 2) translateX = 510;
-      if (offset === -2) translateX = -510;
+    const cardWidth = screenSize === 'mobile' ? 96 : screenSize === 'tablet' ? 170 : screenSize === 'desktop-small' ? 250 : 280;
+    const spacing = screenSize === 'desktop' ? 270 : screenSize === 'desktop-small' ? 235 : screenSize === 'tablet' ? 150 : 80;
 
+    translateX = offset * spacing;
+
+    if (screenSize === 'desktop') {
       if (offset === 0) translateY = 80;
       if (absOffset === 1) translateY = 22;
       if (absOffset === 2) translateY = -12;
     } else if (screenSize === 'desktop-small') {
-      // Compact overlapping spacing for 250px card width on small desktop/iPad landscape
-      if (offset === 1) translateX = 200;
-      if (offset === -1) translateX = -200;
-      if (offset === 2) translateX = 365;
-      if (offset === -2) translateX = -365;
-
       if (offset === 0) translateY = 68;
       if (absOffset === 1) translateY = 20;
       if (absOffset === 2) translateY = -10;
     } else if (screenSize === 'tablet') {
-      // Perfectly even tablet spacing (designed for 170px card width)
-      if (offset === 1) translateX = 160;
-      if (offset === -1) translateX = -160;
-      if (offset === 2) translateX = 294;
-      if (offset === -2) translateX = -294;
-
       if (offset === 0) translateY = 50;
       if (absOffset === 1) translateY = 14;
       if (absOffset === 2) translateY = -8;
     } else {
-      // Mobile spacing (designed to support wider cards flowing off-screen)
-      if (offset === 1) translateX = 76;
-      if (offset === -1) translateX = -76;
-      if (offset === 2) translateX = 148;
-      if (offset === -2) translateX = -148;
-
       if (offset === 0) translateY = 20;
       if (absOffset === 1) translateY = 5;
       if (absOffset === 2) translateY = -3;
@@ -250,8 +231,8 @@ export default function CoverFlowCarousel({ slides = SLIDES }: { slides?: SlideI
 
 
       {/* 3D Coverflow Container */}
-      <div 
-        className="relative w-full h-[250px] sm:h-[340px] lg:h-[480px] xl:h-[540px] flex items-center justify-center overflow-visible select-none cursor-grab active:cursor-grabbing"
+      <div
+        className="relative w-full h-[250px] sm:h-[340px] lg:h-[480px] 2xl:h-[540px] flex items-center justify-center overflow-visible select-none cursor-grab active:cursor-grabbing"
         style={{ perspective: '1200px' }}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
@@ -274,7 +255,7 @@ export default function CoverFlowCarousel({ slides = SLIDES }: { slides?: SlideI
                     setActiveIndex(index);
                   }
                 }}
-                className={`absolute left-1/2 top-1/2 w-[96px] sm:w-[170px] lg:w-[250px] xl:w-[280px] aspect-[5/8] rounded-[14px] sm:rounded-[20px] overflow-hidden shadow-[0_12px_36px_rgba(0,0,0,0.18)] transition-all duration-500 ease-out origin-center cursor-pointer`}
+                className={`absolute left-1/2 top-1/2 w-[96px] sm:w-[170px] lg:w-[250px] 2xl:w-[280px] aspect-[5/8] rounded-[14px] sm:rounded-[20px] overflow-hidden shadow-[0_12px_36px_rgba(0,0,0,0.18)] transition-all duration-500 ease-out origin-center cursor-pointer`}
                 style={{
                   ...slideStyle,
                   transitionProperty: 'transform, opacity, z-index',
@@ -286,7 +267,7 @@ export default function CoverFlowCarousel({ slides = SLIDES }: { slides?: SlideI
                     src={slide.src}
                     alt={slide.title}
                     fill
-                    sizes="(max-width: 640px) 96px, (max-width: 1024px) 170px, (max-width: 1280px) 250px, 280px"
+                    sizes="(max-width: 640px) 96px, (max-width: 1024px) 170px, (max-width: 1536px) 250px, 280px"
                     className={`object-cover pointer-events-none transition-all duration-500 ${isActive ? 'grayscale-0' : 'grayscale'}`}
                     priority={isActive}
                   />
@@ -313,14 +294,14 @@ export default function CoverFlowCarousel({ slides = SLIDES }: { slides?: SlideI
           style={{
             backgroundColor: leftBtnState === 'active' ? '#B3D6EE' : leftBtnState === 'hover' ? '#CBE3F3' : '#FAF6EE'
           }}
-          className="w-[43px] h-[29px] sm:w-[80px] sm:h-[52px] lg:w-[100px] lg:h-[64px] rounded-[10px] border-2 sm:border-[2.5px] lg:border-[3px] border-dashed border-[#4A4542] flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer disabled:opacity-50"
+          className="w-[43px] h-[29px] sm:w-[64px] sm:h-[42px] md:w-[64px] md:h-[42px] lg:w-[80px] lg:h-[52px] rounded-[10px] border-2 sm:border-[2.5px] md:border-[2.5px] lg:border-[3px] border-dashed border-[#4A4542] flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer disabled:opacity-50"
           aria-label="Previous slide"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/left-arrow.png"
             alt="Previous"
-            className="w-[11px] h-[11px] sm:w-[22px] sm:h-[22px] lg:w-8 lg:h-8 object-contain pointer-events-none select-none"
+            className="w-[14px] h-[14px] sm:w-[24px] sm:h-[24px] md:w-[24px] md:h-[24px] lg:w-[26px] lg:h-[26px] object-contain pointer-events-none select-none"
           />
         </button>
         <button
@@ -333,14 +314,14 @@ export default function CoverFlowCarousel({ slides = SLIDES }: { slides?: SlideI
           style={{
             backgroundColor: rightBtnState === 'active' ? '#B3D6EE' : rightBtnState === 'hover' ? '#CBE3F3' : '#FAF6EE'
           }}
-          className="w-[43px] h-[29px] sm:w-[80px] sm:h-[52px] lg:w-[100px] lg:h-[64px] rounded-[10px] border-2 sm:border-[2.5px] lg:border-[3px] border-dashed border-[#4A4542] flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer disabled:opacity-50"
+          className="w-[43px] h-[29px] sm:w-[64px] sm:h-[42px] md:w-[64px] md:h-[42px] lg:w-[80px] lg:h-[52px] rounded-[10px] border-2 sm:border-[2.5px] md:border-[2.5px] lg:border-[3px] border-dashed border-[#4A4542] flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer disabled:opacity-50"
           aria-label="Next slide"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/right-arrow.png"
             alt="Next"
-            className="w-[11px] h-[11px] sm:w-[22px] sm:h-[22px] lg:w-8 lg:h-8 object-contain pointer-events-none select-none"
+            className="w-[14px] h-[14px] sm:w-[24px] sm:h-[24px] md:w-[24px] md:h-[24px] lg:w-[26px] lg:h-[26px] object-contain pointer-events-none select-none"
           />
         </button>
       </div>
