@@ -73,21 +73,21 @@ export default function Navbar() {
   }
 
   // Responsive layout classes: mobile, tablet (iPad), and desktop sizes
-  const buttonBaseClass = "group relative flex items-center justify-center " +
+  const buttonBaseClass = "group relative flex items-center justify-center gap-1 sm:gap-1.5 lg:gap-0 " +
     "py-[4px] px-[7px] sm:py-[6px] sm:px-[14px] lg:py-[8px] lg:px-[24px] " +
     "rounded-[7px] transition-all duration-300 shadow-[0_1.4px_2.7px_rgba(0,0,0,0.05),0_0.7px_0.7px_rgba(0,0,0,0.05)] cursor-pointer"
 
   const defaultButtonClass = `${buttonBaseClass} bg-[#FAF6EE] border-[1.6px] sm:border-[2px] lg:border-[2.3px] border-dashed border-[#4A4542] text-[#4A4542] hover:bg-[#5A504D] hover:border-[#5A504D] hover:text-[#FAF6EE] active:bg-[#4E4542] active:border-[#4E4542] active:text-[#FAF6EE] active:scale-95`
   
-  const iconLeftClass = "absolute left-[5px] sm:left-[11.4px] lg:left-[5.5px] top-1/2 -translate-y-1/2 " +
+  const iconLeftClass = "lg:absolute lg:left-[5.5px] lg:top-1/2 lg:-translate-y-1/2 " +
     "w-[9.2px] h-[9.2px] sm:w-[15px] sm:h-[15px] lg:w-[19px] lg:h-[19px] flex items-center justify-center " +
     "transition-all duration-300 group-hover:opacity-0 group-hover:scale-50 group-active:opacity-0 group-active:scale-50 pointer-events-none"
     
-  const iconRightClass = "absolute right-[5px] sm:right-[11.4px] lg:right-[5.5px] top-1/2 -translate-y-1/2 " +
+  const iconRightClass = "lg:absolute lg:right-[5.5px] lg:top-1/2 lg:-translate-y-1/2 " +
     "w-[9.2px] h-[9.2px] sm:w-[15px] sm:h-[15px] lg:w-[19px] lg:h-[19px] flex items-center justify-center " +
     "transition-all duration-300 group-hover:opacity-0 group-hover:scale-50 group-active:opacity-0 group-active:scale-50 pointer-events-none"
     
-  const textClass = "font-semibold lg:font-normal text-[10px] sm:text-[15px] lg:text-[16px] tracking-wider transition-colors duration-300 relative translate-x-[0.7px] translate-y-[1.3px] sm:translate-x-[1.4px] sm:translate-y-[1px] lg:translate-x-[2.7px] lg:translate-y-[0.6px] px-[12px] sm:px-[16px] lg:px-0"
+  const textClass = "font-semibold lg:font-normal text-[10px] sm:text-[15px] lg:text-[16px] tracking-wider transition-colors duration-300 relative translate-x-[0.7px] translate-y-[1.3px] sm:translate-x-[1.4px] sm:translate-y-[1px] lg:translate-x-[2.7px] lg:translate-y-[0.6px] lg:px-0"
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
