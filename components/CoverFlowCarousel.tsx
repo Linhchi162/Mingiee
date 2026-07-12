@@ -48,7 +48,7 @@ export default function CoverFlowCarousel({ slides = SLIDES }: { slides?: SlideI
   const currentSlides = slides && slides.length > 0 ? slides : SLIDES;
   const [activeIndex, setActiveIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [screenSize, setScreenSize] = useState<'mobile' | 'tablet' | 'desktop'>('desktop');
+  const [screenSize, setScreenSize] = useState<'mobile' | 'tablet' | 'desktop' | 'desktop-small'>('desktop');
   const [leftBtnState, setLeftBtnState] = useState<'default' | 'hover' | 'active'>('default');
   const [rightBtnState, setRightBtnState] = useState<'default' | 'hover' | 'active'>('default');
   
@@ -72,6 +72,8 @@ export default function CoverFlowCarousel({ slides = SLIDES }: { slides?: SlideI
         setScreenSize('mobile');
       } else if (window.innerWidth < 1024) {
         setScreenSize('tablet');
+      } else if (window.innerWidth < 1280) {
+        setScreenSize('desktop-small');
       } else {
         setScreenSize('desktop');
       }
@@ -140,12 +142,22 @@ export default function CoverFlowCarousel({ slides = SLIDES }: { slides?: SlideI
       if (offset === 0) translateY = 80;
       if (absOffset === 1) translateY = 22;
       if (absOffset === 2) translateY = -12;
+    } else if (screenSize === 'desktop-small') {
+      // Compact overlapping spacing for 250px card width on small desktop/iPad landscape
+      if (offset === 1) translateX = 200;
+      if (offset === -1) translateX = -200;
+      if (offset === 2) translateX = 365;
+      if (offset === -2) translateX = -365;
+
+      if (offset === 0) translateY = 68;
+      if (absOffset === 1) translateY = 20;
+      if (absOffset === 2) translateY = -10;
     } else if (screenSize === 'tablet') {
-      // Tablet spacing (designed to fit 5 cards fully in 768px width)
+      // Perfectly even tablet spacing (designed for 170px card width)
       if (offset === 1) translateX = 160;
       if (offset === -1) translateX = -160;
-      if (offset === 2) translateX = 300;
-      if (offset === -2) translateX = -300;
+      if (offset === 2) translateX = 294;
+      if (offset === -2) translateX = -294;
 
       if (offset === 0) translateY = 50;
       if (absOffset === 1) translateY = 14;
@@ -239,7 +251,7 @@ export default function CoverFlowCarousel({ slides = SLIDES }: { slides?: SlideI
 
       {/* 3D Coverflow Container */}
       <div 
-        className="relative w-full h-[250px] sm:h-[340px] lg:h-[540px] flex items-center justify-center overflow-visible select-none cursor-grab active:cursor-grabbing"
+        className="relative w-full h-[250px] sm:h-[340px] lg:h-[480px] xl:h-[540px] flex items-center justify-center overflow-visible select-none cursor-grab active:cursor-grabbing"
         style={{ perspective: '1200px' }}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
@@ -262,7 +274,7 @@ export default function CoverFlowCarousel({ slides = SLIDES }: { slides?: SlideI
                     setActiveIndex(index);
                   }
                 }}
-                className={`absolute left-1/2 top-1/2 w-[96px] sm:w-[170px] lg:w-[280px] aspect-[5/8] rounded-[14px] sm:rounded-[20px] overflow-hidden shadow-[0_12px_36px_rgba(0,0,0,0.18)] transition-all duration-500 ease-out origin-center cursor-pointer`}
+                className={`absolute left-1/2 top-1/2 w-[96px] sm:w-[170px] lg:w-[250px] xl:w-[280px] aspect-[5/8] rounded-[14px] sm:rounded-[20px] overflow-hidden shadow-[0_12px_36px_rgba(0,0,0,0.18)] transition-all duration-500 ease-out origin-center cursor-pointer`}
                 style={{
                   ...slideStyle,
                   transitionProperty: 'transform, opacity, z-index',
@@ -274,7 +286,7 @@ export default function CoverFlowCarousel({ slides = SLIDES }: { slides?: SlideI
                     src={slide.src}
                     alt={slide.title}
                     fill
-                    sizes="(max-width: 640px) 96px, (max-width: 1024px) 170px, 280px"
+                    sizes="(max-width: 640px) 96px, (max-width: 1024px) 170px, (max-width: 1280px) 250px, 280px"
                     className={`object-cover pointer-events-none transition-all duration-500 ${isActive ? 'grayscale-0' : 'grayscale'}`}
                     priority={isActive}
                   />
