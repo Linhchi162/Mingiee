@@ -74,20 +74,20 @@ export default function Navbar() {
 
   // Responsive layout classes: mobile, tablet (iPad), and desktop sizes
   const buttonBaseClass = "group relative flex items-center justify-center gap-1 sm:gap-1.5 lg:gap-0 " +
-    "py-[4px] px-[7px] sm:py-[6px] sm:px-[14px] lg:py-[8px] lg:px-[24px] " +
+    "py-[4px] px-[clamp(4px,1.6vw,7px)] sm:py-[6px] sm:px-[14px] lg:py-[8px] lg:px-[24px] " +
     "rounded-[7px] transition-all duration-300 shadow-[0_1.4px_2.7px_rgba(0,0,0,0.05),0_0.7px_0.7px_rgba(0,0,0,0.05)] cursor-pointer"
 
   const defaultButtonClass = `${buttonBaseClass} bg-[#FAF6EE] border-[1.6px] sm:border-[2px] lg:border-[2.3px] border-dashed border-[#4A4542] text-[#4A4542] hover:bg-[#5A504D] hover:border-[#5A504D] hover:text-[#FAF6EE] active:bg-[#4E4542] active:border-[#4E4542] active:text-[#FAF6EE] active:scale-95`
   
   const iconLeftClass = "relative lg:absolute lg:left-[5.5px] lg:top-1/2 lg:-translate-y-1/2 shrink-0 " +
-    "w-[9.2px] h-[9.2px] sm:w-[15px] sm:h-[15px] lg:w-[19px] lg:h-[19px] flex items-center justify-center " +
+    "w-[clamp(7.5px,2.2vw,9.2px)] h-[clamp(7.5px,2.2vw,9.2px)] sm:w-[15px] sm:h-[15px] lg:w-[19px] lg:h-[19px] flex items-center justify-center " +
     "transition-all duration-300 group-hover:opacity-0 group-hover:scale-50 group-active:opacity-0 group-active:scale-50 pointer-events-none"
     
   const iconRightClass = "relative lg:absolute lg:right-[5.5px] lg:top-1/2 lg:-translate-y-1/2 shrink-0 " +
-    "w-[9.2px] h-[9.2px] sm:w-[15px] sm:h-[15px] lg:w-[19px] lg:h-[19px] flex items-center justify-center " +
+    "w-[clamp(7.5px,2.2vw,9.2px)] h-[clamp(7.5px,2.2vw,9.2px)] sm:w-[15px] sm:h-[15px] lg:w-[19px] lg:h-[19px] flex items-center justify-center " +
     "transition-all duration-300 group-hover:opacity-0 group-hover:scale-50 group-active:opacity-0 group-active:scale-50 pointer-events-none"
     
-  const textClass = "font-semibold lg:font-normal text-[10px] sm:text-[15px] lg:text-[16px] tracking-wider transition-colors duration-300 relative translate-x-[0.7px] translate-y-[1.3px] sm:translate-x-[1.4px] sm:translate-y-[1px] lg:translate-x-[2.7px] lg:translate-y-[0.6px] lg:px-0"
+  const textClass = "font-semibold lg:font-normal text-[clamp(8px,2.5vw,10px)] sm:text-[15px] lg:text-[16px] tracking-wider transition-colors duration-300 relative translate-x-[0.7px] translate-y-[1.3px] sm:translate-x-[1.4px] sm:translate-y-[1px] lg:translate-x-[2.7px] lg:translate-y-[0.6px] lg:px-0"
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -98,7 +98,7 @@ export default function Navbar() {
 
   return (
     <header 
-      className="w-full pt-3 sm:pt-[20px] lg:pt-[30px] pb-3 px-[6%] sm:px-[4%] lg:px-[5%] bg-transparent flex flex-nowrap items-center justify-between gap-1.5 sm:gap-[6px] lg:gap-0 select-none font-mono"
+      className="w-full pt-3 sm:pt-[20px] lg:pt-[30px] pb-3 px-[4%] sm:px-[4%] lg:px-[5%] bg-transparent flex flex-nowrap items-center justify-between gap-1 sm:gap-[6px] lg:gap-0 select-none font-mono"
     >
       {/* COMMISSION BUTTON */}
       <div ref={commissionDropdownRef} className="relative z-50">
