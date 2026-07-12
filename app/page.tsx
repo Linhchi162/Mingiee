@@ -402,12 +402,12 @@ Nếu mình hủy:
             </div>
 
             {/* Right Column: Silhouette Diagram */}
-            <div className="relative w-full max-w-[290px] sm:max-w-[340px] lg:max-w-[410px] aspect-[651/970] justify-self-center md:justify-self-end md:-translate-x-12 lg:-translate-x-20">
+            <div className="relative w-full max-w-[377px] sm:max-w-[442px] lg:max-w-[533px] aspect-[651/970] justify-self-center md:justify-self-end md:-translate-x-12 lg:-translate-x-20">
               <Image
                 src="/images/ana.png"
                 alt="Crop limits diagram"
                 fill
-                sizes="(max-width: 640px) 290px, (max-width: 1024px) 340px, 410px"
+                sizes="(max-width: 640px) 377px, (max-width: 1024px) 442px, 533px"
                 className="object-contain pointer-events-none select-none"
                 priority
               />
