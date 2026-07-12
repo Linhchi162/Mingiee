@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Navbar from '@/components/Navbar'
 import CoverFlowCarousel from '@/components/CoverFlowCarousel'
 import { supabase } from '@/lib/supabase'
+import ScrollToTop from '@/components/ScrollToTop'
 
 export const revalidate = 0;
 
@@ -652,7 +653,7 @@ Nếu mình hủy:
           © Copyright 2026: Mingiee
         </div>
       </footer>
-
+      <ScrollToTop />
     </div>
   )
 }
