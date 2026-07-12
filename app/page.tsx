@@ -430,7 +430,7 @@ Nếu mình hủy:
                   <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[clamp(11px,3.2vw,28.5px)] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none whitespace-nowrap">
                     {getContent('commission_scope_title', 'BẢNG GIÁ TRÊN ÁP DỤNG VỚI TRANH GỒM:')}
                   </span>
-                  <div className="pl-6 sm:pl-8 lg:pl-10 w-full">
+                  <div className="pl-[10px] sm:pl-[14px] lg:pl-[17px] w-full">
                     <ul className="mt-3 space-y-[2px] text-[21.5px] sm:text-[25px] lg:text-[16px] leading-[1.3] font-normal">
                       {scopeItems.map((item, i) => (
                         <li key={i}>
@@ -446,7 +446,7 @@ Nếu mình hủy:
                   <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none">
                     {getContent('commission_extra_fees_title', 'PHỤ PHÍ')}
                   </span>
-                  <div className="pl-6 sm:pl-8 lg:pl-10 w-full">
+                  <div className="pl-[10px] sm:pl-[14px] lg:pl-[17px] w-full">
                     <ul className="mt-3 space-y-[2px] text-[21.5px] sm:text-[25px] lg:text-[16px] leading-[1.3] font-normal">
                       {extraFeesItems.map((item, i) => (
                         <li key={i}>
@@ -455,7 +455,7 @@ Nếu mình hủy:
                       ))}
                     </ul>
                   </div>
-                  <p className="mt-2.5 pl-3 sm:pl-4 lg:pl-5 text-[21.5px] sm:text-[25px] lg:text-[16px] font-normal text-black leading-[1.3] w-full">
+                  <p className="mt-2.5 pl-[8px] sm:pl-[10px] lg:pl-[12px] text-[21.5px] sm:text-[25px] lg:text-[16px] font-normal text-black leading-[1.3] w-full">
                     {formatSentenceCase(getContent('commission_extra_fees_note', 'Phụ phí sẽ được mình báo và thống nhất sau khi hoàn thiện bước sketch'))}
                   </p>
                 </div>
@@ -563,11 +563,11 @@ Nếu mình hủy:
                   {!isEven && <div className="hidden sm:block"></div>}
                   
                   {/* Content Container */}
-                  <div className={`flex flex-col items-start w-full z-10 ${!isEven ? 'md:translate-x-[5%]' : ''}`}>
+                  <div className={`flex flex-col items-start w-full z-10 ${!isEven ? 'sm:translate-x-[70px]' : ''}`}>
                     <span className="inline-block bg-[#5A504D] text-[#FAF6EE] font-normal text-[21.5px] sm:text-[25px] lg:text-[16px] tracking-wider py-1 px-2.5 sm:py-1.2 sm:px-3.5 rounded-lg select-none mb-3">
                       {term.title}
                     </span>
-                    <div className="pl-6 sm:pl-8 lg:pl-10 w-full space-y-1 text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal text-black font-mono">
+                    <div className="pl-[10px] sm:pl-[14px] lg:pl-[17px] w-full space-y-1 text-[18px] sm:text-[22px] lg:text-[16px] leading-[1.3] font-normal text-black font-mono">
                       {lines.map((line: string, lineIdx: number) => {
                         const trimmed = line.trim();
                         if (!trimmed) return <div key={lineIdx} className="h-2" />;
@@ -576,9 +576,9 @@ Nếu mình hủy:
                         if (line.startsWith('  -') || line.startsWith(' -') || line.startsWith('--')) {
                           const text = line.replace(/^(\s*-\s*|\s*--\s*)/, '');
                           return (
-                            <div key={lineIdx} className="pl-6 flex items-start">
+                            <div key={lineIdx} className="pl-[10px] text-black">
                               <span className="text-[1.2em] inline-block align-middle mr-1.5 -translate-y-[1px] leading-[0]">o</span>
-                              <span>{formatSentenceCase(text)}</span>
+                              <span className="align-middle">{formatSentenceCase(text)}</span>
                             </div>
                           );
                         }
@@ -587,9 +587,9 @@ Nếu mình hủy:
                         if (trimmed.startsWith('-') || trimmed.startsWith('*')) {
                           const text = trimmed.replace(/^[-*]\s*/, '');
                           return (
-                            <li key={lineIdx} className="flex items-start list-none">
+                            <li key={lineIdx} className="list-none text-black">
                               <span className="text-[1.6em] inline-block align-middle mr-1.5 -translate-y-[2px] leading-[0]">•</span>
-                              <span>{formatSentenceCase(text)}</span>
+                              <span className="align-middle">{formatSentenceCase(text)}</span>
                             </li>
                           );
                         }
